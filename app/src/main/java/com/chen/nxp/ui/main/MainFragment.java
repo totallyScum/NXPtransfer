@@ -28,6 +28,7 @@ import com.chen.nxp.ui.history.HistoryFragment;
 import com.chen.nxp.ui.mission.MissionFragment;
 import com.chen.nxp.R;
 import com.chen.nxp.ui.login.LoginActivity;
+import com.zthl.nxp.AutomaticBarcodeFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,8 +38,8 @@ import java.util.Map;
 public class MainFragment extends Fragment {
     private MainViewModel mViewModel;
     private GridView mainMenuList;
-    private String[] theme = {"当前机器任务(机台号)","开票开始界面","任务列表","已发放任务","转机结束","注销","开票（开始界面）","开票（ 结束界面）","历史查看" ,"问题恢复","问题反馈"};
-         private int[] imageViews = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+    private String[] theme = {"当前机器任务(机台号)","开票开始界面","任务列表","已发放任务","转机结束","注销","开票（开始界面）","开票（ 结束界面）","历史查看" ,"问题恢复","问题反馈","扫码"};
+         private int[] imageViews = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -133,6 +134,11 @@ public class MainFragment extends Fragment {
                         break;
                     case 10:
                         ft.replace(R.id.container, ProblemRecoveryFragment.newInstance());
+                        ft.addToBackStack("UserTag");
+                        ft.commit();
+                        break;
+                    case 11:
+                        ft.replace(R.id.container, AutomaticBarcodeFragment.newInstance());
                         ft.addToBackStack("UserTag");
                         ft.commit();
                         break;

@@ -25,4 +25,6 @@ public class MainActivity extends AppCompatActivity implements MissionFragment.O
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
     }
+
+
 }
