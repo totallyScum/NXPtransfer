@@ -10,7 +10,7 @@
         android:background="#5C8A8A"
         android:gravity="left"
         android:padding="6dp"
-        android:text="请对准需要扫描的二维码"
+        android:text="请对准机器二维码"
         android:textColor="#FFFFFF"
         android:textSize="13sp" >
 
@@ -22,5 +22,12 @@
         android:layout_height="wrap_content"
         android:textSize="25sp" >
     </ListView>
-
+<Button
+    android:id="@+id/confirm"
+    android:text="确认"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:visibility="invisible"
+    ></Button>
 </LinearLayout>

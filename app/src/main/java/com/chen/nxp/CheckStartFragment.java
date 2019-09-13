@@ -8,19 +8,29 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.chen.nxp.ui.AutomaticBarcodeActivity;
+import com.chen.nxp.ui.main.MainFragment;
+import com.chen.nxp.ui.main.MainViewModel;
 import com.google.android.gms.plus.PlusOneButton;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 
 public class CheckStartFragment extends Fragment {
     private ListView mListView;
+    private MainViewModel mainViewModel;
+    private TextView checkMachineNumber ;   //机器码
+   private TextView checkType; //开票类型
     public static CheckStartFragment newInstance() {
         
         Bundle args = new Bundle();
@@ -40,17 +50,26 @@ public class CheckStartFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-      //  mListView=getView().findViewById(R.id.check_start_list);
-   //     mListView.setAdapter(new );
-    }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        checkMachineNumber=getView().findViewById(R.id.check_machine_number);
+        checkType=getView().findViewById(R.id.check_type);
+        if (mainViewModel!=null)
+            checkMachineNumber.setText(mainViewModel.getBarCodeData());
+        if (mainViewModel.getFragmentID()!=-1)
+            checkType.setText(MainFragment.themeCheck[mainViewModel.getFragmentID()]);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkMachineNumber.setText(mainViewModel.getBarCodeData());
     }
 }

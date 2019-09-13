@@ -35,6 +35,14 @@ public class TransferStartFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static TransferStartFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        TransferStartFragment fragment = new TransferStartFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -79,12 +87,12 @@ public class TransferStartFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override

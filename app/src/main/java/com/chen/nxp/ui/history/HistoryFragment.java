@@ -85,7 +85,7 @@ public class HistoryFragment extends Fragment {
         super.onStart();
         list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            list.add("我是第" + i + "个条目");
+            list.add("机台号" + i + "---"+"程序名"+"---"+"进行中"+"---"+"2019.9.11");
         }
         listview=getView().findViewById(R.id.history_list);
         adapter=new HistoryItemListViewAdapter(getView().getContext(),list);

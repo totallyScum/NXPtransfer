@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.chen.nxp.R;
+import com.chen.nxp.ui.missionList.MissionListItemListviewViewAdapter;
+
+import java.util.ArrayList;
 
 
 /**
@@ -30,11 +34,22 @@ public class MissionPublishedFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private ListView listview;
+    private ArrayList<String> list;
+    private MissionPublishedListviewViewAdapter adapter;
     private OnFragmentInteractionListener mListener;
 
     public MissionPublishedFragment() {
         // Required empty public constructor
+    }
+
+    public static MissionPublishedFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        MissionPublishedFragment fragment = new MissionPublishedFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     /**
@@ -63,6 +78,17 @@ public class MissionPublishedFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add("我是第" + i + "个条目");
+        }
+        listview=getView().findViewById(R.id.mission_list);
+        adapter=new MissionPublishedListviewViewAdapter(getView().getContext(),list);
+        listview.setAdapter(adapter);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,12 +107,12 @@ public class MissionPublishedFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override

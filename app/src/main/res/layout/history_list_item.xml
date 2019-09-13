@@ -17,11 +17,12 @@
 
         <ImageView
             android:id="@+id/imageview"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            />
 
         <TextView
             android:id="@+id/tv_test"
@@ -34,8 +35,8 @@
 
         <ImageView
             android:id="@+id/checkbox"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"

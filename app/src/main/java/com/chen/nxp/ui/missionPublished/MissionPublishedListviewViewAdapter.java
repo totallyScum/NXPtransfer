@@ -57,7 +57,7 @@ public class MissionPublishedListviewViewAdapter extends BaseAdapter implements 
     public View getView(final int position, View convertView, ViewGroup parent) {
         final MyViewHolder vh;
         if (convertView == null) {
-            convertView = View.inflate(context, R.layout.mission_list_item, null);
+            convertView = View.inflate(context, R.layout.mission_published_item, null);
             vh = new MyViewHolder(convertView);
             convertView.setTag(vh);
         } else {
@@ -143,7 +143,7 @@ public class MissionPublishedListviewViewAdapter extends BaseAdapter implements 
             hide_1 = (TextView) itemView.findViewById(R.id.hide_1);
             hide_2 = (TextView) itemView.findViewById(R.id.hide_2);
             hide_3 = (TextView) itemView.findViewById(R.id.hide_3);
-            ll_hide = (LinearLayout) itemView.findViewById(R.id.mission_list_ll_hide);
+            ll_hide = (LinearLayout) itemView.findViewById(R.id.mission_published_ll_hide);
             listtiem = (RelativeLayout) itemView.findViewById(R.id.mission_list_item);
 
         }

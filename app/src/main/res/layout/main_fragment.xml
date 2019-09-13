@@ -6,12 +6,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <TextView
+        android:text="固定界面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#000000"></View>
 <GridView
-    android:id="@+id/main_menu_list"
+    android:id="@+id/main_menu_list_fixed"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:numColumns="4"
     ></GridView>
-
+        <TextView
+            android:text="开票界面"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:autoLink="all"
+            ></TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#000000"></View>
+        <GridView
+            android:id="@+id/main_menu_list_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            ></GridView>
+        <TextView
+            android:text="二级展示界面"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:autoLink="all"
+            ></TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#000000"></View>
+        <GridView
+            android:id="@+id/main_menu_list_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            ></GridView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

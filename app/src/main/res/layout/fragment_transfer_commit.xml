@@ -1,15 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckStartFragment">
+   >
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-    >
+        android:gravity="center"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,12 +24,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="开票人:"></TextView>
-            <TextView
-                android:id="@+id/check_account"
-                android:text="默认登录名"
+                android:text="转机人:"></TextView>
+            <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"></Spinner>
 
         </LinearLayout>
 
@@ -40,70 +40,12 @@
             android:background="@color/cardview_light_background"
             >
             <TextView
-                android:id="@+id/check_operator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="操作员:"></TextView>
-            <TextView
-                android:text="从后台获取当前操作员"
+                android:text="机台号:"></TextView>
+            <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/cardview_light_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="开票时间:"></TextView>
-            <TextView
-                android:id="@+id/check_time"
-                android:text="时间"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/cardview_light_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="当前程序名:"></TextView>
-            <TextView
-                android:id="@+id/check_current_program"
-                android:text="从后台抓取"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/cardview_light_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="开票时间:"></TextView>
-            <TextView
-                android:text="从后台抓取"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"></Spinner>
 
         </LinearLayout>
         <LinearLayout
@@ -124,7 +66,6 @@
                 android:layout_height="wrap_content"></TextView>
 
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,10 +77,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="机台号:"></TextView>
+                android:text="操作员:"></TextView>
             <TextView
-                android:id="@+id/check_machine_number"
-                android:text="扫码获取"
+                android:text="从后台获取当前操作员"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></TextView>
 
@@ -155,18 +95,56 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="开票类型:"></TextView>
+                android:text="当前程序名:"></TextView>
             <TextView
-                android:id="@+id/check_type"
-                android:text=""
+                android:text="从后台抓取"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></TextView>
+
         </LinearLayout>
-    <Button
-        android:id="@+id/check_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="提交" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cardview_light_background"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="目标程序名:"></TextView>
+            <Spinner
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cardview_light_background"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开票时间:"></TextView>
+            <TextView
+                android:text="当前时间"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
+        </LinearLayout>
+<Button
+            android:id="@+id/check_end_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="提交" />
     </LinearLayout>
+
+
 </FrameLayout>

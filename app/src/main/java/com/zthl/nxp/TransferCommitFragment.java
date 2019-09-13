@@ -1,4 +1,4 @@
-package com.chen.nxp;
+package com.zthl.nxp;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,16 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chen.nxp.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TransferFragment.OnFragmentInteractionListener} interface
+ * {@link TransferCommitFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TransferFragment#newInstance} factory method to
+ * Use the {@link TransferCommitFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TransferFragment extends Fragment {
+public class TransferCommitFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +33,7 @@ public class TransferFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public TransferFragment() {
+    public TransferCommitFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +43,11 @@ public class TransferFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TransferFragment.
+     * @return A new instance of fragment TransferCommitFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TransferFragment newInstance(String param1, String param2) {
-        TransferFragment fragment = new TransferFragment();
+    public static TransferCommitFragment newInstance(String param1, String param2) {
+        TransferCommitFragment fragment = new TransferCommitFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -53,6 +55,14 @@ public class TransferFragment extends Fragment {
         return fragment;
     }
 
+    public static TransferCommitFragment newInstance() {
+
+        Bundle args = new Bundle();
+        
+        TransferCommitFragment fragment = new TransferCommitFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +76,7 @@ public class TransferFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transfer, container, false);
+        return inflater.inflate(R.layout.fragment_transfer_commit, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -79,12 +89,12 @@ public class TransferFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override
