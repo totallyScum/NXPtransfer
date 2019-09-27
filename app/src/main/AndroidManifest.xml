@@ -4,22 +4,26 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.AutomaticBarcodeActivity"></activity>
-        <activity android:name=".MainActivity">
+        android:theme="@style/ThemeDemo"
+        >
+        <activity android:name="com.zthl.nxp.ui.AutomaticBarcodeActivity"></activity>
+        <activity android:name="com.zthl.nxp.MainActivity"
+            >
         </activity>
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/app_name" />
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:name="com.zthl.nxp.ui.login.LoginActivity"
+            android:theme="@style/ThemeDemo"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
     <uses-permission android:name="com.honeywell.decode.permission.DECODE" />
 

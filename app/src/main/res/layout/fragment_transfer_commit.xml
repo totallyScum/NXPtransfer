@@ -4,13 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
    >
-
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTextBlue"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:text="转机提交"
+            android:textColor="@color/colorButtonWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+        ></TextView>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="50dp"
         >
 
         <LinearLayout
@@ -19,18 +39,52 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/cardview_light_background"
+            android:background="@drawable/shape_corner"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="转机人:"></TextView>
-            <Spinner
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
-
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:text="转机人"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+               />
+            <Spinner
+                android:id="@+id/transfer_man_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                ></Spinner>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_corner"
+
+            >
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:text="机台号"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                ></TextView>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                ></Spinner>
+
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,30 +94,22 @@
             android:background="@color/cardview_light_background"
             >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="机台号:"></TextView>
-            <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/cardview_light_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="设备分组:"></TextView>
+                android:textSize="@dimen/text_title_size"
+                android:text="设备分组"
+                android:gravity="center"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                ></TextView>
             <TextView
+                android:textSize="@dimen/text_title_size"
                 android:text="从后台抓取"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                ></TextView>
 
         </LinearLayout>
         <LinearLayout
@@ -75,13 +121,23 @@
             android:background="@color/cardview_light_background"
             >
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="操作员:"></TextView>
+                android:textSize="@dimen/text_title_size"
+                android:text="操作员"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:gravity="center"
+                android:layout_weight="2"
+                ></TextView>
             <TextView
+                android:id="@+id/account"
                 android:text="从后台获取当前操作员"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:layout_weight="1"
+                ></TextView>
 
         </LinearLayout>
         <LinearLayout
@@ -92,14 +148,25 @@
             android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
             >
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="当前程序名:"></TextView>
+                android:gravity="center"
+                android:layout_weight="2"
+                android:background="@drawable/shape_corner_left"
+                android:text="当前程序"
+                android:textColor="@color/colorButtonWhite"
+                android:textSize="@dimen/text_title_size"
+
+                ></TextView>
             <TextView
                 android:text="从后台抓取"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:layout_weight="1"
+                ></TextView>
 
         </LinearLayout>
         <LinearLayout
@@ -110,14 +177,23 @@
             android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="目标程序名:"></TextView>
-            <Spinner
 
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/shape_corner_left"
+                android:text="目标程序名"
+                android:textColor="@color/colorButtonWhite"
+                android:textSize="@dimen/text_title_size"
+                android:gravity="center"
+                ></TextView>
+            <Spinner
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </Spinner>
 
         </LinearLayout>
         <LinearLayout
@@ -129,21 +205,36 @@
             android:background="@color/cardview_light_background"
             >
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="开票时间:"></TextView>
+                android:gravity="center"
+                android:text="开票时间"
+                android:textSize="@dimen/text_title_size"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                ></TextView>
             <TextView
+                android:id="@+id/current_time"
                 android:text="当前时间"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:layout_weight="1"
+                ></TextView>
 
         </LinearLayout>
 <Button
-            android:id="@+id/check_end_submit"
-            android:layout_width="wrap_content"
+            android:id="@+id/transfer_commit_submit"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="提交" />
+    android:layout_marginTop="50dp"
+    android:background="@color/colorButtonYellow"
+    android:textColor="@color/colorButtonWhite"
+            android:text="提交"
+    android:textSize="25dp"
+    />
     </LinearLayout>
 
 

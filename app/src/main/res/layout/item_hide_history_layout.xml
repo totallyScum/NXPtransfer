@@ -3,8 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/history_ll_hide"
+    android:orientation="vertical"
     android:visibility="gone"
     >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="详细信息"
+        android:textColor="@color/colorTitleBlack"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        ></TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#000000"></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +27,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             >
@@ -37,8 +51,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
 
             <TextView
                 android:id="@+id/hide_3"

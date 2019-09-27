@@ -3,5 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorAccentTransparent">#99D81B60</color>
     <color name="colorPrimaryTransparent">#99008577</color>
+    <color name="colorPurple">#8FA0FF</color>
+    <color name="colorTitleBlack">#22292C</color>
+    <color name="colorTextBlack">#000000</color>
+    <color name="colorLoginBlue">#45A4F0</color>
+    <color name="colorButtonYellow">#FFB500</color>
+    <color name="colorButtonWhite">#ffffff</color>
+    <color name="colorTextBlue">#109DDD</color>
+    <color name="colorBackgroundWhite">#F2F2F2</color>
 </resources>

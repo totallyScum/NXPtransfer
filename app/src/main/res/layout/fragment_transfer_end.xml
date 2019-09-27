@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TransferEndFragment">
+    tools:context="com.zthl.nxp.TransferEndFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -11,9 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:gravity="center"
-        >
 
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/check_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTextBlue"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="开始转机"
+                    android:textColor="@color/colorButtonWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    ></TextView>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +48,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="结束转机人:"></TextView>
+                android:text="结束转机人:"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                ></TextView>
             <TextView
                 android:text="默认登录名"
                 android:layout_width="match_parent"
@@ -44,7 +70,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="程序名:"></TextView>
+                android:text="程序名:"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                ></TextView>
             <TextView
                 android:text="从后台抓取新转程序的程序名"
                 android:layout_width="match_parent"
@@ -62,7 +91,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="转机结束时间:"></TextView>
+                android:text="转机结束时间:"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                ></TextView>
             <TextView
                 android:text="enter Date"
                 android:layout_width="match_parent"
@@ -80,15 +112,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="完成转机" />
-        <Button
-            android:id="@+id/transfer_commit_question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="提交问题" />
-
+            android:background="@color/colorButtonYellow"
+            android:textColor="@color/colorButtonWhite"
+        android:text="完成转机"
+            />
 </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

@@ -1,20 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:id="@+id/mission_list_item"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="70dp"
+        android:background="@drawable/shape_corner_blue"
+        >
 
-        <ImageView
-            android:id="@+id/imageview"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/tv_test"
@@ -22,8 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/imageview"
-            android:text="这个是测试用条目" />
+            android:text="转机任务名称" />
 
         <!--        <ImageView-->
         <!--            android:id="@+id/checkbox"-->
@@ -36,7 +31,7 @@
         <!--            android:clickable="true"-->
         <!--            />-->
         <TextView
-            android:text="待转机"
+            android:text="转机任务状态"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

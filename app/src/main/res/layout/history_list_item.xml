@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.history.HistoryFragment">
+    tools:context="com.zthl.nxp.ui.history.HistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
     <RelativeLayout
         android:id="@+id/history_list_item"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="50dp"
+        android:background="@drawable/shape_corner_blue"
+        >
 
         <ImageView
             android:id="@+id/imageview"
@@ -28,21 +31,13 @@
             android:id="@+id/tv_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/imageview"
-            android:text="目标程序名" />
 
-        <ImageView
-            android:id="@+id/checkbox"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@mipmap/ic_launcher"
-            android:clickable="true"
-            />
+            android:layout_marginLeft="20dp"
+            android:text="目标程序名"
+            android:textColor="#429CB3" />
+
+
 
     </RelativeLayout>
 

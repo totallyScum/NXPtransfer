@@ -5,61 +5,84 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+    tools:context="com.zthl.nxp.ui.main.MainFragment"
+    android:background="#f8f8f8"
+    >
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    <TextView
-        android:text="固定界面"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        />
-        <View
+        <ImageView
+
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#000000"></View>
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/main_image"
+            />
+<!--    <TextView-->
+<!--        android:visibility="invisible"-->
+<!--        android:text="固定界面"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="left"-->
+<!--        />-->
+<!--        <View-->
+<!--            android:visibility="invisible"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1px"-->
+<!--            android:background="#000000"></View>-->
 <GridView
     android:id="@+id/main_menu_list_fixed"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:numColumns="4"
+    android:numColumns="3"
+    android:horizontalSpacing="1dp"
+    android:verticalSpacing="1dp"
+    android:stretchMode="columnWidth"
     ></GridView>
-        <TextView
-            android:text="开票界面"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:autoLink="all"
-            ></TextView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#000000"></View>
+<!--        <TextView-->
+<!--            android:visibility="invisible"-->
+<!--            android:text="开票界面"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="left"-->
+<!--            android:autoLink="all"-->
+<!--            ></TextView>-->
+<!--        <View-->
+<!--            android:visibility="invisible"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1px"-->
+<!--            android:background="#000000"></View>-->
         <GridView
             android:id="@+id/main_menu_list_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numColumns="4"
+            android:numColumns="3"
+            android:horizontalSpacing="1dp"
+            android:verticalSpacing="1dp"
+            android:stretchMode="columnWidth"
             ></GridView>
-        <TextView
-            android:text="二级展示界面"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:autoLink="all"
-            ></TextView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#000000"></View>
+<!--        <TextView-->
+<!--            android:text="二级展示界面"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="left"-->
+<!--            android:autoLink="all"-->
+<!--            android:visibility="invisible"-->
+<!--            ></TextView>-->
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1px"-->
+<!--            android:background="#000000"-->
+<!--            android:visibility="invisible"-->
+<!--            ></View>-->
         <GridView
             android:id="@+id/main_menu_list_secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:numColumns="4"
+            android:visibility="invisible"
             ></GridView>
     </LinearLayout>
 

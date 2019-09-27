@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/mission_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorAccentTransparent"
+        >
+
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imageview"
+            android:text="这个是测试用条目" />
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/checkbox"-->
+        <!--            android:layout_width="28dp"-->
+        <!--            android:layout_height="28dp"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:layout_marginRight="10dp"-->
+        <!--            android:background="@mipmap/ic_launcher"-->
+        <!--            android:clickable="true"-->
+        <!--            />-->
+        <TextView
+            android:text="待转机"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            ></TextView>
+    </RelativeLayout>
+
+    <include layout="@layout/item_hide_mission_list_layout"
+        />
+</LinearLayout>
