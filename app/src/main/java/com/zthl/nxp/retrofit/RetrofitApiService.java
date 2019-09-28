@@ -1,5 +1,6 @@
 package com.zthl.nxp.retrofit;
 
+import com.zthl.nxp.model.CreatInvoicesRequest;
 import com.zthl.nxp.model.LoginRequest;
 import com.zthl.nxp.model.LoginResponseBody;
 import com.zthl.nxp.model.ResultData;
@@ -37,4 +38,12 @@ public interface RetrofitApiService {
     @Headers({"Content-Type: application/json","Accept: application/json"})//获取所有转机任务
     @POST("Api/TurringList")
     Observable<ResultData<List<TurringList>>> getTurringListResponseInfo(@Body SimpleRequest simpleRequest);
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})//获取所有转机任务
+    @POST("Api/HistoryList")
+    Observable<ResultData<List<TurringList>>> getHistoryResponseInfo(@Body SimpleRequest simpleRequest);
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})//新建开票任务
+    @POST("api/CreatInvoices")
+    Observable<ResultNoData> getCreatInvoicesResponseInfo(@Body CreatInvoicesRequest creatInvoicesRequest);
 }

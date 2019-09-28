@@ -32,12 +32,22 @@ public class TurringList {
     private String founder;
     @SerializedName("Transit_Situation")
     private String transitSituation;
+    @SerializedName("Billing_Time")
+    private String billingTime;
     @SerializedName("Conversion_Time")
     private String conversionTime;
     @SerializedName("TurningStateName")
     private String turningStateName;
     @SerializedName("MessageType")
     private String messageType;
+
+    public String getBillingTime() {
+        return billingTime;
+    }
+
+    public void setBillingTime(String billingTime) {
+        this.billingTime = billingTime;
+    }
 
     public String getpKId() {
         return pKId;

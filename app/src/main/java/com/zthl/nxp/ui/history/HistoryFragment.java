@@ -4,17 +4,32 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.zthl.nxp.model.LoginResponseBody;
+import com.zthl.nxp.model.ResultData;
+import com.zthl.nxp.model.SimpleRequest;
+import com.zthl.nxp.model.TransferCommitRequset;
+import com.zthl.nxp.model.TurnaroundManList;
+import com.zthl.nxp.model.TurringList;
+import com.zthl.nxp.presenter.HistoryResponseBodyPresenter;
+import com.zthl.nxp.presenter.TurnaroundManListResponseBodyPresenter;
+import com.zthl.nxp.presenterView.HistoryResponsePv;
+import com.zthl.nxp.presenterView.TurnaroundManListResponsePv;
 import com.zthl.nxp.ui.mission.MissionFragment;
 import com.chen.nxp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -40,6 +55,7 @@ public class HistoryFragment extends Fragment {
     private ArrayList<String> list;
     private HistoryItemListViewAdapter adapter;
   //  private OnFragmentInteractionListener mListener;
+  private HistoryResponseBodyPresenter hlp=new HistoryResponseBodyPresenter(getContext());
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -83,13 +99,6 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            list.add("机台号" + i + "---"+"程序名"+"---"+"进行中"+"---"+"2019.9.11");
-        }
-        listview=getView().findViewById(R.id.history_list);
-        adapter=new HistoryItemListViewAdapter(getView().getContext(),list);
-        listview.setAdapter(adapter);
     }
 
     @Override
@@ -106,6 +115,17 @@ public class HistoryFragment extends Fragment {
 //            }
         }
         return inflater.inflate(R.layout.fragment_history, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        hlp.onCreate();
+        hlp.BindPresentView(historyResponsePv);
+        SimpleRequest s=new SimpleRequest();
+        s.setAccountPkId("1");
+        hlp.getHistoryResponseInfo(s);
+        listview=getView().findViewById(R.id.history_list);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -146,4 +166,19 @@ public class HistoryFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+    private HistoryResponsePv historyResponsePv = new HistoryResponsePv(){
+
+        @Override
+        public void onSuccess(final ResultData<List<TurringList>> resultNet) {
+            Log.d("99999",resultNet.getData().get(0).getCreatedDateTime());
+            adapter=new HistoryItemListViewAdapter(getView().getContext(),resultNet.getData());
+            listview.setAdapter(adapter);
+                }
+
+        @Override
+        public void onError(String result) {
+            Log.d("111111",result.toString());
+        }
+
+    };
 }

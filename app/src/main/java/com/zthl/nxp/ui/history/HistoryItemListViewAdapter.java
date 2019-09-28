@@ -11,17 +11,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chen.nxp.R;
+import com.zthl.nxp.model.TurringList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryItemListViewAdapter extends BaseAdapter   implements View.OnClickListener {
-    private ArrayList<String> list = null;
+    private List<TurringList> list = null;
     private Context context = null;
     private int clickPosition = -1;//记录用户点击了的item
+
     public Boolean flag = false; //标识下拉view的显示状态
 
 
-    public HistoryItemListViewAdapter(Context context, ArrayList<String> list){
+    public HistoryItemListViewAdapter(Context context, List<TurringList> list){
         this.context = context;
         this.list = list;
     }
@@ -53,7 +56,15 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         } else {
             vh = (HistoryItemListViewAdapter.MyViewHolder) convertView.getTag();
         }
-        vh.tv_test.setText(list.get(position));
+
+        Log.d("8888",list.get(0).getCreatedDateTime());
+
+        vh.tv_test.setText(list.get(position).getMachineNumber()+"----"+list.get(position).getTargetProgram()+"----"+list.get(position).getTurningStateName()+"----"+list.get(position).getCreatedDateTime());
+        vh.operator.setText(list.get(position).getOperator());
+        vh.group.setText(list.get(position).getGrouping());
+        vh.machineNumber.setText(list.get(position).getMachineNumber());
+        vh.turnaroundMan.setText(list.get(position).getTurnaroundMan());
+        vh.conversionTime.setText(list.get(position).getConversionTime());
         //   vh.tv_test.setText("2333333");
         //判断用户是不是点击了同一个item
         if (clickPosition == position) {
@@ -107,21 +118,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R.id.hide_1:
-//                Toast.makeText(context, "收藏", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.hide_2:
-//                Toast.makeText(context, "查看详情", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.hide_3:
-//                Toast.makeText(context, "分享", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.hide_4:
-//                Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.hide_5:
-//                Toast.makeText(context, "属性", Toast.LENGTH_SHORT).show();
-//                break;
+
         }
     }
 
@@ -129,23 +126,26 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
     class MyViewHolder {
         View itemView;
         TextView tv_test;
-        TextView hide_1, hide_2, hide_3, hide_4;
+        TextView hide_1, hide_2, hide_3, hide_4,operator,group,machineNumber,turnaroundMan,conversionTime;
         ImageView selectorImg;
         LinearLayout ll_hide;
         RelativeLayout listtiem;
 
         public MyViewHolder(View itemView) {
             this.itemView = itemView;
+            ll_hide = (LinearLayout) itemView.findViewById(R.id.history_ll_hide);
             tv_test = (TextView) itemView.findViewById(R.id.tv_test);
             selectorImg = (ImageView) itemView.findViewById(R.id.checkbox);
             hide_1 = (TextView) itemView.findViewById(R.id.hide_1);
             hide_2 = (TextView) itemView.findViewById(R.id.hide_2);
             hide_3 = (TextView) itemView.findViewById(R.id.hide_3);
             hide_4 = (TextView) itemView.findViewById(R.id.hide_4);
-     //       hide_5 = (TextView) itemView.findViewById(R.id.hide_5);
-            ll_hide = (LinearLayout) itemView.findViewById(R.id.history_ll_hide);
+            operator=(TextView) ll_hide.findViewById(R.id.operator);
+            group=(TextView) ll_hide.findViewById(R.id.group);
+            turnaroundMan=(TextView) ll_hide.findViewById(R.id.turnaroundMan);
             listtiem = (RelativeLayout) itemView.findViewById(R.id.history_list_item);
-
+            machineNumber=(TextView) ll_hide.findViewById(R.id.machineNumber);
+            conversionTime=(TextView) ll_hide.findViewById(R.id.conversionTime);
         }
     }
 }

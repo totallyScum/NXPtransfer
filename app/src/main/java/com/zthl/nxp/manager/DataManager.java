@@ -55,4 +55,7 @@ public class DataManager {
     public Observable<ResultData<List<TurringList>>> getTurringListResponseInfo(SimpleRequest simpleRequest){     //获取所有转换员
         return mRetrofitService.getTurringListResponseInfo(simpleRequest);
     }
+    public Observable<ResultData<List<TurringList>>> getHistoryResponseInfo(SimpleRequest simpleRequest){
+        return mRetrofitService.getHistoryResponseInfo(simpleRequest);
+    }
 }
