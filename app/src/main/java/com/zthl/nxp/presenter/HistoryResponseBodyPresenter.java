@@ -1,16 +1,12 @@
 package com.zthl.nxp.presenter;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.zthl.nxp.manager.DataManager;
-import com.zthl.nxp.model.LoginRequest;
-import com.zthl.nxp.model.LoginResponseBody;
 import com.zthl.nxp.model.ResultData;
-import com.zthl.nxp.model.SimpleRequest;
+import com.zthl.nxp.model.request.SimpleRequest;
 import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.presenterView.HistoryResponsePv;
-import com.zthl.nxp.presenterView.LoginResponsePv;
 import com.zthl.nxp.presenterView.PresentView;
 
 import java.util.List;

@@ -2,18 +2,41 @@ package com.zthl.nxp.ui.missionList;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chen.nxp.R;
+import com.zthl.nxp.ListViewFragment;
+import com.zthl.nxp.QueryFactorFragment;
+import com.zthl.nxp.SearchFragment;
+import com.zthl.nxp.model.ResultData;
+import com.zthl.nxp.model.ResultNoData;
+import com.zthl.nxp.model.TurringList;
+import com.zthl.nxp.presenterView.TransferCommitResponsePv;
+import com.zthl.nxp.presenterView.TurringListResponsePv;
+import com.zthl.nxp.ui.main.MainFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -37,9 +60,9 @@ public class MissionListFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private EditText search;
     private OnFragmentInteractionListener mListener;
-
+    private ListView mListview;
     public MissionListFragment() {
         // Required empty public constructor
     }
@@ -77,15 +100,112 @@ public class MissionListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mission_list, container, false);
+        View rootView=inflater.inflate(R.layout.fragment_mission_list, container, false);
+        return rootView;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+//                    getChildFragmentManager().beginTransaction()
+//                    .replace(R.id.mission_container, ListViewFragment.newInstance())
+//                    .commitAllowingStateLoss();
+
+
+
+
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.replace(R.id.mission_container, ListViewFragment.newInstance());
+        ft.commit();
+
+
+
+        search=getActivity().findViewById(R.id.search);
+        mListview=getView().findViewById(R.id.mission_list);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
+                ft.commit();
+
+            }
+
+
+
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+////                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+////                ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
+////             //   ft.addToBackStack("UserTag");
+////                ft.commit();
+//
+//                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//                ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
+//                   ft.addToBackStack(null);
+//                ft.commit();
+//
+//
+////                                getFragmentManager()
+////                        .beginTransaction()
+////                        .addToBackStack(null)  //将当前fragment加入到返回栈中
+////                        .replace(R.id.container, SearchFragment.newInstance()).commit();
+//            }
+
+        });
+
+
+
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //当actionId == XX_SEND 或者 XX_DONE时都触发
+                //或者event.getKeyCode == ENTER 且 event.getAction == ACTION_DOWN时也触发
+                //注意，这是一定要判断event != null。因为在某些输入法上会返回null。
+                if (actionId == EditorInfo.IME_ACTION_SEND
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
+                    //处理事件
+                }
+                return false;
+            }
+        });
+
+
+//        search.setOnCapturedPointerListener(new View.OnCapturedPointerListener() {
+//            @Override
+//            public boolean onCapturedPointer(View view, MotionEvent motionEvent) {
+//                Log.d("66666644","23333");
+//                return false;
+//            }
+//        });
+   //     initView();
+        initRequest();
+    }
+    private void initView(){
+
+
+        FragmentTransaction ft =   getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mission_container, ListViewFragment.newInstance());
+        ft.commit();
+    }
+    private void initRequest(){
+
+
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -95,13 +215,6 @@ public class MissionListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            list.add("我是第" + i + "个条目");
-        }
-        listview=getView().findViewById(R.id.mission_list);
-        adapter=new MissionListItemListviewViewAdapter(getView().getContext(),list);
-        listview.setAdapter(adapter);
     }
     @Override
     public void onAttach(Context context) {
@@ -134,6 +247,43 @@ public class MissionListFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    private TurringListResponsePv mUserInfoPv = new TurringListResponsePv(){
+        @Override
+        public void onSuccess(ResultData<List<TurringList>> resultNet) {
+
+            adapter=new MissionListItemListviewViewAdapter(getView().getContext(),resultNet.getData());
+            listview.setAdapter(adapter);
+
+        }
+
+        @Override
+        public void onError(String result) {
+            Toast.makeText(getContext(),result, Toast.LENGTH_SHORT).show();
+        }
+
+//        @Override
+//        public void onSuccess(ResultNoData resultNet) {
+//            //    JSONObject jsonData = JSONObject.fromObject(school);
+//            //      System.out.println(jsonData);
+//            if (resultNet.getState().equals("1"))
+//            {
+//                Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_LONG).show();
+//
+//                getFragmentManager()
+//                        .beginTransaction()
+//                        .addToBackStack(null)  //将当前fragment加入到返回栈中
+//                        .replace(R.id.container, MainFragment.newInstance()).commit();
+//            }
+//            if (resultNet.getState().equals("0"))
+//            {
+//                Toast.makeText(getContext(),"用户不存在",Toast.LENGTH_LONG);
+//            }
+//        }
+
+
+    };
 
 
 

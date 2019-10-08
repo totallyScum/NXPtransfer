@@ -4,10 +4,23 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
+import com.zthl.nxp.model.TurringList;
+
+import java.util.List;
+
 public class MainViewModel extends ViewModel {
     // TODO: Implement the ViewModel
     private int fragmentID;
     private String barCodeData;
+    private List<TurringList> mTurringList;
+
+    public List<TurringList> getmTurringList() {
+        return mTurringList;
+    }
+
+    public void setmTurringList(List<TurringList> mTurringList) {
+        this.mTurringList = mTurringList;
+    }
 
     public int getFragmentID() {
         return fragmentID;

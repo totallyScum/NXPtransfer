@@ -40,6 +40,24 @@ public class TurringList {
     private String turningStateName;
     @SerializedName("MessageType")
     private String messageType;
+    @SerializedName("FounderRealName")
+    private String founderRealName;
+
+    @SerializedName("QuestionDateTime")
+    private String questionDateTime;
+
+    @SerializedName("TurningStartDateTime")
+    private String turningStartDateTime;
+    @SerializedName("TurningEndDateTime")
+    private String turningEndDateTime;
+
+    public String getFounderRealName() {
+        return founderRealName;
+    }
+
+    public void setFounderRealName(String founderRealName) {
+        this.founderRealName = founderRealName;
+    }
 
     public String getBillingTime() {
         return billingTime;
@@ -175,5 +193,30 @@ public class TurringList {
 
     public void setMessageType(String messageType) {
         this.messageType = messageType;
+    }
+
+
+    public String getQuestionDateTime() {
+        return questionDateTime;
+    }
+
+    public void setQuestionDateTime(String questionDateTime) {
+        this.questionDateTime = questionDateTime;
+    }
+
+    public String getTurningStartDateTime() {
+        return turningStartDateTime;
+    }
+
+    public void setTurningStartDateTime(String turningStartDateTime) {
+        this.turningStartDateTime = turningStartDateTime;
+    }
+
+    public String getTurningEndDateTime() {
+        return turningEndDateTime;
+    }
+
+    public void setTurningEndDateTime(String turningEndDateTime) {
+        this.turningEndDateTime = turningEndDateTime;
     }
 }

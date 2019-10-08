@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/invoices_list_ll_hide"
+
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/shape_corner"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细信息"
+            android:textColor="@color/colorTitleBlack"
+            android:textSize="17dp"
+            android:layout_marginLeft="20dp"
+            ></TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#000000"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/linearLayout_line_space"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="机器分组:"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:id="@+id/invoices_machine_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/linearLayout_line_space"
+            >
+        <TextView
+            android:id="@+id/hide_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="机器号:"
+            android:layout_marginLeft="20dp"
+            />
+            <TextView
+                android:id="@+id/invoices_machine_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/linearLayout_line_space"
+            >
+            <TextView
+                android:id="@+id/hide_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前程序名:"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:id="@+id/invoices_program"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/linearLayout_line_space"
+            >
+
+            <TextView
+                android:id="@+id/hide_3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:text="操作员:" />
+            <TextView
+                android:id="@+id/invoices_operator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/linearLayout_line_space"
+            >
+            <TextView
+                android:id="@+id/hide_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开票时间:"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:id="@+id/invoices_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/linearLayout_line_space"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开票人:"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:id="@+id/founder_real_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+        <Button
+            android:id="@+id/invoices_finish"
+            android:text="结束"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/button_yellow_style"
+            ></Button>
+        <Button
+            android:id="@+id/invoices_cancel"
+            android:text="取消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/button_yellow_style"
+            ></Button>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+</LinearLayout>

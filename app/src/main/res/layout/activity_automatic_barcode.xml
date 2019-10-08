@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#5C8A8A"
+        android:background="@color/colorTextBlue"
         android:gravity="left"
         android:padding="6dp"
         android:text="请对准机器二维码"

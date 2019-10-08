@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/invoices_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_corner_blue"
+        >
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginTop="15dp"
+    >
+
+    <TextView
+    android:id="@+id/invoices_title_machine_number"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+    android:text="机器号"
+    android:textColor="#429CB3"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:text="->"
+        android:textColor="#429CB3"
+        />
+
+        <TextView
+            android:id="@+id/invoices_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="开票名称"
+            android:textColor="#429CB3"
+            />
+        </LinearLayout>
+        <!--        <ImageView-->
+        <!--            android:id="@+id/checkbox"-->
+        <!--            android:layout_width="28dp"-->
+        <!--            android:layout_height="28dp"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:layout_marginRight="10dp"-->
+        <!--            android:background="@mipmap/ic_launcher"-->
+        <!--            android:clickable="true"-->
+        <!--            />-->
+        <TextView
+            android:id="@+id/invoices_status"
+            android:text="开票状态"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            ></TextView>
+    </RelativeLayout>
+
+    <include layout="@layout/item_hide_invoices_list_layout"
+        />
+</LinearLayout>

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.zthl.nxp.manager.DataManager;
 import com.zthl.nxp.model.ResultNoData;
-import com.zthl.nxp.model.TransferCommitRequset;
+import com.zthl.nxp.model.request.TransferCommitRequset;
 import com.zthl.nxp.presenterView.PresentView;
 import com.zthl.nxp.presenterView.TransferCommitResponsePv;
 

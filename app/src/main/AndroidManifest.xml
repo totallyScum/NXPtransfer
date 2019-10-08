@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/ThemeDemo"
+        android:name="com.zthl.nxp.MyApplication"
         >
+
+
+
         <activity android:name="com.zthl.nxp.ui.AutomaticBarcodeActivity"></activity>
         <activity android:name="com.zthl.nxp.MainActivity"
             >
@@ -25,6 +29,8 @@
             </intent-filter>
         </activity>
     </application>
+
+
     <uses-permission android:name="com.honeywell.decode.permission.DECODE" />
 
     <uses-permission android:name="android.permission.INTERNET" />

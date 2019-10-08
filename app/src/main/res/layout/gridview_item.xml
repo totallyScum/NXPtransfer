@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorButtonWhite"
+    android:gravity="center"
     >
             <LinearLayout
                 android:id="@+id/grideView_item"
@@ -16,7 +17,9 @@
                     android:id="@+id/image1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="fitXY"
+                    />
 
                 <TextView
                     android:id="@+id/text1"

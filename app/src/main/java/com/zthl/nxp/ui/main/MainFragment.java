@@ -18,15 +18,15 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
-import com.zthl.nxp.CheckStartFragment;
+import com.zthl.nxp.ui.check.CheckStartFragment;
 import com.zthl.nxp.ui.AutomaticBarcodeActivity;
 import com.zthl.nxp.ui.missionList.MissionListFragment;
 import com.zthl.nxp.ui.history.HistoryFragment;
 import com.chen.nxp.R;
 import com.zthl.nxp.ui.login.LoginActivity;
-import com.zthl.nxp.ui.missionPublished.MissionPublishedFragment;
-import com.zthl.nxp.CheckListFragment;
-import com.zthl.nxp.TransferCommitFragment;
+import com.zthl.nxp.ui.check.CheckListFragment;
+import com.zthl.nxp.ui.transfer.TransferCommitFragment;
+import com.zthl.nxp.ui.transfer.TransferFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +57,7 @@ public class MainFragment extends Fragment {
 
     private int[] imageViews = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
     private int[] imageViewsFixed = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_transfer, R.mipmap.main_icon_mission_list, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
-    private int[] imageViewsCheck = {R.mipmap.main_icon_check, R.mipmap.main_icon_check, R.mipmap.main_icon_check};
+    private int[] imageViewsCheck = {R.mipmap.main_check_clean, R.mipmap.main_check_maintain, R.mipmap.main_icon_test};
     private int[] imageViewsSecondary = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,R.mipmap.ic_launcher};
 
 
@@ -449,7 +449,7 @@ switch (id){
 //        ft.replace(R.id.container, TransferCommitFragment.newInstance());
 //        ft.addToBackStack("UserTag");
 //        ft.commit();
-                        ft.replace(R.id.container, MissionPublishedFragment.newInstance());
+                        ft.replace(R.id.container, TransferFragment.newInstance());
                         ft.addToBackStack("UserTag");
                         ft.commit();
         break;

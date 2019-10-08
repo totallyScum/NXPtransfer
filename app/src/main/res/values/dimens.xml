@@ -4,4 +4,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="text_title_size">16dp</dimen>
+    <dimen name="linearLayout_line_space">5dp</dimen>
+    <dimen name="picker_view_height">160dp</dimen>
+    <dimen name="date_unit_text_size">18sp</dimen>
+    <dimen name="textView_padding_left">10dp</dimen>
+    <dimen name="textView_wrap_height">30dp</dimen>
 </resources>

@@ -28,9 +28,15 @@
                     ></TextView>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
-<ListView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    ></ListView>
+        <ListView
+            android:id="@+id/invoices_list"
+            android:name="com.chen.nxp.MissionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            tools:context="com.zthl.nxp.ui.missionList.MissionListFragment"
+            tools:listitem="@layout/invoices_list_item" />
 </LinearLayout>
 </FrameLayout>

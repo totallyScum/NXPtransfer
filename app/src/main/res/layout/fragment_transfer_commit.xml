@@ -35,7 +35,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -44,19 +44,19 @@
             <TextView
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:text="转机人"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
                />
-            <Spinner
+            <com.wrbug.editspinner.EditSpinner
                 android:id="@+id/transfer_man_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                ></Spinner>
+                ></com.wrbug.editspinner.EditSpinner>
         </LinearLayout>
 
         <LinearLayout
@@ -71,23 +71,26 @@
             <TextView
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:textSize="@dimen/text_title_size"
                 android:text="机台号"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
                 ></TextView>
-            <Spinner
+
+            <com.wrbug.editspinner.EditSpinner
+                android:id="@+id/machine_list_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                ></Spinner>
+                android:gravity="center"
+            ></com.wrbug.editspinner.EditSpinner>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -95,7 +98,7 @@
             >
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:text="设备分组"
                 android:gravity="center"
@@ -103,18 +106,21 @@
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
                 ></TextView>
+
             <TextView
-                android:textSize="@dimen/text_title_size"
-                android:text="从后台抓取"
+                android:id="@+id/group"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:layout_weight="1"
-                ></TextView>
+                android:text="从后台抓取"
+                android:paddingLeft="@dimen/textView_padding_left"
+                android:textSize="@dimen/text_title_size"></TextView>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -122,7 +128,7 @@
             >
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:text="操作员"
                 android:textColor="@color/colorButtonWhite"
@@ -131,12 +137,14 @@
                 android:layout_weight="2"
                 ></TextView>
             <TextView
-                android:id="@+id/account"
+                android:id="@+id/operator"
                 android:text="从后台获取当前操作员"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -151,7 +159,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:gravity="center"
                 android:layout_weight="2"
                 android:background="@drawable/shape_corner_left"
@@ -160,13 +168,16 @@
                 android:textSize="@dimen/text_title_size"
 
                 ></TextView>
+
             <TextView
-                android:text="从后台抓取"
+                android:id="@+id/current_program"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_title_size"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:layout_weight="1"
-                ></TextView>
+                android:text="从后台抓取"
+            android:paddingLeft="@dimen/textView_padding_left"
+                android:textSize="@dimen/text_title_size"></TextView>
 
         </LinearLayout>
         <LinearLayout
@@ -180,7 +191,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:layout_weight="2"
                 android:background="@drawable/shape_corner_left"
                 android:text="目标程序名"
@@ -188,17 +199,19 @@
                 android:textSize="@dimen/text_title_size"
                 android:gravity="center"
                 ></TextView>
-            <Spinner
+            <com.wrbug.editspinner.EditSpinner
+                android:id="@+id/program_spinner"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 >
-            </Spinner>
+            </com.wrbug.editspinner.EditSpinner>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -206,7 +219,7 @@
             >
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="开票时间"
                 android:textSize="@dimen/text_title_size"
@@ -218,22 +231,24 @@
                 android:id="@+id/current_time"
                 android:text="当前时间"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
 <Button
             android:id="@+id/transfer_commit_submit"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="25dp"
     android:background="@color/colorButtonYellow"
     android:textColor="@color/colorButtonWhite"
             android:text="提交"
-    android:textSize="25dp"
+    android:textSize="20dp"
     />
     </LinearLayout>
 

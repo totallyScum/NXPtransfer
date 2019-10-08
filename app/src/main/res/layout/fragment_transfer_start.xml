@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zthl.nxp.TransferStartFragment">
+    tools:context="com.zthl.nxp.ui.transfer.TransferStartFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -24,11 +24,13 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="开始转机"
+                    android:id="@+id/transfer_title"
                     android:textColor="@color/colorButtonWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="20dp"
+
                     ></TextView>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -48,26 +50,156 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="机器号"
+                android:textSize="@dimen/text_title_size"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:paddingLeft="20dp"
+                ></TextView>
+            <TextView
+                android:id="@+id/transfer_start_machineNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:layout_weight="1"
+                ></TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cardview_light_background"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="目标程序"
+                android:textSize="@dimen/text_title_size"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:paddingLeft="20dp"
+                ></TextView>
+            <TextView
+                android:id="@+id/transfer_start_target_program"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:layout_weight="1"
+                ></TextView>
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cardview_light_background"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="源程序"
+                android:textSize="@dimen/text_title_size"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:paddingLeft="20dp"
+                ></TextView>
+            <TextView
+                android:id="@+id/transfer_start_source_program"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:layout_weight="1"
+                ></TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cardview_light_background"
             >
             <TextView
                 android:paddingLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="转机人"
-                android:textSize="15dp"
+                android:textSize="@dimen/text_title_size"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
                 ></TextView>
             <TextView
-                 android:hint="默认登录名"
+                android:id="@+id/transfer_start_founder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 ></TextView>
 
         </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cardview_light_background"
+            >
+            <TextView
+
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="转机开始时间"
+                android:textSize="@dimen/text_title_size"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                ></TextView>
+            <TextView
+                android:id="@+id/transfer_start_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:layout_weight="1"
+                ></TextView>
+
+        </LinearLayout>
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,54 +211,23 @@
             <TextView
                 android:paddingLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="上一弹夹完成时间"
-                android:textSize="15dp"
+                android:layout_height="match_parent"
+                android:text="备注"
+                android:textSize="@dimen/text_title_size"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
                 ></TextView>
-            <TextView
-                android:text=""
+            <EditText
+                android:id="@+id/transfer_start_remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
-                ></TextView>
+                android:background="@null"
+                ></EditText>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/cardview_light_background"
-            >
-            <TextView
-                android:paddingLeft="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="开始转机时间"
-                android:textSize="15dp"
-                android:textColor="@color/colorButtonWhite"
-                android:background="@drawable/shape_corner_left"
-                android:layout_weight="2"
-                ></TextView>
-            <TextView
-                android:id="@+id/check_type"
-                android:text=""
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                ></TextView>
-
-        </LinearLayout>
-
-
-
-
 
 
 

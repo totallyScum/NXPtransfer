@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zthl.nxp.TransferEndFragment">
+    tools:context="com.zthl.nxp.ui.transfer.TransferEndFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout

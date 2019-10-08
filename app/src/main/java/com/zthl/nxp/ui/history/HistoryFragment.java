@@ -12,19 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.zthl.nxp.model.LoginResponseBody;
 import com.zthl.nxp.model.ResultData;
-import com.zthl.nxp.model.SimpleRequest;
-import com.zthl.nxp.model.TransferCommitRequset;
-import com.zthl.nxp.model.TurnaroundManList;
+import com.zthl.nxp.model.request.SimpleRequest;
 import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.presenter.HistoryResponseBodyPresenter;
-import com.zthl.nxp.presenter.TurnaroundManListResponseBodyPresenter;
 import com.zthl.nxp.presenterView.HistoryResponsePv;
-import com.zthl.nxp.presenterView.TurnaroundManListResponsePv;
 import com.zthl.nxp.ui.mission.MissionFragment;
 import com.chen.nxp.R;
 
@@ -170,7 +164,7 @@ public class HistoryFragment extends Fragment {
 
         @Override
         public void onSuccess(final ResultData<List<TurringList>> resultNet) {
-            Log.d("99999",resultNet.getData().get(0).getCreatedDateTime());
+//            Log.d("99999",resultNet.getData().get(0).get());
             adapter=new HistoryItemListViewAdapter(getView().getContext(),resultNet.getData());
             listview.setAdapter(adapter);
                 }

@@ -1,12 +1,21 @@
 package com.zthl.nxp.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TurningPoint {
+    @SerializedName("Machine_Number")
    private String machineNumber;
+    @SerializedName("Turnaround_Man")
    private String turnaroundMan;
+    @SerializedName("Grouping")
    private String grouping;
+    @SerializedName("Operator")
    private String operator;
+    @SerializedName("Current_Name")
    private String currentName;
+    @SerializedName("Target_Program")
    private String targetProgram;
+    @SerializedName("Billing_Time")
    private String billingtime;
 
     public String getMachineNumber() {
@@ -63,5 +72,18 @@ public class TurningPoint {
 
     public void setBillingtime(String billingtime) {
         this.billingtime = billingtime;
+    }
+
+    @Override
+    public String toString() {
+        return "TurningPoint{" +
+                "machineNumber='" + machineNumber + '\'' +
+                ", turnaroundMan='" + turnaroundMan + '\'' +
+                ", grouping='" + grouping + '\'' +
+                ", operator='" + operator + '\'' +
+                ", currentName='" + currentName + '\'' +
+                ", targetProgram='" + targetProgram + '\'' +
+                ", billingtime='" + billingtime + '\'' +
+                '}';
     }
 }

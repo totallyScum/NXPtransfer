@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chen.nxp.R;
 import com.zthl.nxp.dummy.DummyContent.DummyItem;
+import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.ui.mission.MissionFragment.OnListFragmentInteractionListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
@@ -25,13 +27,13 @@ import java.util.ArrayList;
  * TODO: Replace the implementation with code for your data type.
  */
 public class MissionListItemListviewViewAdapter extends BaseAdapter implements View.OnClickListener{
-    private ArrayList<String> list = null;
+    private List<TurringList> list = null;
     private Context context = null;
     private int clickPosition = -1;//记录用户点击了的item
     public Boolean flag = false; //标识下拉view的显示状态
+    private TextView missionCurrentName;
 
-
-    public MissionListItemListviewViewAdapter(Context context, ArrayList<String> list){
+    public MissionListItemListviewViewAdapter(Context context, List<TurringList> list){
         this.context = context;
         this.list = list;
     }
@@ -63,7 +65,8 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
         } else {
             vh = (MyViewHolder) convertView.getTag();
         }
-        vh.tv_test.setText(list.get(position));
+        vh.tv_test.setText(list.get(position).getTurningStateName());
+        vh.missionCurrentName.setText(list.get(position).getTurningStateName());
      //   vh.tv_test.setText("2333333");
         //判断用户是不是点击了同一个item
         if (clickPosition == position) {
@@ -131,7 +134,7 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
     class MyViewHolder {
         View itemView;
         TextView tv_test;
-        TextView hide_1, hide_2, hide_3, hide_4, hide_5;
+        TextView hide_1, hide_2, hide_3, missionCurrentName;
         ImageView selectorImg;
         LinearLayout ll_hide;
         RelativeLayout listtiem;
@@ -145,6 +148,7 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
             hide_3 = (TextView) itemView.findViewById(R.id.hide_3);
             ll_hide = (LinearLayout) itemView.findViewById(R.id.mission_list_ll_hide);
             listtiem = (RelativeLayout) itemView.findViewById(R.id.mission_list_item);
+            missionCurrentName=(TextView)itemView.findViewById(R.id.mission_status);
 
         }
     }

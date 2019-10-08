@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.zthl.nxp.manager.DataManager;
 
-import com.zthl.nxp.model.LoginRequest;
+import com.zthl.nxp.model.request.LoginRequest;
 import com.zthl.nxp.model.LoginResponseBody;
 import com.zthl.nxp.presenterView.LoginResponsePv;
 import com.zthl.nxp.presenterView.PresentView;

@@ -11,36 +11,69 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
+
     <RelativeLayout
         android:id="@+id/history_list_item"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/shape_corner_blue"
+        android:layout_margin="3dp"
         >
-
-        <ImageView
-            android:id="@+id/imageview"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_launcher"
-            />
-
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="5dp"
+    >
         <TextView
-            android:id="@+id/tv_test"
+            android:id="@+id/history_machine_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_weight="1"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:text="目标程序名"
+            android:text="设备号"
             android:textColor="#429CB3" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="->"
+        android:textColor="#429CB3" />
+        <TextView
+            android:id="@+id/history_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="目标程序名"
+            android:textColor="#429CB3"
+            android:layout_weight="1"
+            />
 
+    <TextView
+        android:id="@+id/history_transfer_status"
+        android:text="转机状态"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_weight="3"
+        android:paddingRight="20dp"
+        ></TextView>
+</LinearLayout>
 
-
+    <TextView
+        android:id="@+id/history_question_dateTime_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="任务下发时间"></TextView>
+</LinearLayout>
     </RelativeLayout>
-
     <include layout="@layout/item_hide_history_layout"
         />
     </LinearLayout>

@@ -45,24 +45,23 @@
                 android:layout_marginTop="5dp"
                 >
             </ImageView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:hint="搜索"
-        android:background="@null"
-        ></EditText>
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@null"
+                android:singleLine="true"
+                android:hint="搜索"></EditText>
 
         </LinearLayout>
-    <ListView
-        android:id="@+id/mission_list"
-        android:name="com.chen.nxp.MissionFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
-        tools:context="com.zthl.nxp.ui.missionList.MissionListFragment"
-        tools:listitem="@layout/mission_list_item" />
+        <FrameLayout
+            android:id="@+id/mission_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </FrameLayout>
     </LinearLayout>
 </FrameLayout>

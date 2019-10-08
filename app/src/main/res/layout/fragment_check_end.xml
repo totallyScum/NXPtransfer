@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zthl.nxp.CheckStartFragment">
+    tools:context="com.zthl.nxp.ui.check.CheckStartFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -19,19 +19,28 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
+
                 <TextView
-                    android:text="开票开始"
-                    android:textColor="@color/colorButtonWhite"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textSize="20dp"
-                    ></TextView>
+                    android:text="开票结束"
+                    android:textColor="@color/colorButtonWhite"
+                    android:textSize="20dp"></TextView>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="30dp"
+            >
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
@@ -39,86 +48,177 @@
             android:background="@drawable/shape_corner"
             >
             <TextView
-                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="结束转机人"
+                android:layout_height="@dimen/textView_wrap_height"
+                android:textSize="@dimen/text_title_size"
+                android:text="机器号"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+                android:gravity="center"
                 />
             <TextView
+                android:id="@+id/invoices_end_machine_number"
                 android:hint="默认登录名"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 ></TextView>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/shape_corner"
             >
             <TextView
-                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="20dp"
-                android:text="程序名"
+                android:text="源程序"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+                android:gravity="center"
                 />
             <TextView
+                android:id="@+id/invoices_current_program"
+                android:hint="默认登录名"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/textView_wrap_height"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_corner"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/text_title_size"
+                android:text="开票人"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/invoices_account"
+                android:hint="默认登录名"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                ></TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/textView_wrap_height"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_corner"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/text_title_size"
+                android:text="开票开始时间"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/invoices_start_time"
                 android:hint="从后台获取"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 ></TextView>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/shape_corner"
             >
             <TextView
-                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="结束时间"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/text_title_size"
+                android:text="开票类型"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+                android:gravity="center"
                 />
             <TextView
+                android:id="@+id/invoices_end_type"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/textView_wrap_height"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_corner"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/text_title_size"
+                android:text="备注"
+                android:textColor="@color/colorButtonWhite"
+                android:background="@drawable/shape_corner_left"
+                android:layout_weight="2"
+                android:gravity="center"
+                />
+            <EditText
+                android:id="@+id/invoices_end_remark"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/check_end_submit"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:background="@color/colorButtonYellow"
-            android:textColor="@color/colorButtonWhite"
             android:text="提交"
-            android:textSize="25dp"
-            />
+            android:textColor="@color/colorButtonWhite"
+            android:textSize="20dp" />
+    </LinearLayout>
     </LinearLayout>
 </FrameLayout>

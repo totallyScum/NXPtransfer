@@ -5,15 +5,11 @@ import android.util.Log;
 
 import com.zthl.nxp.manager.DataManager;
 import com.zthl.nxp.model.ResultData;
-import com.zthl.nxp.model.ResultNoData;
-import com.zthl.nxp.model.TransferCommitRequset;
 import com.zthl.nxp.model.TurnaroundManList;
-import com.zthl.nxp.model.TurnaroundManListRequest;
+import com.zthl.nxp.model.request.TurnaroundManListRequest;
 import com.zthl.nxp.presenterView.PresentView;
-import com.zthl.nxp.presenterView.TransferCommitResponsePv;
 import com.zthl.nxp.presenterView.TurnaroundManListResponsePv;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observer;

@@ -26,22 +26,19 @@
     android:layout_marginEnd="24dp"
     android:layout_marginTop="50dp"
     >
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/login_account"
-        android:padding="3dp"
-        ></ImageView>
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableStart="@mipmap/login_account"
+        android:drawablePadding="10dp"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
- />
+        android:textColorLink="@color/colorTextBlue"
+        android:theme="@style/MyEditText"
+        />
 </LinearLayout>
 
     <ProgressBar
@@ -69,24 +66,22 @@
     android:layout_marginEnd="24dp"
 
     >
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:scaleType="fitXY"
-        android:padding="3dp"
-        android:src="@mipmap/login_password"></ImageView>
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:hint="@string/prompt_password"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:selectAllOnFocus="true"
-            />
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:drawableStart="@mipmap/login_password"
+        android:drawablePadding="10dp"
+        android:hint="@string/prompt_password"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:textColorLink="@color/colorTextBlue"
+        android:theme="@style/MyEditText"
+        />
 </LinearLayout>
         <Button
             android:id="@+id/login"
@@ -110,6 +105,15 @@
             android:text="切换为扫码登录"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/colorLoginBlue"
+            ></TextView>
+        <TextView
+            android:text="切换服务器IP地址"
+            android:id="@+id/change_server_ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textColor="@color/colorLoginBlue"
             ></TextView>

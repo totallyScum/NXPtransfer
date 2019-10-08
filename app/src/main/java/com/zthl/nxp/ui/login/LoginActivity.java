@@ -5,7 +5,9 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,11 +23,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zthl.nxp.MainActivity;
 import com.chen.nxp.R;
-import com.zthl.nxp.model.LoginRequest;
+import com.zthl.nxp.MyApplication;
+import com.zthl.nxp.constant.UrlConstant;
+import com.zthl.nxp.model.request.LoginRequest;
 import com.zthl.nxp.model.LoginResponseBody;
 import com.zthl.nxp.presenter.LoginResponseBodyPresenter;
 import com.zthl.nxp.presenterView.LoginResponsePv;
@@ -35,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private LoginResponseBodyPresenter mLoginResponseBodyPresenter =new LoginResponseBodyPresenter(this);
     private EditText usernameEditText;
+    private TextView setServerIP;
+    private AlertDialog.Builder builder;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        setServerIP=findViewById(R.id.change_server_ip);
         mLoginResponseBodyPresenter.onCreate();
         mLoginResponseBodyPresenter.BindPresentView(mUserInfoPv);
 
@@ -127,7 +135,36 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        setServerIP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showInput();
+            }
+        });
     }
+
+
+    private void showInput() {
+        final EditText editText = new EditText(this);
+        builder = new AlertDialog.Builder(this).setTitle("输入服务器IP").setView(editText)
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(LoginActivity.this, "IP地址为：" + editText.getText().toString()
+                                , Toast.LENGTH_LONG).show();
+
+                        SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
+                        //步骤2： 实例化SharedPreferences.Editor对象
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        //步骤3：将获取过来的值放入文件
+                        editor.putString("IP",editText.getText().toString());
+                        editor.commit();
+                        UrlConstant.setBaseUrl(editText.getText().toString());
+                    }
+                });
+        builder.create().show();
+    }
+
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
@@ -152,6 +189,12 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 //步骤3：将获取过来的值放入文件
                 editor.putString("account",usernameEditText.getText().toString());
+                editor.putString("pkId",loginResponseBody.getAccount().getPkID());
+                MyApplication.setAccount(usernameEditText.getText().toString());
+
+                MyApplication.setPkId(usernameEditText.getText().toString());
+                MyApplication.setPkId(loginResponseBody.getAccount().getPkID());
+                Log.d("pkId",loginResponseBody.getAccount().getPkID());
                 //步骤4：提交
                 editor.commit();
                 Intent intent=new Intent(getApplicationContext(), MainActivity.class);
@@ -168,6 +211,8 @@ public class LoginActivity extends AppCompatActivity {
         public void onError(String result) {
             Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
         }
-    };
+    }
+
+    ;
 
 }
