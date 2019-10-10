@@ -133,14 +133,22 @@ public class MissionListFragment extends Fragment {
 
         search=getActivity().findViewById(R.id.search);
         mListview=getView().findViewById(R.id.mission_list);
-        search.setOnClickListener(new View.OnClickListener() {
+        search.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View view, MotionEvent motionEvent) {
                 FragmentTransaction ft = getChildFragmentManager().beginTransaction();
                 ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
                 ft.commit();
-
+                return false;
             }
+
+//            @Override
+//            public void onClick(View view) {
+//                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//                ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
+//                ft.commit();
+//
+//            }
 
 
 

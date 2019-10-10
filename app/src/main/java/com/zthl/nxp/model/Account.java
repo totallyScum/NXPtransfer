@@ -7,6 +7,18 @@ public class Account {
     @SerializedName("PkId")
         private String pkID;
 
+    @SerializedName("Role")
+    String role;
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getPkID() {
         return pkID;
     }
@@ -19,6 +31,7 @@ public class Account {
     public String toString() {
         return "Account{" +
                 "pkID='" + pkID + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

@@ -81,7 +81,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
 //        if (list.get(position).getTransitSituation().equals("1")) {
 //            convertView.setVisibility(View.INVISIBLE);
 //        }
-            if (list.get(position).getMessageType().equals("INPUT"))
+            if (list.get(position).getMessageType().equals("INPUT")||list.get(position).getMessageType().equals(""))
             {
 
            //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));

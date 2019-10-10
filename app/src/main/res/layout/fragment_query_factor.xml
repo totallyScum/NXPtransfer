@@ -135,6 +135,7 @@
                     android:drawableEnd="@drawable/layer_calender"
                     android:paddingRight="5dp"
                     android:textSize="@dimen/text_title_size"
+                    android:gravity="left|center"
                     android:paddingLeft="@dimen/textView_padding_left"
                     ></TextView>
 
@@ -162,7 +163,7 @@
                 android:layout_weight="2"
                 android:background="@drawable/shape_corner_left"
                 android:gravity="center"
-                android:text="开始时间"
+                android:text="结束时间"
                 android:textColor="@color/colorButtonWhite"
                 android:textSize="@dimen/text_title_size"></TextView>
             <LinearLayout
@@ -182,7 +183,9 @@
                     android:drawableEnd="@drawable/layer_calender"
                     android:paddingRight="5dp"
                     android:textSize="@dimen/text_title_size"
+                    android:gravity="left|center"
                     android:paddingLeft="@dimen/textView_padding_left"
+
                     ></TextView>
 
 

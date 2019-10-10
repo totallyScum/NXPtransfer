@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
+import com.zthl.nxp.MyApplication;
 import com.zthl.nxp.ui.check.CheckStartFragment;
 import com.zthl.nxp.ui.AutomaticBarcodeActivity;
 import com.zthl.nxp.ui.missionList.MissionListFragment;
@@ -51,14 +52,22 @@ public class MainFragment extends Fragment {
     public static boolean check =false;
 
     private String[] theme = {"当前机器任务(机台号)", "开票开始界面", "任务列表", "已发放任务", "转机结束", "注销", "开票（开始界面）", "开票（ 结束界面）", "历史查看", "问题恢复", "问题反馈", "扫码", "提交转机"};
-    private String[] themeFixed = {"提交转机", "转机", "任务列表", "历史", "注销"};
+    private String[] themeFixed = {"提交转机", "转机", "我的列表", "历史", "注销"};
     public static String[] themeCheck = {"清洁", "保养", "测试"};
     private String[] themeSecondary = {"开票开始", "开票结束", "扫码","开票列表"};
+
+
 
     private int[] imageViews = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
     private int[] imageViewsFixed = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_transfer, R.mipmap.main_icon_mission_list, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
     private int[] imageViewsCheck = {R.mipmap.main_check_clean, R.mipmap.main_check_maintain, R.mipmap.main_icon_test};
     private int[] imageViewsSecondary = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+
+
+    private String[] themeLeader = {"提交转机",  "历史", "注销"};
+    private String[] themeTransfer = { "转机", "我的列表",  "历史", "注销"};
+    private int[] imageViewsLeader = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
+    private int[] imageViewsTransfer = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_mission_list, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
 
 
     public static MainFragment newInstance() {
@@ -95,6 +104,16 @@ public class MainFragment extends Fragment {
         mainMenuListSecondary = getView().findViewById(R.id.main_menu_list_secondary);
 
 
+        if (MyApplication.getRole().equals("1"))
+        {
+            mainMenuListCheck.setVisibility(View.INVISIBLE );
+
+
+        }
+
+
+
+
         List<Map<String, Object>> listsFix = new ArrayList<>();
         for (int i = 0; i < themeFixed.length; i++) {       //固定布局
             Map<String, Object> mapFix = new HashMap<>();
@@ -102,12 +121,40 @@ public class MainFragment extends Fragment {
             mapFix.put("theme", themeFixed[i]);
             listsFix.add(mapFix);
         }
+
+
+
+        List<Map<String, Object>> listsLeader = new ArrayList<>();
+        for (int i = 0; i < themeLeader.length; i++) {       //固定布局
+            Map<String, Object> mapFix = new HashMap<>();
+            mapFix.put("image", imageViewsLeader[i]);
+            mapFix.put("theme", themeLeader[i]);
+            listsLeader.add(mapFix);
+        }
+
+
+
+
+        List<Map<String, Object>> listsTransfer = new ArrayList<>();
+        for (int i = 0; i < themeTransfer.length; i++) {       //固定布局
+            Map<String, Object> mapFix = new HashMap<>();
+            mapFix.put("image", imageViewsTransfer[i]);
+            mapFix.put("theme", themeTransfer[i]);
+            listsTransfer.add(mapFix);
+        }
+
+
+
+
         List<Map<String, Object>> listsCheck = new ArrayList<>();
         for (int i = 0; i < themeCheck.length; i++) {     //开票
             Map<String, Object> mapCheck = new HashMap<>();
             mapCheck.put("image", imageViewsCheck[i]);
             mapCheck.put("theme", themeCheck[i]);
             listsCheck.add(mapCheck);
+
+
+
         }
 
 
@@ -120,9 +167,23 @@ public class MainFragment extends Fragment {
         }
 
 
-        mainMenuList.setAdapter(new SimpleAdapter(getContext(), listsFix, R.layout.gridview_item
-                , new String[]{"image", "theme"}
-                , new int[]{R.id.image1, R.id.text1}));
+        if (MyApplication.getRole().equals("1"))
+        {
+            mainMenuList.setAdapter(new SimpleAdapter(getContext(), listsLeader, R.layout.gridview_item
+                    , new String[]{"image", "theme"}
+                    , new int[]{R.id.image1, R.id.text1}));
+        }
+        if (MyApplication.getRole().equals("2")){
+            mainMenuList.setAdapter(new SimpleAdapter(getContext(), listsTransfer, R.layout.gridview_item
+                    , new String[]{"image", "theme"}
+                    , new int[]{R.id.image1, R.id.text1}));
+        }
+//        mainMenuList.setAdapter(new SimpleAdapter(getContext(), listsFix, R.layout.gridview_item
+//                , new String[]{"image", "theme"}
+//                , new int[]{R.id.image1, R.id.text1}));
+
+
+
 
 
         mainMenuListCheck.setAdapter(new SimpleAdapter(getContext(), listsCheck, R.layout.gridview_item
@@ -130,9 +191,18 @@ public class MainFragment extends Fragment {
                 , new int[]{R.id.image1, R.id.text1}));
 
 
+
+
+
         mainMenuListSecondary.setAdapter(new SimpleAdapter(getContext(), listsSecondary, R.layout.gridview_item
                 , new String[]{"image", "theme"}
                 , new int[]{R.id.image1, R.id.text1}));
+
+
+
+
+
+
 //
         mainMenuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -142,146 +212,53 @@ public class MainFragment extends Fragment {
 //                        .commitNow();
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                //        Bundle mBundle = new Bundle();
-                switch (i) {
-                    case 0:
-                        ft.replace(R.id.container, TransferCommitFragment.newInstance());
-                        ft.addToBackStack("UserTag");
-                        ft.commit();
+                if (MyApplication.getRole().equals("1")) {
+                    switch (i) {
+                        case 0:
+                            ft.replace(R.id.container, TransferCommitFragment.newInstance());
+                            ft.commit();
+                            break;
 
+                        case 1:
+                            ft.replace(R.id.container, HistoryFragment.newInstance());
+                            ft.commit();
+                            break;
+                        case 2:
+                            Intent intent2 = new Intent(getContext(), LoginActivity.class);
+                            startActivity(intent2);
+                            break;
 
-
-
-
-//
-//                        Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
-//                        Bundle b = new Bundle();
-//                        b.putInt("id",i);
-//                        intent.putExtras(b);
-//                        mViewModel.setFragmentID(i);
-//                        check=false;
-//                        getActivity().startActivity(intent);
-
-
-
-
-                        break;
-                    case 1:
-//                        ft.replace(R.id.container, TransferStartFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-
-
-
-
-                        Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
-                        Bundle b = new Bundle();
-                        b.putInt("id",i);
-                        intent.putExtras(b);
-                        mViewModel.setFragmentID(i);
-                        check=false;
-                        getActivity().startActivity(intent);
-
-
-
-
-
-//                        ft.replace(R.id.container, MissionPublishedFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-                        break;
-//                        Intent intent2=new Intent(getActivity(),MissionPublishedFragment.class);
-//                        intent2.putExtra("id",i);
-//                        startActivity(intent2);
-
-                    case 2:
-                        ft.replace(R.id.container, MissionListFragment.newInstance());
-                        ft.addToBackStack("UserTag");
-                        ft.commit();
-                        break;
-                    case 3:
-                        ft.replace(R.id.container, HistoryFragment.newInstance());
-                        ft.addToBackStack("UserTag");
-                        ft.commit();
-                        break;
-                    case 4:
-                        Intent intent2 = new Intent(getContext(), LoginActivity.class);
-                        startActivity(intent2);
-                        break;
-
-//                    case 0:
-//                        ft.replace(R.id.container, MissionFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 1:
-//                        ft.replace(R.id.container, CheckStartFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 2:  //任务列表
-//                        ft.replace(R.id.container, MissionListFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 3:  //任务列表
-//                        ft.replace(R.id.container, MissionPublishedFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 4:  //传输结束页面
-//                        ft.replace(R.id.container, TransferEndFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 5:
-//                    {
-////                        ft.replace(R.id.container, LoginActivity.newInstance());
-////                        ft.addToBackStack("UserTag");
-////                        ft.commit();
-//                        Intent intent= new Intent(getContext(),LoginActivity.class);
-//                        startActivity(intent);
-//                    }
-//                    case 6:
-//                    {
-//                        ft.replace(R.id.container, CheckStartFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                    }
-//                        break;
-//                    case 7:
-//                        ft.replace(R.id.container, CheckEndFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                    break;
-//                    case 8:
-//                        ft.replace(R.id.container, HistoryFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 9:
-//                        ft.replace(R.id.container, ProblemFeedbackFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 10:
-//                        ft.replace(R.id.container, ProblemRecoveryFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 11:
-//                        ft.replace(R.id.container, AutomaticBarcodeFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//
-//                    case 12:
-//                        ft.replace(R.id.container, TransferCommitFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
+                    }
                 }
+                    if (MyApplication.getRole().equals("2")){
+                        switch (i) {
+                            case 0:
+                                Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
+                                Bundle b = new Bundle();
+                                b.putInt("id", i);
+                                intent.putExtras(b);
+                                mViewModel.setFragmentID(i);
+                                check = false;
+                                getActivity().startActivity(intent);
+                                break;
+
+                            case 1:
+                                ft.replace(R.id.container, MissionListFragment.newInstance());
+                                ft.commit();
+                                break;
+                            case 2:
+                                ft.replace(R.id.container, HistoryFragment.newInstance());
+                                ft.commit();
+                                break;
+                            case 3:
+                                Intent intent2 = new Intent(getContext(), LoginActivity.class);
+                                startActivity(intent2);
+                                break;
+
+                        }
+                    }
+
+
             }
         });
 
@@ -378,7 +355,6 @@ public class MainFragment extends Fragment {
                     case 3:
 
                         ft.replace(R.id.container, CheckListFragment.newInstance());
-                        ft.addToBackStack("UserTag");
                         ft.commit();
 
                         break;
@@ -445,12 +421,11 @@ public class MainFragment extends Fragment {
             mViewModel.setBarCodeData(barCodeData);
             mViewModel.setFragmentID(id);
 switch (id){
-    case 1:
+    case 0:
 //        ft.replace(R.id.container, TransferCommitFragment.newInstance());
 //        ft.addToBackStack("UserTag");
 //        ft.commit();
                         ft.replace(R.id.container, TransferFragment.newInstance());
-                        ft.addToBackStack("UserTag");
                         ft.commit();
         break;
 }

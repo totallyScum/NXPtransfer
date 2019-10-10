@@ -53,7 +53,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.4'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.google.code.gson:gson:2.8.2'
+    implementation project(path: ':editspinner')
 
-    compile 'com.wrbug:editspinner:1.1.0'
 
 }

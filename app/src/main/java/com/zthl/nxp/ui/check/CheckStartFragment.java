@@ -99,20 +99,23 @@ public class CheckStartFragment extends Fragment {
             checkMachineNumber.setText(mainViewModel.getBarCodeData());
         if (mainViewModel.getFragmentID()!=-1)
             checkType.setText(MainFragment.themeCheck[mainViewModel.getFragmentID()]);
-        commit=getActivity().findViewById(R.id.check_end_submit);
+        commit=getActivity().findViewById(R.id.check_start_submit);
+
+
+
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CreateInvoicesPointRequset t=new CreateInvoicesPointRequset();
                 InvoicesPoint ip=new InvoicesPoint();
                 ip.setMachineNumber(mainViewModel.getBarCodeData());
-                ip.setInvoicesMan(userId);
+                ip.setInvoicesMan(MyApplication.getPkId());
                 ip.setGrouping(matchGroupId.getText().toString());
                 ip.setOperator(operator.getText().toString());
                 ip.setCurrentTime(currentProgram.getText().toString());
                 ip.setInvoicesTime(checkTime.getText().toString());
                 ip.setInvoicesTypeID(mainViewModel.getFragmentID()+1+"");
-                t.setAccountPkId(userId);
+                t.setAccountPkId(MyApplication.getPkId());
 
 
 
@@ -164,6 +167,7 @@ public void initList(){
         public void onSuccess(ResultNoData resultNet) {
             if (resultNet.getState().equals("1"))
             {
+                Log.d("111111","2222222222222");
                 Toast.makeText(getContext(),"提交成功",Toast.LENGTH_LONG).show();
 
                 getFragmentManager()
@@ -173,6 +177,7 @@ public void initList(){
             }
             if (resultNet.getState().equals("0"))
             {
+                Log.d("111111","4444444444444");
                 Toast.makeText(getContext(),"提交失败",Toast.LENGTH_LONG);
             }
         }

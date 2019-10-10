@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.chen.nxp.R;
 import com.zthl.nxp.MyApplication;
 import com.zthl.nxp.model.TurringList;
+import com.zthl.nxp.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
 
         vh.historyMachineNumber.setText(list.get(position).getMachineNumber());
         vh.turringCurrentStatus.setText(list.get(position).getTurningStateName());
-        vh.turringName.setText(list.get(position).getTargetProgram());
+        vh.turringName.setText(StringUtil.trimString(list.get(position).getTargetProgram()));
         vh.operator.setText(list.get(position).getOperator());
         vh.turningEndDateTime.setText(list.get(position).getTurningEndDateTime());
         vh.machineGroup.setText(list.get(position).getGrouping());
@@ -77,7 +78,9 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         vh.questionDateTime.setText(list.get(position).getQuestionDateTime());
         vh.founderRealName.setText(list.get(position).getFounderRealName());
         vh.targetProgram.setText(list.get(position).getTargetProgram());
+        vh.historySourceName.setText(StringUtil.trimString(list.get(position).getCurrentName()));
 
+        vh.historyTransferMan.setText(list.get(position).getFounderRealName());
 
 
         //   vh.tv_test.setText("2333333");
@@ -138,7 +141,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
     class MyViewHolder {
         View itemView;
         TextView tv_test;
-        TextView historyMachineNumber,turringName,historyQuestionDateTimeMain,turringCurrentStatus ,historyQuestionDateTime,operator,turningEndDateTime,turningStartDateTime,questionDateTime,targetProgram,machineGroup,machineNumber,transferMan,transferFinishMan,currentProgramName,founderRealName;
+        TextView historyTransferMan,historySourceName,historyMachineNumber,turringName,historyQuestionDateTimeMain,turringCurrentStatus ,historyQuestionDateTime,operator,turningEndDateTime,turningStartDateTime,questionDateTime,targetProgram,machineGroup,machineNumber,transferMan,transferFinishMan,currentProgramName,founderRealName;
         ImageView selectorImg;
         LinearLayout ll_hide;
         RelativeLayout listtiem;
@@ -150,9 +153,9 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
             listtiem = (RelativeLayout) itemView.findViewById(R.id.history_list_item);
 
 
-            turringName=itemView.findViewById(R.id.history_name);
+            turringName=itemView.findViewById(R.id.history_target_name);
            turringCurrentStatus=itemView.findViewById(R.id.history_transfer_status);
-
+            historySourceName=itemView.findViewById(R.id.history_source_name);
             historyQuestionDateTime=itemView.findViewById(R.id.history_question_date_time);
             operator=ll_hide.findViewById(R.id.history_operator);
             turningEndDateTime=ll_hide.findViewById(R.id.history_turning_end_dateTime);
@@ -168,6 +171,9 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
             historyMachineNumber=itemView.findViewById(R.id.history_machine_number);
 
             historyQuestionDateTimeMain =itemView.findViewById(R.id.history_question_dateTime_main);
+
+
+            historyTransferMan=itemView.findViewById(R.id.history_transfer_man);
         }
     }
 }

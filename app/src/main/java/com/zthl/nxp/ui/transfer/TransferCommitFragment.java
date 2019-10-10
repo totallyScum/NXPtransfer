@@ -193,7 +193,7 @@ public class TransferCommitFragment extends Fragment {
                 tp.setOperator(operator.getText().toString());
                 tp.setCurrentName(currentProgram.getText().toString());
                 tp.setTargetProgram(programSpinner.getText().toString());
-                tp.setBillingtime(TimeUtil.getCurrentTime());
+                tp.setBillingtime(currentTime.getText().toString());
                 t.setAccountPkId(MyApplication.getPkId());
                 t.setTurningPoint(tp);
                 Log.d("2333300",t.toString());
@@ -390,6 +390,7 @@ public class TransferCommitFragment extends Fragment {
                 group.setText(resultData.getData().get(0).getMatchGroupId());
                 operator.setText(resultData.getData().get(0).getOperator());
                 currentProgram.setText(resultData.getData().get(0).getCurrentProgram());
+
             }
         }
     };

@@ -65,7 +65,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="@dimen/text_title_size"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -97,7 +98,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="@dimen/text_title_size"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -125,7 +127,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -153,9 +156,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="从后台获取当前操作员"
+                android:text="从后台获取当前程序名"
                 android:textSize="@dimen/text_title_size"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -177,6 +181,7 @@
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+
                 ></TextView>
 
             <TextView
@@ -185,7 +190,8 @@
                 android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -206,14 +212,17 @@
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+
                 ></TextView>
             <TextView
                 android:id="@+id/check_machine_number"
                 android:text=""
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -239,15 +248,16 @@
                 android:id="@+id/check_type"
                 android:text=""
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
         <Button
-            android:id="@+id/check_end_submit"
+            android:id="@+id/check_start_submit"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_gravity="center"

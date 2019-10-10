@@ -1,5 +1,7 @@
 package com.zthl.nxp.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResponseBody {
 Account Account;
 Boolean AlertMessage;
@@ -28,6 +30,8 @@ int State;
     public void setState(int state) {
         State = state;
     }
+
+
 
     @Override
     public String toString() {

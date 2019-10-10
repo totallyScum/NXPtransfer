@@ -51,6 +51,10 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
+        SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
+        usernameEditText.setText(sharedPreferences.getString("account",""));
+
+
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         setServerIP=findViewById(R.id.change_server_ip);
@@ -190,15 +194,18 @@ public class LoginActivity extends AppCompatActivity {
                 //步骤3：将获取过来的值放入文件
                 editor.putString("account",usernameEditText.getText().toString());
                 editor.putString("pkId",loginResponseBody.getAccount().getPkID());
+                editor.putString("role",loginResponseBody.getAccount().getRole());
                 MyApplication.setAccount(usernameEditText.getText().toString());
-
                 MyApplication.setPkId(usernameEditText.getText().toString());
+                MyApplication.setRole(loginResponseBody.getAccount().getRole());
                 MyApplication.setPkId(loginResponseBody.getAccount().getPkID());
                 Log.d("pkId",loginResponseBody.getAccount().getPkID());
                 //步骤4：提交
                 editor.commit();
+
                 Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
             if (loginResponseBody.getState()==0)
             {

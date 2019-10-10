@@ -28,7 +28,9 @@
                     android:layout_gravity="center"
                     android:text="开票结束"
                     android:textColor="@color/colorButtonWhite"
-                    android:textSize="20dp"></TextView>
+                    android:textSize="20dp"
+                    android:paddingRight="20dp"
+                    ></TextView>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
         <LinearLayout
@@ -59,11 +61,12 @@
                 />
             <TextView
                 android:id="@+id/invoices_end_machine_number"
-                android:hint="默认登录名"
+                android:hint="机器号"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -88,11 +91,12 @@
                 />
             <TextView
                 android:id="@+id/invoices_current_program"
-                android:hint="默认登录名"
+                android:hint="源程序名"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -116,11 +120,12 @@
                 />
             <TextView
                 android:id="@+id/invoices_account"
-                android:hint="默认登录名"
+                android:hint="开票人"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -151,7 +156,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -178,6 +184,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 ></TextView>
 
         </LinearLayout>
@@ -205,6 +213,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/textView_padding_left"
                 />
 
         </LinearLayout>
