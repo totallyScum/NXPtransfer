@@ -137,7 +137,8 @@ public class CheckEndFragment extends Fragment {
         invoicesType.setText(MyApplication.themeCheck[mainViewModel.getFragmentID()]);    //选择开票类型
         invoicesAccount.setText(MyApplication.getPkId());
  //       invoicesProgram.setText(MyApplication.getProgram()!=null?MyApplication.getProgram():"程序名为空");
-        invoicesTime.setText(TimeUtil.getCurrentTime());
+
+        TimeUtil.setServerTime(getContext(),invoicesTime);
         checkEndSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

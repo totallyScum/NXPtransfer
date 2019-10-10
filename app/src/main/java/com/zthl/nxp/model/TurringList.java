@@ -92,7 +92,7 @@ public class TurringList {
     }
 
     public String getCurrentName() {
-        return currentName;
+        return currentName!=null?currentName:"未设置";
     }
 
     public void setCurrentName(String currentName) {

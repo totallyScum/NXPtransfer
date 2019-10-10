@@ -216,11 +216,13 @@ public class MainFragment extends Fragment {
                     switch (i) {
                         case 0:
                             ft.replace(R.id.container, TransferCommitFragment.newInstance());
+                            ft.addToBackStack("UserTag");
                             ft.commit();
                             break;
 
                         case 1:
                             ft.replace(R.id.container, HistoryFragment.newInstance());
+                            ft.addToBackStack("UserTag");
                             ft.commit();
                             break;
                         case 2:
@@ -244,10 +246,12 @@ public class MainFragment extends Fragment {
 
                             case 1:
                                 ft.replace(R.id.container, MissionListFragment.newInstance());
+                                ft.addToBackStack("UserTag");
                                 ft.commit();
                                 break;
                             case 2:
                                 ft.replace(R.id.container, HistoryFragment.newInstance());
+                                ft.addToBackStack("UserTag");
                                 ft.commit();
                                 break;
                             case 3:
