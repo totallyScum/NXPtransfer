@@ -165,10 +165,11 @@ public class HistoryFragment extends Fragment {
         @Override
         public void onSuccess(final ResultData<List<TurringList>> resultNet) {
 //            Log.d("99999",resultNet.getData().get(0).get());
-            adapter=new HistoryItemListViewAdapter(getView().getContext(),resultNet.getData());
-            listview.setAdapter(adapter);
-                }
-
+            if (getView().getContext() != null) {
+                adapter = new HistoryItemListViewAdapter(getView().getContext(), resultNet.getData());
+                listview.setAdapter(adapter);
+            }
+        }
         @Override
         public void onError(String result) {
             Log.d("111111",result.toString());

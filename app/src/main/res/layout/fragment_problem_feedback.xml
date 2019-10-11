@@ -43,29 +43,31 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/cardview_light_background"
                 >
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/text_title_size"
                     android:text="提交人"
                     android:textColor="@color/colorButtonWhite"
                     android:background="@drawable/shape_corner_left"
                     android:layout_weight="2"
+                    android:gravity="center"
                     ></TextView>
                 <TextView
                     android:id="@+id/check_time"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/text_title_size"
                     android:text="默认登录名"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingLeft="@dimen/textView_padding_left"
+                    android:layout_gravity="left|center"
                     ></TextView>
 
             </LinearLayout>
@@ -73,28 +75,30 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/cardview_light_background"
                 >
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/text_title_size"
                     android:text="提交时间"
                     android:textColor="@color/colorButtonWhite"
                     android:background="@drawable/shape_corner_left"
                     android:layout_weight="2"
+                    android:gravity="center"
                     ></TextView>
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="@dimen/text_title_size"
                     android:text="后台获取"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingLeft="@dimen/textView_padding_left"
+                    android:layout_gravity="left|center"
                     ></TextView>
 
             </LinearLayout>
@@ -107,21 +111,23 @@
                 android:background="@color/cardview_light_background"
                 >
                 <TextView
-                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:layout_height="@dimen/textView_wrap_height"
+                    android:textSize="@dimen/text_title_size"
                     android:text="输入问题"
                     android:textColor="@color/colorButtonWhite"
                     android:background="@drawable/shape_corner_left"
                     android:layout_weight="2"
+                    android:gravity="center"
                     ></TextView>
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="@dimen/text_title_size"
                     android:text="请输入反馈问题"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingLeft="@dimen/textView_padding_left"
+                    android:layout_gravity="left|center"
                     ></TextView>
 
             </LinearLayout>

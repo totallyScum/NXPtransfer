@@ -21,7 +21,9 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+
+                >
                 <TextView
                     android:text="开始转机"
                     android:id="@+id/transfer_title"
@@ -42,31 +44,37 @@
 
 
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
             android:gravity="center"
+
             >
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="机器号"
                 android:textSize="@dimen/text_title_size"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
-                android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:gravity="center"
                 ></TextView>
             <TextView
                 android:id="@+id/transfer_start_machineNumber"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 ></TextView>
@@ -85,19 +93,18 @@
             >
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:text="目标程序"
                 android:textSize="@dimen/text_title_size"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
-                android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:gravity="center"
                 ></TextView>
             <TextView
                 android:id="@+id/transfer_start_target_program"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 ></TextView>
@@ -119,19 +126,18 @@
             >
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:text="源程序"
                 android:textSize="@dimen/text_title_size"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
-                android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:gravity="center"
                 ></TextView>
             <TextView
                 android:id="@+id/transfer_start_source_program"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 ></TextView>
@@ -148,19 +154,19 @@
             android:background="@color/cardview_light_background"
             >
             <TextView
-                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:text="转机人"
                 android:textSize="@dimen/text_title_size"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+                android:gravity="center"
                 ></TextView>
             <TextView
                 android:id="@+id/transfer_start_founder"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 ></TextView>
@@ -171,15 +177,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/textView_wrap_height"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/cardview_light_background"
             >
             <TextView
-
-                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="转机开始时间"
@@ -187,11 +191,12 @@
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+                android:gravity="center"
                 ></TextView>
             <TextView
                 android:id="@+id/transfer_start_time"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 ></TextView>
@@ -209,19 +214,19 @@
             android:background="@color/cardview_light_background"
             >
             <TextView
-                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/textView_wrap_height"
                 android:text="备注"
                 android:textSize="@dimen/text_title_size"
                 android:textColor="@color/colorButtonWhite"
                 android:background="@drawable/shape_corner_left"
                 android:layout_weight="2"
+                android:gravity="center"
                 ></TextView>
             <EditText
                 android:id="@+id/transfer_start_remark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 android:background="@null"
@@ -233,15 +238,15 @@
 
         <Button
             android:id="@+id/transfer_start_submit"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:background="@color/colorButtonYellow"
             android:textColor="@color/colorButtonWhite"
             android:text="提交"
-            android:textSize="25dp"
+            android:textSize="20dp"
             />
     </LinearLayout>
-
+    </LinearLayout>
 </FrameLayout>
