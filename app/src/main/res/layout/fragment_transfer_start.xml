@@ -72,11 +72,14 @@
                 android:gravity="center"
                 ></TextView>
             <TextView
+                android:text="1111111"
                 android:id="@+id/transfer_start_machineNumber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/textView_padding_left"
+                android:gravity="center|left"
                 ></TextView>
 
         </LinearLayout>
@@ -107,6 +110,8 @@
                 android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/textView_padding_left"
+                android:gravity="center|left"
                 ></TextView>
 
         </LinearLayout>
@@ -140,6 +145,8 @@
                 android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/textView_padding_left"
+                android:gravity="center|left"
                 ></TextView>
 
         </LinearLayout>
@@ -169,6 +176,8 @@
                 android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/textView_padding_left"
+                android:gravity="center|left"
                 ></TextView>
 
         </LinearLayout>
@@ -199,6 +208,8 @@
                 android:layout_height="match_parent"
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
+                android:paddingLeft="@dimen/textView_padding_left"
+                android:gravity="center|left"
                 ></TextView>
 
         </LinearLayout>
@@ -230,6 +241,8 @@
                 android:textSize="@dimen/text_title_size"
                 android:layout_weight="1"
                 android:background="@null"
+                android:paddingLeft="@dimen/textView_padding_left"
+                android:gravity="center|left"
                 ></EditText>
 
         </LinearLayout>

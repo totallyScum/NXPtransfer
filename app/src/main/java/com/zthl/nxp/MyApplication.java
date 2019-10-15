@@ -19,7 +19,6 @@ import okhttp3.OkHttpClient;
 import static com.xuexiang.xupdate.entity.UpdateError.ERROR.CHECK_NO_NEW_VERSION;
 
 public class MyApplication extends android.app.Application {
-    public static String[] themeCheck = {"清洁", "保养", "测试"};
     public static String account;
     public static String pkId;
     public static String program;
@@ -29,6 +28,15 @@ public class MyApplication extends android.app.Application {
     public static String sourceProgram;
     public static String TurningState;
     public static String role;
+    public static int FragmentID;
+
+    public static void setFragmentID(int fragmentID) {
+        FragmentID = fragmentID;
+    }
+
+    public static int getFragmentID() {
+        return FragmentID;
+    }
 
     public static String getRole() {
         return role;
@@ -38,13 +46,6 @@ public class MyApplication extends android.app.Application {
         MyApplication.role = role;
     }
 
-    public static String[] getThemeCheck() {
-        return themeCheck;
-    }
-
-    public static void setThemeCheck(String[] themeCheck) {
-        MyApplication.themeCheck = themeCheck;
-    }
 
     public static String getTurningState() {
         return TurningState;
@@ -130,6 +131,8 @@ public class MyApplication extends android.app.Application {
         String ip=sharedPreferences.getString("IP","http://123.206.51.39:20188/");
         if (ip.equals(""))
         UrlConstant.setBaseUrl("http://123.206.51.39:20188/");
+        else
+        UrlConstant.setBaseUrl(ip);
     }
     private void initUpdate(){
         XUpdate.get()

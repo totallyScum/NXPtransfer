@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -35,12 +37,14 @@ import com.zthl.nxp.model.LoginResponseBody;
 import com.zthl.nxp.presenter.LoginResponseBodyPresenter;
 import com.zthl.nxp.presenterView.LoginResponsePv;
 
+import java.util.jar.Pack200;
+
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private LoginResponseBodyPresenter mLoginResponseBodyPresenter =new LoginResponseBodyPresenter(this);
     private EditText usernameEditText;
-    private TextView setServerIP;
+    private TextView setServerIP,versionName;
     private AlertDialog.Builder builder;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,16 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
         usernameEditText.setText(sharedPreferences.getString("account",""));
+
+        versionName=findViewById(R.id.versionName);
+
+
+        try {
+            versionName.setText("版本号:"+getVersionName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
         final Button loginButton = findViewById(R.id.login);
@@ -196,7 +210,6 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("pkId",loginResponseBody.getAccount().getPkID());
                 editor.putString("role",loginResponseBody.getAccount().getRole());
                 MyApplication.setAccount(usernameEditText.getText().toString());
-                MyApplication.setPkId(usernameEditText.getText().toString());
                 MyApplication.setRole(loginResponseBody.getAccount().getRole());
                 MyApplication.setPkId(loginResponseBody.getAccount().getPkID());
                 Log.d("pkId",loginResponseBody.getAccount().getPkID());
@@ -218,8 +231,14 @@ public class LoginActivity extends AppCompatActivity {
         public void onError(String result) {
             Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
         }
+    };
+    private String getVersionName() throws Exception
+    {
+        // 获取packagemanager的实例
+        PackageManager packageManager = getPackageManager();
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(),0);
+        String version = packInfo.versionName;
+        return version;
     }
-
-    ;
-
 }

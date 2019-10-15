@@ -69,6 +69,8 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
         vh.missionCurrentName.setText(list.get(position).getTurningStateName());
      //   vh.tv_test.setText("2333333");
         //判断用户是不是点击了同一个item
+
+
         if (clickPosition == position) {
 
             //根据flage来处理下拉view是该消失 还是该展开状态

@@ -134,7 +134,13 @@ public class CheckEndFragment extends Fragment {
 
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         invoicesType=getActivity().findViewById(R.id.invoices_end_type);
-        invoicesType.setText(MyApplication.themeCheck[mainViewModel.getFragmentID()]);    //选择开票类型
+  //
+
+
+
+
+
+              invoicesType.setText(MainFragment.invoiceTypeName.get(mainViewModel.getFragmentID()));    //选择开票类型
         invoicesAccount.setText(MyApplication.getPkId());
  //       invoicesProgram.setText(MyApplication.getProgram()!=null?MyApplication.getProgram():"程序名为空");
 

@@ -106,7 +106,7 @@ public class ListViewFragment extends Fragment {
         if (mViewModel.getmTurringList()!=null)
         {
             Log.d("12333345","不空");
-            adapter =new HistoryItemListViewAdapter(getContext(),mViewModel.getmTurringList());
+            adapter =new HistoryItemListViewAdapter(getContext(),mViewModel.getmTurringList(),false);
             mListview.setAdapter(adapter);
         }else {
             prb.onCreate();
@@ -181,7 +181,7 @@ public class ListViewFragment extends Fragment {
 //            ft.commit();
 //            Log.d("1233334","6666777");
 
-            adapter  =new HistoryItemListViewAdapter(getContext(),resultData.getData());
+            adapter  =new HistoryItemListViewAdapter(getContext(),resultData.getData(),false);
             mListview.setAdapter(adapter);
 
 

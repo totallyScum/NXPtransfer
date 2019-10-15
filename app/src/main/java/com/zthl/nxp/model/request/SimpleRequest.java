@@ -10,4 +10,11 @@ public class SimpleRequest {
     public void setAccountPkId(String accountPkId) {
         AccountPkId = accountPkId;
     }
+
+    @Override
+    public String toString() {
+        return "SimpleRequest{" +
+                "AccountPkId='" + AccountPkId + '\'' +
+                '}';
+    }
 }

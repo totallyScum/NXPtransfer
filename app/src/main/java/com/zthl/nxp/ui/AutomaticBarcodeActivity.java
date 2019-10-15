@@ -49,6 +49,9 @@ public class AutomaticBarcodeActivity extends AppCompatActivity implements Barco
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (barCodeData.contains("PM:"))
+                    barCodeData=barCodeData.split("PM:")[1];
                 Log.d("barCodeData",barCodeData);
                 mainViewModel.setBarCodeData(barCodeData);
                 Intent intent2=getIntent();

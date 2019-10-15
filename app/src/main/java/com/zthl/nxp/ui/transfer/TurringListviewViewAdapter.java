@@ -2,6 +2,7 @@ package com.zthl.nxp.ui.transfer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.View;
@@ -76,11 +77,21 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
                 convertView.setTag(vh);
             } else {
                 vh = (MyViewHolder) convertView.getTag();
+                if (list.get(position).getMessageType() != null)
+                    if (list.get(position).getMessageType().equals("INPUT") || list.get(position).getMessageType().equals("")) {
+
+                        //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+                        //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+
+                    }else {
+                        vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_white));
+                    }
             }
 
 //        if (list.get(position).getTransitSituation().equals("1")) {
 //            convertView.setVisibility(View.INVISIBLE);
 //        }
+        if (list.get(position).getMessageType()!=null)
             if (list.get(position).getMessageType().equals("INPUT")||list.get(position).getMessageType().equals(""))
             {
 
@@ -142,26 +153,58 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
                 switch (i){
                     case 2:
                         vh.transferStart.setVisibility(View.VISIBLE);
-                        vh.transferEnd.setVisibility(View.INVISIBLE);
-                        vh.transferError.setVisibility(View.INVISIBLE);
-                        vh.transferResume.setVisibility(View.INVISIBLE);
+                        vh.transferEnd.setBackgroundColor(Color.GRAY);
+                 //       vh.transferEnd.setClickable(false);
+                        vh.transferEnd.setEnabled(false);
+
+//                        vh.transferError.setVisibility(View.INVISIBLE);
+//                        vh.transferResume.setVisibility(View.INVISIBLE);
                         vh.transferCancel.setVisibility(View.VISIBLE);
+
+                        vh.transferError.setBackgroundColor(Color.GRAY);
+                 //       vh.transferError.setClickable(false);
+                        vh.transferError.setEnabled(false);
+
+                        vh.transferResume.setBackgroundColor(Color.GRAY);
+              //          vh.transferResume.setClickable(false);
+
+                        vh.transferResume.setEnabled(false);
+
                         break;
                     case 3: {
-                        vh.transferStart.setVisibility(View.INVISIBLE);
+         //               vh.transferStart.setVisibility(View.INVISIBLE);
                         vh.transferEnd.setVisibility(View.VISIBLE);
                         vh.transferError.setVisibility(View.VISIBLE);
-                        vh.transferResume.setVisibility(View.INVISIBLE);
+     //                   vh.transferResume.setVisibility(View.INVISIBLE);
                         vh.transferCancel.setVisibility(View.VISIBLE);
+
+
+                        vh.transferStart.setBackgroundColor(Color.GRAY);
+                  //      vh.transferStart.setClickable(false);
+                        vh.transferStart.setEnabled(false);
+                        vh.transferResume.setBackgroundColor(Color.GRAY);
+                  //      vh.transferResume.setClickable(false);
+                        vh.transferResume.setEnabled(false);
 
                         break;
                     }
                     case 5:{
-                        vh.transferStart.setVisibility(View.INVISIBLE);
+            //            vh.transferStart.setVisibility(View.INVISIBLE);
                         vh.transferEnd.setVisibility(View.INVISIBLE);
-                        vh.transferError.setVisibility(View.INVISIBLE);
+                //        vh.transferError.setVisibility(View.INVISIBLE);
                         vh.transferResume.setVisibility(View.VISIBLE);
                         vh.transferCancel.setVisibility(View.VISIBLE);
+
+
+
+                        vh.transferStart.setBackgroundColor(Color.GRAY);
+                   //     vh.transferStart.setClickable(false);
+
+                        vh.transferStart.setEnabled(false);
+                        vh.transferError.setBackgroundColor(Color.GRAY);
+              //          vh.transferError.setClickable(false);
+                        vh.transferError.setEnabled(false);
+
                         break;
                     }
 

@@ -15,11 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.chen.nxp.R;
+import com.zthl.nxp.MainActivity;
 import com.zthl.nxp.MyApplication;
 import com.zthl.nxp.model.ResultNoData;
 import com.zthl.nxp.model.request.AedInvoicesLogRequest;
 import com.zthl.nxp.presenter.AedInvoicesLogResponseBodyPresenter;
 import com.zthl.nxp.presenterView.AedInvoicesLogResponsePv;
+import com.zthl.nxp.ui.main.MainFragment;
 import com.zthl.nxp.ui.main.MainViewModel;
 import com.zthl.nxp.utils.TimeUtil;
 
@@ -61,7 +63,7 @@ public class CheckCancelFragment extends Fragment {
         invoiceMachineNumber.setText(MyApplication.getMachineNumber());
         invoicesAccount.setText(MyApplication.getPkId());
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
-        invoicesType.setText(MyApplication.themeCheck[mainViewModel.getFragmentID()]);    //选择开票类型
+        invoicesType.setText(MainFragment.invoiceTypeName.get(MyApplication.getFragmentID()));    //选择开票类型
   //      invoicesProgram.setText(MyApplication.getProgram()!=null?MyApplication.getProgram():"程序名为空");
         TimeUtil.setServerTime(getContext(),invoicesTime);
      //   invoicesTime.setText(TimeUtil.getCurrentTime());

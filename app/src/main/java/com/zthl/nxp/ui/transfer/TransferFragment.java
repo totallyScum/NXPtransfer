@@ -156,6 +156,7 @@ public class TransferFragment extends Fragment {
         @Override
         public void onSuccess(ResultData<List<TurringList>> resultNet) {
         listview=getView().findViewById(R.id.turring_list);
+        Log.d("zzaa",resultNet.getData().size()+"");
         for (int i=0;i<resultNet.getData().size();i++)
         {
 //            if (resultNet.getData().get(i).getTransitSituation().equals("0"))

@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.chen.nxp.R;
 import com.xuexiang.xupdate.XUpdate;
+import com.zthl.nxp.constant.UrlConstant;
 import com.zthl.nxp.dummy.DummyContent;
 import com.zthl.nxp.ui.main.MainFragment;
 import com.zthl.nxp.ui.mission.MissionFragment;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MissionFragment.O
 
     private void forceUpdate(){
         XUpdate.newBuild(this)
-                .updateUrl("http://123.206.51.39:20188/APPUpdate/version-info.json")
+                .updateUrl(UrlConstant.getBaseUrl()+"APPUpdate/version-info.json")
                 .update();
     }
 }

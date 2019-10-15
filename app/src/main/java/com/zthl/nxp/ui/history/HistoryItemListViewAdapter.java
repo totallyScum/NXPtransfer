@@ -24,12 +24,14 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
     private int clickPosition = -1;//记录用户点击了的item
 
     public Boolean flag = false; //标识下拉view的显示状态
+    public static boolean history;
 
-
-    public HistoryItemListViewAdapter(Context context, List<TurringList> list){
+    public HistoryItemListViewAdapter(Context context, List<TurringList> list, boolean history) {
         this.context = context;
         this.list = list;
+        this.history = history;
     }
+
     @Override
     public int getCount() {
         return list.size();
@@ -46,20 +48,30 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
     }
 
 
-
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final HistoryItemListViewAdapter.MyViewHolder vh;
+        final MyViewHolder vh;
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.history_list_item, null);
-            vh = new HistoryItemListViewAdapter.MyViewHolder(convertView);
+            vh = new MyViewHolder(convertView);
             convertView.setTag(vh);
         } else {
-            vh = (HistoryItemListViewAdapter.MyViewHolder) convertView.getTag();
+            vh = (MyViewHolder) convertView.getTag();
+
+            if (!history)
+                if (list.get(position).getMessageType() != null)
+                    if (list.get(position).getMessageType().equals("INPUT") || list.get(position).getMessageType().equals("")) {
+
+                        //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+                        //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+
+                    }else {
+                        vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_white));
+                    }
+
         }
 
-   //     Log.d("8888",list.get(0).getCreatedDateTime());
+        //     Log.d("8888",list.get(0).getCreatedDateTime());
 
 
         vh.historyMachineNumber.setText(list.get(position).getMachineNumber());
@@ -72,7 +84,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         vh.transferMan.setText(MyApplication.getPkId());
         vh.transferFinishMan.setText(list.get(position).getFounderRealName());
         vh.currentProgramName.setText(list.get(position).getCurrentName());
-        vh. historyQuestionDateTime.setText(list.get(position).getQuestionDateTime());
+        vh.historyQuestionDateTime.setText(list.get(position).getQuestionDateTime());
         vh.historyQuestionDateTimeMain.setText(list.get(position).getQuestionDateTime());
         vh.turningStartDateTime.setText(list.get(position).getTurningStartDateTime());
         vh.questionDateTime.setText(list.get(position).getQuestionDateTime());
@@ -83,15 +95,26 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         vh.historyTransferMan.setText(list.get(position).getFounderRealName());
 
 
+        if (!history)
+            if (list.get(position).getMessageType() != null)
+                if (list.get(position).getMessageType().equals("INPUT") || list.get(position).getMessageType().equals("")) {
+
+                    //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+                    vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
+                    //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+
+                }
+
+
         //   vh.tv_test.setText("2333333");
         //判断用户是不是点击了同一个item
         if (clickPosition == position) {
 
             //根据flage来处理下拉view是该消失 还是该展开状态
-            if(flag){
+            if (flag) {
                 vh.ll_hide.setVisibility(View.GONE);
                 flag = false;
-            }else {
+            } else {
                 vh.ll_hide.setVisibility(View.VISIBLE);
                 flag = true;
             }
@@ -100,10 +123,10 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         } else {
             //当填充的条目position不是刚才点击所标记的position时，让其隐藏，状态图标为false。
             vh.ll_hide.setVisibility(View.GONE);
-            Log.e("listview","状态改变");
+            Log.e("listview", "状态改变");
         }
 
-   //     vh.hide_5.setOnClickListener(this);
+        //     vh.hide_5.setOnClickListener(this);
         vh.listtiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +160,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         }
     }
 
-
+}
     class MyViewHolder {
         View itemView;
         TextView tv_test;
@@ -176,4 +199,4 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
             historyTransferMan=itemView.findViewById(R.id.history_transfer_man);
         }
     }
-}
+

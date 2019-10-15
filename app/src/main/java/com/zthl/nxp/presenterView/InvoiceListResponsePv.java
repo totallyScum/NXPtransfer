@@ -1,6 +1,7 @@
 package com.zthl.nxp.presenterView;
 
 import com.zthl.nxp.model.InvoiceList;
+import com.zthl.nxp.model.InvoicesType;
 import com.zthl.nxp.model.ResultData;
 import com.zthl.nxp.model.TurringList;
 

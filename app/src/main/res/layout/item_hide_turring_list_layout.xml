@@ -205,6 +205,7 @@ android:background="@drawable/shape_corner"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/button_yellow_style"
+            android:textSize="12dp"
             ></Button>
         <Button
             android:id="@+id/transfer_end"
@@ -213,6 +214,7 @@ android:background="@drawable/shape_corner"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/button_yellow_style"
+            android:textSize="12dp"
             ></Button>
         <Button
             android:id="@+id/transfer_error"
@@ -221,6 +223,7 @@ android:background="@drawable/shape_corner"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/button_yellow_style"
+            android:textSize="12dp"
             ></Button>
         <Button
             android:id="@+id/transfer_resume"
@@ -229,6 +232,7 @@ android:background="@drawable/shape_corner"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/button_yellow_style"
+            android:textSize="12dp"
             ></Button>
         <Button
             android:id="@+id/transfer_cancel"
@@ -237,6 +241,7 @@ android:background="@drawable/shape_corner"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/button_yellow_style"
+            android:textSize="12dp"
             ></Button>
 
     </LinearLayout>

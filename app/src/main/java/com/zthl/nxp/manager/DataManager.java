@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.zthl.nxp.model.GetServerDateTimeResponseBody;
 import com.zthl.nxp.model.InvoiceList;
+import com.zthl.nxp.model.InvoicesType;
 import com.zthl.nxp.model.MachineListResponseBody;
 import com.zthl.nxp.model.ProgramList;
 import com.zthl.nxp.model.request.AedInvoicesLogRequest;
@@ -115,5 +116,11 @@ public class DataManager {
 
         public Observable<GetServerDateTimeResponseBody> getServerDateTimeResponseInfo(SimpleRequest s){   //获取所有设备列表
             return mRetrofitService.getServerDateTimeResponseInfo(s);
+    }
+
+
+
+    public Observable<ResultData<List<InvoicesType>>> getInvoicesTypeResponseInfo(SimpleRequest s){   //获取所有设备列表
+        return mRetrofitService.getInvoicesTypeResponseInfo(s);
     }
 }

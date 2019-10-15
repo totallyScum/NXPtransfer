@@ -98,7 +98,7 @@ public class CheckStartFragment extends Fragment {
         if (mainViewModel!=null)
             checkMachineNumber.setText(mainViewModel.getBarCodeData());
         if (mainViewModel.getFragmentID()!=-1)
-            checkType.setText(MainFragment.themeCheck[mainViewModel.getFragmentID()]);
+            checkType.setText(MainFragment.invoiceTypeName.get(MyApplication.getFragmentID()));
         commit=getActivity().findViewById(R.id.check_start_submit);
 
 
@@ -109,7 +109,7 @@ public class CheckStartFragment extends Fragment {
                 CreateInvoicesPointRequset t=new CreateInvoicesPointRequset();
                 InvoicesPoint ip=new InvoicesPoint();
                 ip.setMachineNumber(mainViewModel.getBarCodeData());
-                ip.setInvoicesMan(MyApplication.getPkId());
+                ip.setInvoicesMan(MyApplication.getAccount());
                 ip.setGrouping(matchGroupId.getText().toString());
                 ip.setOperator(operator.getText().toString());
                 ip.setCurrentTime(currentProgram.getText().toString());
@@ -200,11 +200,14 @@ public void initList(){
             public void run() {
                 SharedPreferences sharedPreferences= getActivity().getSharedPreferences("data", Context .MODE_PRIVATE);
                 String userId=sharedPreferences.getString("account","");
-                currentProgram.setText(resultData.getData().get(0).getCurrentProgram());
-                matchGroupId.setText(resultData.getData().get(0).getMatchGroupId());
-                TimeUtil.setServerTime(getContext(),checkTime);
+                if (resultData.getData().size()!=0) {
+                    currentProgram.setText(resultData.getData().get(0).getCurrentProgram());
+                    matchGroupId.setText(resultData.getData().get(0).getMatchGroupId());
+                    operator.setText(resultData.getData().get(0).getOperator());
+
+                }
+                TimeUtil.setServerTime(getContext(), checkTime);
                 invoicesMan.setText(userId);
-                operator.setText(resultData.getData().get(0).getOperator());
             }
         });
             //    JSONObject jsonData = JSONObject.fromObject(school);

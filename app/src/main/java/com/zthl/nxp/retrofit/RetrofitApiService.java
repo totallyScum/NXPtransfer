@@ -2,6 +2,7 @@ package com.zthl.nxp.retrofit;
 
 import com.zthl.nxp.model.GetServerDateTimeResponseBody;
 import com.zthl.nxp.model.InvoiceList;
+import com.zthl.nxp.model.InvoicesType;
 import com.zthl.nxp.model.MachineListResponseBody;
 import com.zthl.nxp.model.ProgramList;
 import com.zthl.nxp.model.request.AedInvoicesLogRequest;
@@ -108,5 +109,11 @@ public interface RetrofitApiService {
     @Headers({"Content-Type: application/json","Accept: application/json"})//获取服务器时间
     @POST("Api/GetServerDateTime")
     Observable<GetServerDateTimeResponseBody> getServerDateTimeResponseInfo(@Body SimpleRequest simpleRequest);
+
+
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})//获取服务器时间
+    @POST("api/GetInvoicesType")
+    Observable<ResultData<List<InvoicesType>>> getInvoicesTypeResponseInfo(@Body SimpleRequest simpleRequest);
 
 }

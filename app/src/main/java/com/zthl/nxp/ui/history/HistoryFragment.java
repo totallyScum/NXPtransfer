@@ -166,7 +166,7 @@ public class HistoryFragment extends Fragment {
         public void onSuccess(final ResultData<List<TurringList>> resultNet) {
 //            Log.d("99999",resultNet.getData().get(0).get());
             if (getView().getContext() != null) {
-                adapter = new HistoryItemListViewAdapter(getView().getContext(), resultNet.getData());
+                adapter = new HistoryItemListViewAdapter(getView().getContext(), resultNet.getData(),true);
                 listview.setAdapter(adapter);
             }
         }

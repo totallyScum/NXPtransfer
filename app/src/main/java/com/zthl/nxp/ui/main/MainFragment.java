@@ -11,14 +11,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
+import com.zthl.nxp.MainActivity;
 import com.zthl.nxp.MyApplication;
+import com.zthl.nxp.model.InvoiceList;
+import com.zthl.nxp.model.InvoicesType;
+import com.zthl.nxp.model.ProgramList;
+import com.zthl.nxp.model.ResultData;
+import com.zthl.nxp.model.request.SimpleRequest;
+import com.zthl.nxp.presenter.GetInvoicesTypeResponseBodyPresenter;
+import com.zthl.nxp.presenter.TransferCommitResponseBodyPresenter;
+import com.zthl.nxp.presenterView.GetInvoicesTypeResponsePv;
+import com.zthl.nxp.presenterView.InvoiceListResponsePv;
+import com.zthl.nxp.presenterView.ProgramListResponsePv;
 import com.zthl.nxp.ui.check.CheckStartFragment;
 import com.zthl.nxp.ui.AutomaticBarcodeActivity;
 import com.zthl.nxp.ui.missionList.MissionListFragment;
@@ -39,8 +52,9 @@ public class MainFragment extends Fragment {
     private GridView mainMenuList;
     private GridView mainMenuListCheck;
     private GridView mainMenuListSecondary;
-    private static boolean isCheck=false;
-    private static boolean isFixed=false;
+    private static boolean isCheck = false;
+    private static boolean isFixed = false;
+    private GetInvoicesTypeResponseBodyPresenter tcr = new GetInvoicesTypeResponseBodyPresenter(getContext());
 
     public static boolean isIsFixed() {
         return isFixed;
@@ -49,26 +63,31 @@ public class MainFragment extends Fragment {
     public static void setIsFixed(boolean isFixed) {
         MainFragment.isFixed = isFixed;
     }
-    public static boolean check =false;
+
+    public static boolean check = false;
 
     private String[] theme = {"当前机器任务(机台号)", "开票开始界面", "任务列表", "已发放任务", "转机结束", "注销", "开票（开始界面）", "开票（ 结束界面）", "历史查看", "问题恢复", "问题反馈", "扫码", "提交转机"};
     private String[] themeFixed = {"提交转机", "转机", "我的列表", "历史", "注销"};
     public static String[] themeCheck = {"清洁", "保养", "测试"};
-    private String[] themeSecondary = {"开票开始", "开票结束", "扫码","开票列表"};
+    private String[] themeSecondary = {"开票开始", "开票结束", "扫码", "开票列表"};
 
+    public static List<String> invoiceTypeName = new ArrayList<>();
+    private static List<String> invoiceTypePkId = new ArrayList<>();
+
+    private List<Map<String, Object>> listsCheck = new ArrayList<>();
 
 
     private int[] imageViews = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
     private int[] imageViewsFixed = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_transfer, R.mipmap.main_icon_mission_list, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
     private int[] imageViewsCheck = {R.mipmap.main_check_clean, R.mipmap.main_check_maintain, R.mipmap.main_icon_test};
-    private int[] imageViewsSecondary = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+    private int[] imageViewsSecondary = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
 
 
-    private String[] themeLeader = {"提交转机",  "历史", "注销"};
-    private String[] themeTransfer = { "转机", "我的列表",  "历史", "注销"};
+    private String[] themeLeader = {"提交转机", "历史", "注销"};
+    private String[] themeTransfer = {"转机", "我的列表", "历史", "注销"};
     private int[] imageViewsLeader = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
     private int[] imageViewsTransfer = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_mission_list, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
-
+      static  SimpleAdapter simpleAdapter;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -85,10 +104,19 @@ public class MainFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
-
+        tcr.onCreate();
+        tcr.BindPresentView(getInvoicesTypeResponsePv);
         initGridLayout();
         // TODO: Use the ViewModel
+
+//        invoiceTypePkId.clear();
+//        invoiceTypeName.clear();
+//        listsCheck.clear();
+
     }
+
+
+
 
     public boolean isCheck() {
         return isCheck;
@@ -103,15 +131,12 @@ public class MainFragment extends Fragment {
         mainMenuListCheck = getView().findViewById(R.id.main_menu_list_check);
         mainMenuListSecondary = getView().findViewById(R.id.main_menu_list_secondary);
 
-
-        if (MyApplication.getRole().equals("1"))
-        {
-            mainMenuListCheck.setVisibility(View.INVISIBLE );
+        mainMenuListCheck.setAdapter(simpleAdapter);
+        if (MyApplication.getRole().equals("1")) {
+            mainMenuListCheck.setVisibility(View.INVISIBLE);
 
 
         }
-
-
 
 
         List<Map<String, Object>> listsFix = new ArrayList<>();
@@ -123,7 +148,6 @@ public class MainFragment extends Fragment {
         }
 
 
-
         List<Map<String, Object>> listsLeader = new ArrayList<>();
         for (int i = 0; i < themeLeader.length; i++) {       //固定布局
             Map<String, Object> mapFix = new HashMap<>();
@@ -133,28 +157,12 @@ public class MainFragment extends Fragment {
         }
 
 
-
-
         List<Map<String, Object>> listsTransfer = new ArrayList<>();
         for (int i = 0; i < themeTransfer.length; i++) {       //固定布局
             Map<String, Object> mapFix = new HashMap<>();
             mapFix.put("image", imageViewsTransfer[i]);
             mapFix.put("theme", themeTransfer[i]);
             listsTransfer.add(mapFix);
-        }
-
-
-
-
-        List<Map<String, Object>> listsCheck = new ArrayList<>();
-        for (int i = 0; i < themeCheck.length; i++) {     //开票
-            Map<String, Object> mapCheck = new HashMap<>();
-            mapCheck.put("image", imageViewsCheck[i]);
-            mapCheck.put("theme", themeCheck[i]);
-            listsCheck.add(mapCheck);
-
-
-
         }
 
 
@@ -167,13 +175,12 @@ public class MainFragment extends Fragment {
         }
 
 
-        if (MyApplication.getRole().equals("1"))
-        {
+        if (MyApplication.getRole().equals("1")) {
             mainMenuList.setAdapter(new SimpleAdapter(getContext(), listsLeader, R.layout.gridview_item
                     , new String[]{"image", "theme"}
                     , new int[]{R.id.image1, R.id.text1}));
         }
-        if (MyApplication.getRole().equals("2")){
+        if (MyApplication.getRole().equals("2")) {
             mainMenuList.setAdapter(new SimpleAdapter(getContext(), listsTransfer, R.layout.gridview_item
                     , new String[]{"image", "theme"}
                     , new int[]{R.id.image1, R.id.text1}));
@@ -183,24 +190,9 @@ public class MainFragment extends Fragment {
 //                , new int[]{R.id.image1, R.id.text1}));
 
 
-
-
-
-        mainMenuListCheck.setAdapter(new SimpleAdapter(getContext(), listsCheck, R.layout.gridview_item
-                , new String[]{"image", "theme"}
-                , new int[]{R.id.image1, R.id.text1}));
-
-
-
-
-
         mainMenuListSecondary.setAdapter(new SimpleAdapter(getContext(), listsSecondary, R.layout.gridview_item
                 , new String[]{"image", "theme"}
                 , new int[]{R.id.image1, R.id.text1}));
-
-
-
-
 
 
 //
@@ -232,94 +224,37 @@ public class MainFragment extends Fragment {
 
                     }
                 }
-                    if (MyApplication.getRole().equals("2")){
-                        switch (i) {
-                            case 0:
-                                Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
-                                Bundle b = new Bundle();
-                                b.putInt("id", i);
-                                intent.putExtras(b);
-                                mViewModel.setFragmentID(i);
-                                check = false;
-                                getActivity().startActivity(intent);
-                                break;
+                if (MyApplication.getRole().equals("2")) {
+                    switch (i) {
+                        case 0:
+                            Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
+                            Bundle b = new Bundle();
+                            b.putInt("id", i);
+                            intent.putExtras(b);
+                            mViewModel.setFragmentID(i);
+                            check = false;
+                            getActivity().startActivity(intent);
+                            break;
 
-                            case 1:
-                                ft.replace(R.id.container, MissionListFragment.newInstance());
-                                ft.addToBackStack("UserTag");
-                                ft.commit();
-                                break;
-                            case 2:
-                                ft.replace(R.id.container, HistoryFragment.newInstance());
-                                ft.addToBackStack("UserTag");
-                                ft.commit();
-                                break;
-                            case 3:
-                                Intent intent2 = new Intent(getContext(), LoginActivity.class);
-                                startActivity(intent2);
-                                break;
+                        case 1:
+                            ft.replace(R.id.container, MissionListFragment.newInstance());
+                            ft.addToBackStack("UserTag");
+                            ft.commit();
+                            break;
+                        case 2:
+                            ft.replace(R.id.container, HistoryFragment.newInstance());
+                            ft.addToBackStack("UserTag");
+                            ft.commit();
+                            break;
+                        case 3:
+                            Intent intent2 = new Intent(getContext(), LoginActivity.class);
+                            startActivity(intent2);
+                            break;
 
-                        }
                     }
+                }
 
 
-            }
-        });
-
-
-        mainMenuListCheck.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.container, MainFragment.newInstance())
-//                        .commitNow();
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                //        Bundle mBundle = new Bundle();
-
-//                ft.replace(R.id.container, CheckStartFragment.newInstance());
-//                ft.addToBackStack("UserTag");
-//                ft.commit();
-//                Intent intent=new Intent(this,AutomaticBarcodeActivity);
-//                intent.putExtra("id",i);
-//                startActivity(intent);
-
-                Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
-                Bundle b = new Bundle();
-                b.putInt("CheckID",i);
-                intent.putExtras(b);
-                mViewModel.setFragmentID(i);
-                check=true;
-                getActivity().startActivity(intent);
-//
-//                ft.replace(R.id.container, CheckListFragment.newInstance());
-//                ft.addToBackStack("UserTag");
-//                ft.commit();
-
-
-
-
-
-
-
-
-//                switch (i) {
-//                    case 0:
-//                        ft.replace(R.id.container, CheckStartFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 1:
-//                        ft.replace(R.id.container, CheckEndFragment.newInstance());
-//                        ft.addToBackStack("UserTag");
-//                        ft.commit();
-//                        break;
-//                    case 2:
-////                        ft.replace(R.id.container, CheckStartFragment.newInstance());
-////                        ft.addToBackStack("UserTag");
-////                        ft.commit();
-//                        break;
-//                }
             }
         });
 
@@ -377,11 +312,22 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+
+        invoiceTypePkId.clear();
+        invoiceTypeName.clear();
+        listsCheck.clear();
+
+        SimpleRequest s = new SimpleRequest();
+        s.setAccountPkId(MyApplication.getPkId());
+        tcr.getInvoicesTypeResponseInfo(s);
+
+
         if (isCheck == true) {
-            isCheck=false;
+            isCheck = false;
             Intent intent = getActivity().getIntent();
-            int id =intent.getIntExtra("checkID",0);
-      //      int id = intent.getIntExtra("id", -1);
+            int id = intent.getIntExtra("checkID", 0);
+            //      int id = intent.getIntExtra("id", -1);
             String barCodeData = intent.getStringExtra("barCodeData");
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -414,25 +360,91 @@ public class MainFragment extends Fragment {
 ////                break;
 //            }
         }
-        if (isFixed==true)
-        {
-            isFixed=false;
+        if (isFixed == true) {
+            isFixed = false;
             Intent intent = getActivity().getIntent();
-            int id =intent.getIntExtra("id",0);
+            int id = intent.getIntExtra("id", 0);
             String barCodeData = intent.getStringExtra("barCodeData");
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             mViewModel.setBarCodeData(barCodeData);
             mViewModel.setFragmentID(id);
-switch (id){
-    case 0:
+            switch (id) {
+                case 0:
 //        ft.replace(R.id.container, TransferCommitFragment.newInstance());
 //        ft.addToBackStack("UserTag");
 //        ft.commit();
-                        ft.replace(R.id.container, TransferFragment.newInstance());
-                        ft.commit();
-        break;
-}
+                    ft.replace(R.id.container, TransferFragment.newInstance());
+                    ft.commit();
+                    break;
+            }
         }
+
+
+
     }
-}
+
+
+    private GetInvoicesTypeResponsePv getInvoicesTypeResponsePv = new GetInvoicesTypeResponsePv() {
+        @Override
+        public void onSuccess(ResultData<List<InvoicesType>> resultNet) {
+            Log.d("23333qqq",resultNet.toString());
+            for (int i = 0; i < resultNet.getData().size(); i++) {
+                invoiceTypePkId.add(resultNet.getData().get(i).getPkId() + "");
+                invoiceTypeName.add(resultNet.getData().get(i).getName() + "");
+            }
+            for (int i = 0; i < invoiceTypePkId.size(); i++) {     //开票
+                Map<String, Object> mapCheck = new HashMap<>();
+                mapCheck.put("image", imageViewsCheck[i % 3]);
+                mapCheck.put("theme", invoiceTypeName.get(i));
+                listsCheck.add(mapCheck);
+            }
+
+            if (getActivity()!=null)
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    simpleAdapter=new SimpleAdapter(getContext(), listsCheck, R.layout.gridview_item
+                            , new String[]{"image", "theme"}
+                            , new int[]{R.id.image1, R.id.text1});
+
+                    mainMenuListCheck.setAdapter(simpleAdapter);
+
+                    mainMenuListCheck.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            FragmentManager fm = getFragmentManager();
+                            FragmentTransaction ft = fm.beginTransaction();
+                            Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
+                            Bundle b = new Bundle();
+                            b.putInt("CheckID", i);
+                            intent.putExtras(b);
+                            mViewModel.setFragmentID(i);
+                            MyApplication.setFragmentID(i);
+                            Log.d("66666qqq",i+"");
+                            check = true;
+                            getActivity().startActivity(intent);
+
+                        }
+                    });
+
+
+                }
+            });
+        }
+
+        @Override
+        public void onError(String result) {
+
+            Log.d("1111112333", result);
+
+
+        }
+
+
+    };
+};
+
+
+
+
