@@ -109,7 +109,7 @@ public class CheckStartFragment extends Fragment {
                 CreateInvoicesPointRequset t=new CreateInvoicesPointRequset();
                 InvoicesPoint ip=new InvoicesPoint();
                 ip.setMachineNumber(mainViewModel.getBarCodeData());
-                ip.setInvoicesMan(MyApplication.getAccount());
+                ip.setInvoicesMan(MyApplication.getPkId());
                 ip.setGrouping(matchGroupId.getText().toString());
                 ip.setOperator(operator.getText().toString());
                 ip.setCurrentTime(currentProgram.getText().toString());
