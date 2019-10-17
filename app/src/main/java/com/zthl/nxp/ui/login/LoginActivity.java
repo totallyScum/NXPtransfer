@@ -169,6 +169,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         UrlConstant.setBaseUrl(editText.getText().toString(),getApplicationContext());
+                        UrlConstant.BASE_URL=editText.getText().toString();
                         SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
                         //步骤2： 实例化SharedPreferences.Editor对象
                         SharedPreferences.Editor editor = sharedPreferences.edit();

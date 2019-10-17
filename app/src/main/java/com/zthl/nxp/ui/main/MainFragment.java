@@ -249,6 +249,7 @@ public class MainFragment extends Fragment {
                         case 3:
                             Intent intent2 = new Intent(getContext(), LoginActivity.class);
                             startActivity(intent2);
+
                             break;
 
                     }

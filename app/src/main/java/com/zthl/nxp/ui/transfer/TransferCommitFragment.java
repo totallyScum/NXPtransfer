@@ -293,7 +293,7 @@ public class TransferCommitFragment extends Fragment {
             Log.d("2333300",resultNet.toString());
             if (resultNet.getState().equals("1"))
             {
-                Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"提交成功",Toast.LENGTH_LONG).show();
 
                                 getFragmentManager()
                                      .beginTransaction()
@@ -302,7 +302,7 @@ public class TransferCommitFragment extends Fragment {
             }
             if (resultNet.getState().equals("0"))
             {
-                Toast.makeText(getContext(),"用户不存在",Toast.LENGTH_LONG);
+                Toast.makeText(getContext(),"该机台无法执行此程序",Toast.LENGTH_LONG);
             }
         }
 

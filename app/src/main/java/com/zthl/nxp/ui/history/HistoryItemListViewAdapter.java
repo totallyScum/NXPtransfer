@@ -97,7 +97,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
 
         if (!history)
             if (list.get(position).getMessageType() != null)
-                if (list.get(position).getMessageType().equals("INPUT") || list.get(position).getMessageType().equals("")) {
+                if (list.get(position).getMessageType().equals("OUTPUT") || list.get(position).getMessageType().equals("")) {
 
                     //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
                     vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));

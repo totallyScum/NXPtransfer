@@ -42,6 +42,7 @@ public class RetrofitUtil {
 
     //初始化Retrofit
     private void init(Context context) {
+        UrlConstant.getBaseUrl(context);
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(UrlConstant.getBaseUrl(context))
                 .client(client)
