@@ -28,10 +28,10 @@
     <View
         android:id="@+id/edit_spinner_expand_above"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignBottom="@+id/edit_sipnner_edit"
         android:layout_alignLeft="@id/edit_spinner_expand"
         android:layout_alignRight="@id/edit_spinner_expand"
         android:layout_alignTop="@+id/edit_sipnner_edit"
-        android:padding="8dp"/>
+      />
 </RelativeLayout>

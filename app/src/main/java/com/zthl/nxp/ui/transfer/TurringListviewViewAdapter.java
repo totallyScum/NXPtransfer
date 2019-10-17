@@ -78,7 +78,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
             } else {
                 vh = (MyViewHolder) convertView.getTag();
                 if (list.get(position).getMessageType() != null)
-                    if (list.get(position).getMessageType().equals("INPUT") || list.get(position).getMessageType().equals("")) {
+                    if (list.get(position).getMessageType().equals("OUTPUTm") || list.get(position).getMessageType().equals("")) {
 
                         //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
                         //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
@@ -92,7 +92,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
 //            convertView.setVisibility(View.INVISIBLE);
 //        }
         if (list.get(position).getMessageType()!=null)
-            if (list.get(position).getMessageType().equals("INPUT")||list.get(position).getMessageType().equals(""))
+            if (list.get(position).getMessageType().equals("OUTPUT")||list.get(position).getMessageType().equals(""))
             {
 
            //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));

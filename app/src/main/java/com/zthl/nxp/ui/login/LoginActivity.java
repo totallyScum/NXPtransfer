@@ -168,20 +168,22 @@ public class LoginActivity extends AppCompatActivity {
                 .setPositiveButton("确认", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(LoginActivity.this, "IP地址为：" + editText.getText().toString()
-                                , Toast.LENGTH_LONG).show();
-
+                        UrlConstant.setBaseUrl(editText.getText().toString(),getApplicationContext());
                         SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
                         //步骤2： 实例化SharedPreferences.Editor对象
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         //步骤3：将获取过来的值放入文件
                         editor.putString("IP",editText.getText().toString());
                         editor.commit();
-                        UrlConstant.setBaseUrl(editText.getText().toString());
+                        Toast.makeText(LoginActivity.this, "IP地址为：" + editText.getText().toString()
+                                , Toast.LENGTH_LONG).show();
                     }
                 });
         builder.create().show();
     }
+
+
+
 
 
     private void updateUiWithUser(LoggedInUserView model) {

@@ -19,14 +19,20 @@ import java.util.List;
  */
 public class SimpleAdapter extends BaseEditSpinnerAdapter implements EditSpinnerFilter {
     private Context mContext;
-    private List<String> mSpinnerData;
-    private List<String> mCacheData;
-    private int[] indexs;
+    private  List<String> mSpinnerData;
+    private  List<String> mCacheData;
+    private   int[] indexs;
 
     public SimpleAdapter(Context context, List<String> spinnerData) {
         this.mContext = context;
-        this.mSpinnerData = spinnerData;
-        mCacheData = new ArrayList<>(spinnerData);
+        List<String> temp=new ArrayList<String>();
+        temp.add("");
+        for(int i=0;i<spinnerData.size();i++)
+        {
+            temp.add(spinnerData.get(i));
+        }
+        this.mSpinnerData = temp;
+        mCacheData = new ArrayList<>(mSpinnerData);
         indexs = new int[mSpinnerData.size()];
     }
 
@@ -59,7 +65,7 @@ public class SimpleAdapter extends BaseEditSpinnerAdapter implements EditSpinner
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView textView = null;
         if (convertView == null) {
-            textView = (TextView) LayoutInflater.from(mContext).inflate(android.R.layout.simple_spinner_item, null);
+            textView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.my_spinner_item, null);
         } else {
             textView = (TextView) convertView;
         }

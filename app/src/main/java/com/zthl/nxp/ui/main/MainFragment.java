@@ -238,7 +238,7 @@ public class MainFragment extends Fragment {
 
                         case 1:
                             ft.replace(R.id.container, MissionListFragment.newInstance());
-                            ft.addToBackStack("UserTag");
+                            ft.addToBackStack(null);
                             ft.commit();
                             break;
                         case 2:
@@ -334,7 +334,7 @@ public class MainFragment extends Fragment {
             mViewModel.setBarCodeData(barCodeData);
             mViewModel.setFragmentID(id);
             ft.replace(R.id.container, CheckListFragment.newInstance());
-            ft.addToBackStack("UserTag");
+            ft.addToBackStack("null");
             ft.commit();
 //            switch (id) {
 //                case 0:           //  清洁

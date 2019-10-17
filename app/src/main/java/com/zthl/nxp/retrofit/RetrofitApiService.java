@@ -116,4 +116,11 @@ public interface RetrofitApiService {
     @POST("api/GetInvoicesType")
     Observable<ResultData<List<InvoicesType>>> getInvoicesTypeResponseInfo(@Body SimpleRequest simpleRequest);
 
+
+
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})//获取全员列表
+    @POST("api/OverallList")
+    Observable<ResultData<List<TurringList>>> getOverallListResponseInfo(@Body SimpleRequest simpleRequest);
+
 }

@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MissionFragment.O
 
     private void forceUpdate(){
         XUpdate.newBuild(this)
-                .updateUrl(UrlConstant.getBaseUrl()+"APPUpdate/version-info.json")
+                .updateUrl(UrlConstant.getBaseUrl(getApplicationContext())+"APPUpdate/version-info.json")
                 .update();
     }
 }

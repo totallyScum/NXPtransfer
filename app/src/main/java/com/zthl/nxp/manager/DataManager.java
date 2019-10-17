@@ -123,4 +123,10 @@ public class DataManager {
     public Observable<ResultData<List<InvoicesType>>> getInvoicesTypeResponseInfo(SimpleRequest s){   //获取所有设备列表
         return mRetrofitService.getInvoicesTypeResponseInfo(s);
     }
+
+
+    public Observable<ResultData<List<TurringList>>> getOverallListResponseInfo(SimpleRequest s){   //获取所有设备列表
+        return mRetrofitService.getOverallListResponseInfo(s);
+    }
+
 }

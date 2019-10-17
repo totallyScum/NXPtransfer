@@ -168,8 +168,6 @@ public class TransferCommitFragment extends Fragment {
         submit=getActivity().findViewById(R.id.transfer_commit_submit);
         submit.setVisibility(View.INVISIBLE);
         transferSpinner=getActivity().findViewById(R.id.transfer_man_spinner);
-
-
         transferSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -208,8 +206,10 @@ public class TransferCommitFragment extends Fragment {
         accont=userId;
     }
     private void initReuqest(){
+//        machineListItems.clear();
+//        programListItems.clear();
         TurnaroundManListRequest t=new TurnaroundManListRequest();
-        t.setAccountPkId("1");
+        t.setAccountPkId(MyApplication.getPkId());
         tmr.getTurnaroundManListResponseInfo(t);
 
 
@@ -238,7 +238,9 @@ public class TransferCommitFragment extends Fragment {
                 m.setAccountPkId(MyApplication.getPkId());
                 m.setMachineNumber(machineListItems.get(i));
                 if (machineListItems.get(i).equals(""))
-                {}else
+                {
+
+                }else
                 {
                     mwrp.getMachWorkingStatusByMachNameResponseInfo(m);
                     Log.d("qqqqq",m.getMachineNumber()+"----"+m.getAccountPkId());
@@ -364,11 +366,11 @@ public class TransferCommitFragment extends Fragment {
 
 
                     Log.d("111111",resultData.getData().size()+"");
-
+                    machineListItems.clear();
                     for (int i=0;i<resultData.getData().size();i++)
                     {machineListItems.add(resultData.getData().get(i).getName());
                     }
-                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(),R.layout.item_select, machineListItems);
+         //           ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(),R.layout.item_select, machineListItems);
             //        machineListSpinner.setAdapter(spinnerAdapter);
                     machineListSpinner.setItemData(machineListItems);
                 }
@@ -392,6 +394,14 @@ public class TransferCommitFragment extends Fragment {
                 currentProgram.setText(resultData.getData().get(0).getCurrentProgram());
 
             }
+            if (resultData.getState()==0) {
+                group.setText("");
+                operator.setText("");
+                currentProgram.setText("");
+
+            }
+
+
         }
     };
 
@@ -412,7 +422,7 @@ public class TransferCommitFragment extends Fragment {
                 @Override
                 public void run() {
 
-
+                    programListItems.clear();
                     Log.d("22222223",programData.getData().size()+"");
 
                     for (int i=0;i<programData.getData().size();i++)

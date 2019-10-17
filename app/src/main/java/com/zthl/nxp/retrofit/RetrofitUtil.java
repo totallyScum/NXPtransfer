@@ -37,13 +37,13 @@ public class RetrofitUtil {
     }
     private RetrofitUtil(Context mContext){
         mCntext = mContext;
-        init();
+        init(mContext);
     }
 
     //初始化Retrofit
-    private void init() {
+    private void init(Context context) {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(UrlConstant.BASE_URL)
+                .baseUrl(UrlConstant.getBaseUrl(context))
                 .client(client)
                 .addConverterFactory(factory)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

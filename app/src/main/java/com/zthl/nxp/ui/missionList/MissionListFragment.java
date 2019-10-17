@@ -1,6 +1,7 @@
 package com.zthl.nxp.ui.missionList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,13 +9,18 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +39,11 @@ import com.zthl.nxp.model.ResultNoData;
 import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.presenterView.TransferCommitResponsePv;
 import com.zthl.nxp.presenterView.TurringListResponsePv;
+import com.zthl.nxp.ui.AutomaticBarcodeActivity;
+import com.zthl.nxp.ui.check.CheckStartFragment;
 import com.zthl.nxp.ui.main.MainFragment;
+import com.zthl.nxp.ui.main.MainViewModel;
+import com.zthl.nxp.ui.transfer.TransferFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +63,7 @@ public class MissionListFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private int mColumnCount = 1;
+    private MainViewModel mViewModel;
  //   private MissionFragment.OnListFragmentInteractionListener mListener;
     private ListView listview;
     private ArrayList<String> list;
@@ -62,6 +73,7 @@ public class MissionListFragment extends Fragment {
     private String mParam2;
     private EditText search;
     private OnFragmentInteractionListener mListener;
+    private androidx.appcompat.widget.Toolbar toolbar;
     private ListView mListview;
     public MissionListFragment() {
         // Required empty public constructor
@@ -116,7 +128,32 @@ public class MissionListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        toolbar=getActivity().findViewById(R.id.mission_list_toolbar);
+        toolbar.inflateMenu(R.menu.options_transfer_menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId()==R.id.transfer_start)
+                {
 
+
+
+
+
+
+                    mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+                    Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
+                    Bundle b = new Bundle();
+                    b.putInt("id", 0);
+                    intent.putExtras(b);
+                    mViewModel.setFragmentID(0);
+                    MainFragment.check = false;
+                    getActivity().startActivity(intent);
+
+                }
+                return true;
+            }
+        });
 
 //                    getChildFragmentManager().beginTransaction()
 //                    .replace(R.id.mission_container, ListViewFragment.newInstance())
@@ -202,6 +239,14 @@ public class MissionListFragment extends Fragment {
    //     initView();
         initRequest();
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.options_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
     private void initView(){
 
 

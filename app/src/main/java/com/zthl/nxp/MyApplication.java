@@ -114,7 +114,7 @@ public class MyApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initIP();
+   //     initIP();
 
         initOKHttpUtils();
 
@@ -128,11 +128,12 @@ public class MyApplication extends android.app.Application {
     private  void initIP(){
 
         SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
-        String ip=sharedPreferences.getString("IP","http://123.206.51.39:20188/");
-        if (ip.equals(""))
-        UrlConstant.setBaseUrl("http://123.206.51.39:20188/");
+        String ip=sharedPreferences.getString("IP","");
+        if (ip.equals("")) {
+            UrlConstant.setBaseUrl("http://123.206.51.39:20188/",getApplicationContext());
+        }
         else
-        UrlConstant.setBaseUrl(ip);
+        UrlConstant.setBaseUrl(ip,getApplicationContext());
     }
     private void initUpdate(){
         XUpdate.get()
