@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OverallFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mission_list_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTextBlue">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="全员列表"
+                android:textColor="@color/colorButtonWhite"
+                android:textSize="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="20dp"
+                ></TextView>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/over_all_list"
+        tools:listitem="@layout/history_list_item"
+        android:background="#ffffff"
+        >
+
+        <!--    <ListView-->
+        <!--        android:name="com.chen.nxp.MissionFragment"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:layout_marginLeft="16dp"-->
+        <!--        android:layout_marginRight="16dp"-->
+        <!--        android:layout_marginTop="10dp"-->
+        <!--        tools:context="com.zthl.nxp.ui.missionList.MissionListFragment"-->
+        <!--        tools:listitem="@layout/mission_list_item" />-->
+    </ListView>
+    </LinearLayout>
+</FrameLayout>

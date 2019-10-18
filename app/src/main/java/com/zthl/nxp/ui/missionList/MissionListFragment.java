@@ -138,9 +138,6 @@ public class MissionListFragment extends Fragment {
 
 
 
-
-
-
                     mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
                     Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
                     Bundle b = new Bundle();
