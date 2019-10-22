@@ -31,6 +31,7 @@ import com.zthl.nxp.presenterView.InvoiceListResponsePv;
 import com.zthl.nxp.ui.history.HistoryItemListViewAdapter;
 import com.zthl.nxp.ui.main.MainViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -145,8 +146,7 @@ public class CheckListFragment extends Fragment {
         InvoiceListRequest i=new InvoiceListRequest();
         i.setAccountPkId(MyApplication.getPkId());
         i.setFounder(MyApplication.getPkId());
-        i.setIncoicesTypeID(mainViewModel.getFragmentID()+1+"");
-        Log.d("12345567",mainViewModel.getFragmentID()+1+"");
+        i.setIncoicesTypeID(MyApplication.getFragmentID()+1+"");
         i.setMachineNumber(mainViewModel.getBarCodeData());
         ilp.onCreate();
         ilp.BindPresentView(invoiceListResponsePv);
@@ -230,6 +230,15 @@ public class CheckListFragment extends Fragment {
 
 
             Log.d("234567777",resultNet.getData().size()+"");
+
+//            ArrayList<InvoiceList> temp=new ArrayList<>();
+//
+//            for (int i=0;i<resultNet.getData().size();i++)
+//            {
+//                if (resultNet.getData().get(i).get)
+//                temp
+//            }
+//            if (resultNet.getData().get())
             CheckListviewAdapter adapter=new CheckListviewAdapter(getView().getContext(),resultNet.getData(),getFragmentManager());
             listView.setAdapter(adapter);
 

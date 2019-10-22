@@ -68,7 +68,7 @@ public class DataManager {
     public Observable<ResultData<List<TurringList>>> getTurringListResponseInfo(MachineRequest simpleRequest){     //获取所有转换员
         return mRetrofitService.getTurringListResponseInfo(simpleRequest);
     }
-    public Observable<ResultData<List<TurringList>>> getHistoryResponseInfo(SimpleRequest simpleRequest){
+    public Observable<ResultData<List<TurringList>>> getHistoryResponseInfo(PersonalListRequest simpleRequest){
         return mRetrofitService.getHistoryResponseInfo(simpleRequest);
     }
         public Observable<ResultNoData> getCreateInvoicesResponseInfo(CreateInvoicesPointRequset dataRequest) {

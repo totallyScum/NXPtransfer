@@ -49,6 +49,8 @@ public class EditSpinner extends RelativeLayout implements View.OnClickListener,
         this.mContext = context;
         initView(attrs);
         initAnimation();
+
+
     }
 
 
@@ -150,7 +152,7 @@ public class EditSpinner extends RelativeLayout implements View.OnClickListener,
             @Override
             public void dismiss() {
                 super.dismiss();
-            }
+        }
 
         };
         popupWindow.setOnItemClickListener(this);
@@ -226,6 +228,7 @@ public class EditSpinner extends RelativeLayout implements View.OnClickListener,
         } else {
             popupWindow.show();
         }
+
 
     }
 }

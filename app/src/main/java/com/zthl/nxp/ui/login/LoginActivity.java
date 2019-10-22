@@ -22,6 +22,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -40,9 +41,8 @@ import com.zthl.nxp.presenterView.LoginResponsePv;
 import java.util.jar.Pack200;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private LoginViewModel loginViewModel;
-    private LoginResponseBodyPresenter mLoginResponseBodyPresenter =new LoginResponseBodyPresenter(this);
+    private  LoginResponseBodyPresenter     mLoginResponseBodyPresenter=new LoginResponseBodyPresenter(this);
+    private   LoginViewModel loginViewModel;
     private EditText usernameEditText;
     private TextView setServerIP,versionName;
     private AlertDialog.Builder builder;
@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
@@ -72,8 +73,6 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         setServerIP=findViewById(R.id.change_server_ip);
-        mLoginResponseBodyPresenter.onCreate();
-        mLoginResponseBodyPresenter.BindPresentView(mUserInfoPv);
 
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -146,6 +145,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mLoginResponseBodyPresenter.onCreate();
+                mLoginResponseBodyPresenter.BindPresentView(mUserInfoPv);
                 LoginRequest loginRequest=new LoginRequest();
                 loginRequest.setLoginName(usernameEditText.getText().toString());
                 loginRequest.setLoginPassword(passwordEditText.getText().toString());
@@ -169,22 +170,23 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         UrlConstant.setBaseUrl(editText.getText().toString(),getApplicationContext());
-                        SharedPreferences sharedPreferences= getSharedPreferences("data", Context.MODE_PRIVATE);
-                        //步骤2： 实例化SharedPreferences.Editor对象
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        //步骤3：将获取过来的值放入文件
-                        editor.putString("IP",editText.getText().toString());
-                        editor.commit();
                         Toast.makeText(LoginActivity.this, "IP地址为：" + editText.getText().toString()
                                 , Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 });
         builder.create().show();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
@@ -234,6 +236,8 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
         }
     };
+
+
     private String getVersionName() throws Exception
     {
         // 获取packagemanager的实例

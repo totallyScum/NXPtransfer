@@ -114,7 +114,7 @@ public class CheckStartFragment extends Fragment {
                 ip.setOperator(operator.getText().toString());
                 ip.setCurrentTime(currentProgram.getText().toString());
                 ip.setInvoicesTime(checkTime.getText().toString());
-                ip.setInvoicesTypeID(mainViewModel.getFragmentID()+1+"");
+                ip.setInvoicesTypeID(MyApplication.getFragmentID()+1+"");
                 t.setAccountPkId(MyApplication.getPkId());
 
 

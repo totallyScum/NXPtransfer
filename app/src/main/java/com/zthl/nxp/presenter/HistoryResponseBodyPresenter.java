@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.zthl.nxp.manager.DataManager;
 import com.zthl.nxp.model.ResultData;
+import com.zthl.nxp.model.request.PersonalListRequest;
 import com.zthl.nxp.model.request.SimpleRequest;
 import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.presenterView.HistoryResponsePv;
@@ -32,7 +33,7 @@ public class HistoryResponseBodyPresenter extends BasePresenter {
     //在presenter中实现业务逻辑，此处会调用前面封装好的retrofit的东西
     //将处理结果绑定到对应的PresentView实例，这样Activity和PresentView实例绑定好之后，
     //Activity->PresentView->Presenter->retrofit的关系就打通了
-    public void getHistoryResponseInfo(SimpleRequest simpleRequest) {
+    public void getHistoryResponseInfo(PersonalListRequest simpleRequest) {
         DataManager.getInstance(mContext).getHistoryResponseInfo(simpleRequest)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

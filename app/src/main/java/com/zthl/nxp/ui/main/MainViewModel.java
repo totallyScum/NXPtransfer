@@ -13,6 +13,15 @@ public class MainViewModel extends ViewModel {
     private int fragmentID;
     private String barCodeData;
     private List<TurringList> mTurringList;
+    private List<TurringList> historyTurringList;
+
+    public List<TurringList> getHistoryTurringList() {
+        return historyTurringList;
+    }
+
+    public void setHistoryTurringList(List<TurringList> historyTurringList) {
+        this.historyTurringList = historyTurringList;
+    }
 
     public List<TurringList> getmTurringList() {
         return mTurringList;

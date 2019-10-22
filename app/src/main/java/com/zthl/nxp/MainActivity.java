@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.chen.nxp.R;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements MissionFragment.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         AidcManager.create(this, new AidcManager.CreatedCallback() {
 
             @Override

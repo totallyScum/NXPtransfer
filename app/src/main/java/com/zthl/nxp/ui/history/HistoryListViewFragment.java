@@ -1,4 +1,4 @@
-package com.zthl.nxp;
+package com.zthl.nxp.ui.history;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,8 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
@@ -18,14 +16,16 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.chen.nxp.R;
+import com.zthl.nxp.ListViewFragment;
+import com.zthl.nxp.MyApplication;
 import com.zthl.nxp.model.ResultData;
 import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.model.request.PersonalListRequest;
+import com.zthl.nxp.presenter.HistoryResponseBodyPresenter;
 import com.zthl.nxp.presenter.PersonalListResponseBodyPresenter;
+import com.zthl.nxp.presenterView.HistoryResponsePv;
 import com.zthl.nxp.presenterView.PersonalListResponsePv;
-import com.zthl.nxp.ui.history.HistoryItemListViewAdapter;
 import com.zthl.nxp.ui.main.MainViewModel;
-import com.zthl.nxp.ui.missionList.MissionListItemListviewViewAdapter;
 
 import java.util.List;
 
@@ -33,12 +33,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ListViewFragment.OnFragmentInteractionListener} interface
+ * {@link HistoryListViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ListViewFragment#newInstance} factory method to
+ * Use the {@link HistoryListViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListViewFragment extends Fragment {
+public class HistoryListViewFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -47,14 +47,25 @@ public class ListViewFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    private ListViewFragment.OnFragmentInteractionListener mListener;
     private MainViewModel mViewModel;
     private ListView mListview;
-    private PersonalListResponseBodyPresenter prb=new PersonalListResponseBodyPresenter(getContext());
+    private HistoryResponseBodyPresenter hrp=new HistoryResponseBodyPresenter(getContext());
     private static HistoryItemListViewAdapter adapter;
-    public ListViewFragment() {
+
+
+
+    public HistoryListViewFragment() {
         // Required empty public constructor
+    }
+
+    public static HistoryListViewFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        HistoryListViewFragment fragment = new HistoryListViewFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     /**
@@ -63,11 +74,11 @@ public class ListViewFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ListViewFragment.
+     * @return A new instance of fragment HistoryListViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListViewFragment newInstance(String param1, String param2) {
-        ListViewFragment fragment = new ListViewFragment();
+    public static HistoryListViewFragment newInstance(String param1, String param2) {
+        HistoryListViewFragment fragment = new HistoryListViewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -88,7 +99,7 @@ public class ListViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_view, container, false);
+        return inflater.inflate(R.layout.fragment_history_list_view, container, false);
     }
 
     @Override
@@ -99,47 +110,11 @@ public class ListViewFragment extends Fragment {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (mViewModel.getmTurringList()!=null)
-        {
-            Log.d("12333345","不空");
-            adapter =new HistoryItemListViewAdapter(getContext(),mViewModel.getmTurringList(),false);
-            mListview.setAdapter(adapter);
-        }
-        if (mViewModel.getmTurringList()==null) {
-            prb.onCreate();
-            prb.BindPresentView(personalListResponsePv);
-            PersonalListRequest p=new PersonalListRequest();
-            p.setAccountPkId(MyApplication.getPkId());
-            prb.getPersonalListResponseInfo(p);
-
-        }
-        mViewModel.setmTurringList(null);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mViewModel.setmTurringList(null);
-    }
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
-
-    public static ListViewFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        ListViewFragment fragment = new ListViewFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -159,6 +134,34 @@ public class ListViewFragment extends Fragment {
         mListener = null;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (MyApplication.getHistoryTurringList()!=null)
+        {
+            Log.d("12333345","不空");
+            adapter =new HistoryItemListViewAdapter(getContext(),MyApplication.getHistoryTurringList(),true);
+            mListview.setAdapter(adapter);
+    }
+        if (MyApplication.getHistoryTurringList()==null) {
+            hrp.onCreate();
+            hrp.BindPresentView(personalListResponsePv);
+            PersonalListRequest p=new PersonalListRequest();
+            p.setAccountPkId(MyApplication.getPkId());
+            hrp.getHistoryResponseInfo(p);
+
+        }
+        MyApplication.setHistoryTurringList(null);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mViewModel.setmTurringList(null);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -174,11 +177,14 @@ public class ListViewFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private PersonalListResponsePv personalListResponsePv = new PersonalListResponsePv(){
+
+
+
+    private HistoryResponsePv personalListResponsePv = new HistoryResponsePv(){
 
         @Override
         public void onSuccess(ResultData<List<TurringList>> resultData) {
-            mViewModel.setmTurringList(resultData.getData());
+         //   MyApplication.setHistoryTurringList(resultData.getData());
             Log.d("1233334","6666");
             Log.d("123333457",resultData.getData().size()+"");
 
@@ -188,7 +194,6 @@ public class ListViewFragment extends Fragment {
 //            //   ft.addToBackStack("UserTag");
 //            ft.commit();
 //            Log.d("1233334","6666777");
-
             adapter  =new HistoryItemListViewAdapter(getContext(),resultData.getData(),false);
             mListview.setAdapter(adapter);
 

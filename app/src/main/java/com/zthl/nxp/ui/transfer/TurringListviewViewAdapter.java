@@ -78,28 +78,27 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
             } else {
                 vh = (MyViewHolder) convertView.getTag();
                 if (list.get(position).getMessageType() != null)
-                    if (list.get(position).getMessageType().equals("OUTPUTm") || list.get(position).getMessageType().equals("")) {
+                    if (list.get(position).getMessageType().equals("INPUT")) {
 
                         //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
                         //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
-
-                    }else {
                         vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_white));
+
                     }
             }
 
 //        if (list.get(position).getTransitSituation().equals("1")) {
 //            convertView.setVisibility(View.INVISIBLE);
 //        }
-        if (list.get(position).getMessageType()!=null)
-            if (list.get(position).getMessageType().equals("OUTPUT")||list.get(position).getMessageType().equals(""))
-            {
+        if (list.get(position).getMessageType() == null) {
+            //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+            vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
+            //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
 
-           //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
-                vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
-          //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
-
-            }
+        } else if (list.get(position).getMessageType().equals("OUTPUT"))
+        {
+            vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
+        }
           //  vh.backGroundColor.setBackgroundColor(R.color.title_green);
 
 

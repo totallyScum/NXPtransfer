@@ -21,7 +21,8 @@
         <activity
             android:name="com.zthl.nxp.ui.login.LoginActivity"
             android:theme="@style/ThemeDemo"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -24,7 +24,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
     private int clickPosition = -1;//记录用户点击了的item
 
     public Boolean flag = false; //标识下拉view的显示状态
-    public static boolean history;
+    public  boolean history;
 
     public HistoryItemListViewAdapter(Context context, List<TurringList> list, boolean history) {
         this.context = context;
@@ -60,16 +60,15 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
 
             if (!history)
                 if (list.get(position).getMessageType() != null)
-                    if (list.get(position).getMessageType().equals("INPUT") || list.get(position).getMessageType().equals("")) {
+                    if (list.get(position).getMessageType().equals("INPUT")) {
 
                         //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
                         //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
-
-                    }else {
                         vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_white));
-                    }
 
+                    }
         }
+        //.     Log.d("color23333",list.get(position).getMessageType());
 
         //     Log.d("8888",list.get(0).getCreatedDateTime());
 
@@ -96,13 +95,14 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
 
 
         if (!history)
-            if (list.get(position).getMessageType() != null)
-                if (list.get(position).getMessageType().equals("OUTPUT") || list.get(position).getMessageType().equals("")) {
-
+                if (list.get(position).getMessageType() == null) {
                     //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
                     vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
                     //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
 
+                } else if (list.get(position).getMessageType().equals("OUTPUT"))
+                {
+                    vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
                 }
 
 

@@ -29,6 +29,41 @@ android:layout_height="match_parent"
                 ></TextView>
         </LinearLayout>
     </Toolbar>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        >
+        <ImageView
+            android:background="@mipmap/search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="fitXY"
+            android:layout_margin="5dp"
+            >
+        </ImageView>
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:singleLine="true"
+            android:hint="搜索"
+            android:gravity="center|left"
+            ></EditText>
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/mission_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        />
 <!--    <LinearLayout-->
 <!--        android:orientation="horizontal"-->
 <!--        android:layout_width="match_parent"-->
@@ -55,15 +90,6 @@ android:layout_height="match_parent"
 <!--            ></EditText>-->
 
 <!--    </LinearLayout>-->
-    <ListView
-        android:id="@+id/history_list"
-        android:name="com.chen.nxp.MissionFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
-        tools:context="com.zthl.nxp.ui.missionList.MissionListFragment"
-        tools:listitem="@layout/history_list_item" />
+
 </LinearLayout>
 </FrameLayout>

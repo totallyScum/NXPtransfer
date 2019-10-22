@@ -61,7 +61,7 @@ public class CheckCancelFragment extends Fragment {
         remark=getActivity().findViewById(R.id.invoices_cancel_remark);
         invoicesCurrentProgram.setText(MyApplication.getProgram()!=null?MyApplication.getProgram():"程序名为空");
         invoiceMachineNumber.setText(MyApplication.getMachineNumber());
-        invoicesAccount.setText(MyApplication.getPkId());
+        invoicesAccount.setText(MyApplication.getAccount());
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         invoicesType.setText(MainFragment.invoiceTypeName.get(MyApplication.getFragmentID()));    //选择开票类型
   //      invoicesProgram.setText(MyApplication.getProgram()!=null?MyApplication.getProgram():"程序名为空");

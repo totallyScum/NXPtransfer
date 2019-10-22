@@ -24,15 +24,20 @@ public class SimpleAdapter extends BaseEditSpinnerAdapter implements EditSpinner
     private   int[] indexs;
 
     public SimpleAdapter(Context context, List<String> spinnerData) {
+//        this.mContext = context;
+//        List<String> temp=new ArrayList<String>();
+//        temp.add("");
+//        for(int i=0;i<spinnerData.size();i++)
+//        {
+//            temp.add(spinnerData.get(i));
+//        }
+//        this.mSpinnerData = temp;
+//        mCacheData = new ArrayList<>(mSpinnerData);
+//        indexs = new int[mSpinnerData.size()];
+
         this.mContext = context;
-        List<String> temp=new ArrayList<String>();
-        temp.add("");
-        for(int i=0;i<spinnerData.size();i++)
-        {
-            temp.add(spinnerData.get(i));
-        }
-        this.mSpinnerData = temp;
-        mCacheData = new ArrayList<>(mSpinnerData);
+        this.mSpinnerData = spinnerData;
+        mCacheData = new ArrayList<>(spinnerData);
         indexs = new int[mSpinnerData.size()];
     }
 

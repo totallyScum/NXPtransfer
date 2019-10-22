@@ -397,6 +397,8 @@ public class MainFragment extends Fragment {
         @Override
         public void onSuccess(ResultData<List<InvoicesType>> resultNet) {
             Log.d("23333qqq",resultNet.toString());
+            invoiceTypePkId.clear();
+            invoiceTypeName.clear();
             for (int i = 0; i < resultNet.getData().size(); i++) {
                 invoiceTypePkId.add(resultNet.getData().get(i).getPkId() + "");
                 invoiceTypeName.add(resultNet.getData().get(i).getName() + "");

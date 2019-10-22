@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -20,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.chen.nxp.R;
@@ -33,16 +31,19 @@ import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.model.request.PersonalListRequest;
 import com.zthl.nxp.model.request.SimpleRequest;
 import com.zthl.nxp.model.request.TurnaroundManListRequest;
+import com.zthl.nxp.presenter.HistoryResponseBodyPresenter;
 import com.zthl.nxp.presenter.MachineListResponseBodyPresenter;
 import com.zthl.nxp.presenter.PersonalListResponseBodyPresenter;
 import com.zthl.nxp.presenter.ProgramListResponseBodyPresenter;
 import com.zthl.nxp.presenter.TurnaroundManListResponseBodyPresenter;
+import com.zthl.nxp.presenterView.HistoryResponsePv;
 import com.zthl.nxp.presenterView.MachineListResponsePv;
 import com.zthl.nxp.presenterView.PersonalListResponsePv;
 import com.zthl.nxp.presenterView.ProgramListResponsePv;
 import com.zthl.nxp.presenterView.TurnaroundManListResponsePv;
 import com.zthl.nxp.ui.datepicker.CustomDatePicker;
 import com.zthl.nxp.ui.datepicker.DateFormatUtils;
+import com.zthl.nxp.ui.history.HistoryListViewFragment;
 import com.zthl.nxp.ui.main.MainViewModel;
 
 import java.util.ArrayList;
@@ -52,50 +53,57 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link QueryFactorFragment.OnFragmentInteractionListener} interface
+ * {@link QueryFactorHistoryFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link QueryFactorFragment#newInstance} factory method to
+ * Use the {@link QueryFactorHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class QueryFactorFragment extends Fragment   {
+public class QueryFactorHistoryFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
+    private OnFragmentInteractionListener mListener;
     private ProgramListResponseBodyPresenter prlrbp=new ProgramListResponseBodyPresenter(getContext());
     private MachineListResponseBodyPresenter mbp=new MachineListResponseBodyPresenter(getContext());
     private TurnaroundManListResponseBodyPresenter tmr=new TurnaroundManListResponseBodyPresenter(getContext());
-    private PersonalListResponseBodyPresenter prb=new PersonalListResponseBodyPresenter(getContext());
+    private HistoryResponseBodyPresenter prb=new HistoryResponseBodyPresenter(getContext());
+
+
 
 
     private static List<TurnaroundManList> turnaroundManList=new ArrayList<>();
     private  static  ArrayList<String> machineListItems=new ArrayList<String>();
     private static ArrayList<String> programListItems=new ArrayList<String>();
 
+
+
+
+
     private TextView startTime, mEndTime;
     private CustomDatePicker mStartTimePicker, mEndTimePicker;
     private Button submit;
     private LinearLayout llStartTime,llEndTime;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
     private View rootView;
-    private OnFragmentInteractionListener mListener;
     private Button queryCommitSubmit;
 
     private EditSpinner programSpinner;
     private EditSpinner transferSpinner;
     private EditSpinner machineListSpinner;
     private EditText search;
-     final ArrayList<String> turnaroundManRealName=new ArrayList<>();
+    final ArrayList<String> turnaroundManRealName=new ArrayList<>();
     final ArrayList<String> turnaroundManID=new ArrayList<>();
-
+    private  static int selectMan=0;
 
     private MainViewModel mViewModel;
-    private  static int selectMan=0;
-    public QueryFactorFragment() {
+
+    public QueryFactorHistoryFragment() {
         // Required empty public constructor
     }
 
@@ -105,11 +113,11 @@ public class QueryFactorFragment extends Fragment   {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment QueryFactorFragment.
+     * @return A new instance of fragment QueryFactorHistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static QueryFactorFragment newInstance(String param1, String param2) {
-        QueryFactorFragment fragment = new QueryFactorFragment();
+    public static QueryFactorHistoryFragment newInstance(String param1, String param2) {
+        QueryFactorHistoryFragment fragment = new QueryFactorHistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -124,25 +132,13 @@ public class QueryFactorFragment extends Fragment   {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
     }
 
-    public static QueryFactorFragment newInstance() {
-        
-        Bundle args = new Bundle();
-        
-        QueryFactorFragment fragment = new QueryFactorFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_query_factor, container,false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_query_factor_history, container, false);
     }
 
     @Override
@@ -151,8 +147,11 @@ public class QueryFactorFragment extends Fragment   {
         machineListItems.clear();
         programListItems.clear();
         startTime=getActivity().findViewById(R.id.startTime);
+
+
+
         mEndTime=getActivity().findViewById(R.id.endTime);
-         llStartTime=(LinearLayout) view.findViewById(R.id.ll_start_time);
+        llStartTime=(LinearLayout) view.findViewById(R.id.ll_start_time);
         llEndTime=(LinearLayout) view.findViewById(R.id.ll_end_time);
         queryCommitSubmit=getActivity().findViewById(R.id.query_submit);
         search=getActivity().findViewById(R.id.search);
@@ -190,18 +189,43 @@ public class QueryFactorFragment extends Fragment   {
 //                //   ft.addToBackStack("UserTag");
 //                ft.commit();
                 PersonalListRequest p=new PersonalListRequest();
-                p.setTargetProgram(programSpinner.getText().toString());
+
+
+                if (programSpinner.getText().toString().equals(""))
+                {
+                    p.setTargetProgram("");
+                }else if (!programSpinner.getText().toString().equals("")) {
+                    p.setFounder(programSpinner.getText());
+                }
+
+
+
+
+
+
+
                 p.setAccountPkId(MyApplication.getPkId());
-                p.setFounder(MyApplication.getPkId());
+                if (transferSpinner.getText().toString().equals(""))
+                {
+                    p.setFounder("");
+                }else if (!transferSpinner.getText().toString().equals("")) {
+                    p.setFounder(turnaroundManID.get(selectMan));
+                }
                 p.setSeek(search.getText().toString());
-                p.setMachineNumber(machineListSpinner.getText().toString());
+
+
+
+                if (machineListSpinner.getText().toString().equals(""))
+                {
+                    p.setMachineNumber("");
+                }else if (!machineListSpinner.getText().toString().equals("")) {
+                    p.setMachineNumber(machineListSpinner.getText());
+                }
+
+
                 p.setBillingTimeEnd(mEndTime.getText().toString());
                 p.setBillingTimeStart(startTime.getText().toString());
-                prb.getPersonalListResponseInfo(p);
-
-
-
-
+                prb.getHistoryResponseInfo(p);
 
 
 
@@ -215,7 +239,7 @@ public class QueryFactorFragment extends Fragment   {
         tmr.BindPresentView(turnaroundManListResponsePv);
         mbp.BindPresentView(machineListResponsePv);
         prlrbp.BindPresentView(programListResponsePv);
-        prb.BindPresentView(personalListResponsePv);
+        prb.BindPresentView(historyResponsePv);
         initView();
         initReuqest();
         mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
@@ -228,12 +252,6 @@ public class QueryFactorFragment extends Fragment   {
 
 
     }
-    private void initView(){
-        transferSpinner=getActivity().findViewById(R.id.query_transfer_spinner);
-        programSpinner=getActivity().findViewById(R.id.query_program_spinner);
-        machineListSpinner=getActivity().findViewById(R.id.query_machine_spinner);
-
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -241,24 +259,12 @@ public class QueryFactorFragment extends Fragment   {
             mListener.onFragmentInteraction(uri);
         }
     }
+    private void initView(){
+        transferSpinner=getActivity().findViewById(R.id.query_transfer_spinner);
+        programSpinner=getActivity().findViewById(R.id.query_program_spinner);
+        machineListSpinner=getActivity().findViewById(R.id.query_machine_spinner);
 
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.ll_start_time:
-//                // 日期格式为yyyy-MM-dd
-//                mStartTimePicker.show(startTime.getText().toString());
-//                Log.d("123qqq","223344");
-//                break;
-//
-//            case R.id.ll_end_time:
-//                // 日期格式为yyyy-MM-dd HH:mm
-//                Log.d("123qqq","22334466");
-//                mEndTimePicker.show(endTime.getText().toString());
-//                break;
-//        }
-//    }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -277,6 +283,14 @@ public class QueryFactorFragment extends Fragment   {
         mListener = null;
     }
 
+    public static QueryFactorHistoryFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        QueryFactorHistoryFragment fragment = new QueryFactorHistoryFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -291,9 +305,6 @@ public class QueryFactorFragment extends Fragment   {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-
-
 
     private void initTimerPicker() {
         String beginTime = "2015-1-1 18:00";
@@ -452,22 +463,18 @@ public class QueryFactorFragment extends Fragment   {
 
     };
 
-    private PersonalListResponsePv personalListResponsePv = new PersonalListResponsePv(){
+    private HistoryResponsePv historyResponsePv = new HistoryResponsePv(){
 
         @Override
         public void onSuccess(ResultData<List<TurringList>> resultData) {
-            mViewModel.setmTurringList(resultData.getData());
+            MyApplication.setHistoryTurringList(resultData.getData());
             Log.d("1233334","6666");
             Log.d("12333345",resultData.getData().size()+"");
 
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.mission_container, ListViewFragment.newInstance());
+            ft.replace(R.id.mission_container, HistoryListViewFragment.newInstance());
             ft.commit();
-            Log.d("1233334","6666777");
         }
-
-
-
         @Override
         public void onError(String result) {
             Log.d("11111122",result);

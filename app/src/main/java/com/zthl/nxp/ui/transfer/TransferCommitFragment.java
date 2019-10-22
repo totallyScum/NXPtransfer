@@ -88,6 +88,7 @@ public class TransferCommitFragment extends Fragment {
     private TextView operator;
     private TextView currentProgram;
     private EditSpinner programSpinner;
+    private String groupID=new String();
    private static List<TurnaroundManList> turnaroundManList=new ArrayList<>();
     private  static int selectMan=0;
 
@@ -185,9 +186,20 @@ public class TransferCommitFragment extends Fragment {
             public void onClick(View view) {
                 TransferCommitRequset t=new TransferCommitRequset();
                 TurningPoint tp=new TurningPoint();
-                tp.setMachineNumber(machineListSpinner.getText().toString());
-                tp.setTurnaroundMan(turnaroundManList.get(selectMan).getPkId());
-                tp.setGrouping(group.getText().toString());
+
+
+                if(machineListSpinner.getText().equals(""))
+                    tp.setMachineNumber("");
+                else {
+                    tp.setMachineNumber(machineListSpinner.getText());
+                }
+                if(transferSpinner.getText().equals(""))
+                    tp.setTurnaroundMan("");
+                else {
+                    tp.setTurnaroundMan(turnaroundManList.get(selectMan).getPkId());
+                }
+
+                tp.setGrouping(groupID);
                 tp.setOperator(operator.getText().toString());
                 tp.setCurrentName(currentProgram.getText().toString());
                 tp.setTargetProgram(programSpinner.getText().toString());
@@ -236,10 +248,13 @@ public class TransferCommitFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 MachineRequest m=new MachineRequest();
                 m.setAccountPkId(MyApplication.getPkId());
-                m.setMachineNumber(machineListItems.get(i));
+                m.setMachineNumber(machineListSpinner.getText());
+                Log.d("machineListItems",machineListItems.get(i));
                 if (machineListItems.get(i).equals(""))
                 {
-
+                    group.setText("");
+                    operator.setText("");
+                    currentProgram.setText("");
                 }else
                 {
                     mwrp.getMachWorkingStatusByMachNameResponseInfo(m);
@@ -293,16 +308,16 @@ public class TransferCommitFragment extends Fragment {
             Log.d("2333300",resultNet.toString());
             if (resultNet.getState().equals("1"))
             {
-                Toast.makeText(getContext(),"提交成功",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_LONG).show();
 
                                 getFragmentManager()
                                      .beginTransaction()
                                      .addToBackStack(null)  //将当前fragment加入到返回栈中
                                      .replace(R.id.container, MainFragment.newInstance()).commit();
             }
-            if (resultNet.getState().equals("0"))
-            {
-                Toast.makeText(getContext(),"该机台无法执行此程序",Toast.LENGTH_LONG);
+            else
+            {if (resultNet.getAlertMessage()!=null)
+                Toast.makeText(getActivity(),resultNet.getAlertMessage(),Toast.LENGTH_LONG).show();
             }
         }
 
@@ -314,13 +329,14 @@ public class TransferCommitFragment extends Fragment {
         @Override
         public void onSuccess(final ResultData<List<TurnaroundManList>> resultNet) {
 
+
             turnaroundManList =resultNet.getData();
             final List<String> spinnerItems=new ArrayList<>();
             for (int i=0;i<turnaroundManList.size();i++)
             {spinnerItems.add(turnaroundManList.get(i).getRealName());
             }
 
-
+            TurnaroundManList t=new TurnaroundManList();
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -370,6 +386,7 @@ public class TransferCommitFragment extends Fragment {
                     for (int i=0;i<resultData.getData().size();i++)
                     {machineListItems.add(resultData.getData().get(i).getName());
                     }
+
          //           ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(),R.layout.item_select, machineListItems);
             //        machineListSpinner.setAdapter(spinnerAdapter);
                     machineListSpinner.setItemData(machineListItems);
@@ -389,7 +406,8 @@ public class TransferCommitFragment extends Fragment {
         public void onSuccess(ResultData<List<MachWorkingStatusByMachNameResponseBody>> resultData) {
             Log.d("qqqqq",resultData.getData().toString());
             if (resultData.getState()!=0) {
-                group.setText(resultData.getData().get(0).getMatchGroupId());
+                groupID=resultData.getData().get(0).getMatchGroupId();
+                group.setText(resultData.getData().get(0).getMatchGroupName());
                 operator.setText(resultData.getData().get(0).getOperator());
                 currentProgram.setText(resultData.getData().get(0).getCurrentProgram());
 

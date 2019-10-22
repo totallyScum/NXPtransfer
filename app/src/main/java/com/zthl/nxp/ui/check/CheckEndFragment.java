@@ -129,7 +129,7 @@ public class CheckEndFragment extends Fragment {
         remark=getActivity().findViewById(R.id.invoices_end_remark);
         invoicesCurrentProgram.setText(MyApplication.getProgram()!=null?MyApplication.getProgram():"程序名为空");
         invoiceMachineNumber.setText(MyApplication.getMachineNumber());
-        invoicesAccount.setText(MyApplication.getPkId());
+        invoicesAccount.setText(MyApplication.getAccount());
 
 
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
@@ -139,9 +139,7 @@ public class CheckEndFragment extends Fragment {
 
 
 
-
               invoicesType.setText(MainFragment.invoiceTypeName.get(mainViewModel.getFragmentID()));    //选择开票类型
-        invoicesAccount.setText(MyApplication.getPkId());
  //       invoicesProgram.setText(MyApplication.getProgram()!=null?MyApplication.getProgram():"程序名为空");
 
         TimeUtil.setServerTime(getContext(),invoicesTime);
@@ -151,7 +149,7 @@ public class CheckEndFragment extends Fragment {
                 AedInvoicesLogRequest a=new AedInvoicesLogRequest();
                 a.setAccountPkId(MyApplication.getPkId());
                 a.setLogId(MyApplication.getLogId());
-                a.setInvoicesRemark("开票3");
+                a.setInvoicesRemark(remark.getText().toString());
                 a.setNextState("3");
                 arbp.getAedInvoicesLogResponseInfo(a);
             }

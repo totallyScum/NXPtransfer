@@ -7,13 +7,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.zthl.nxp.ListViewFragment;
+import com.zthl.nxp.QueryFactorFragment;
+import com.zthl.nxp.QueryFactorHistoryFragment;
 import com.zthl.nxp.model.ResultData;
 import com.zthl.nxp.model.request.SimpleRequest;
 import com.zthl.nxp.model.TurringList;
@@ -48,8 +57,8 @@ public class HistoryFragment extends Fragment {
     private ListView listview;
     private ArrayList<String> list;
     private HistoryItemListViewAdapter adapter;
+    private EditText search;
   //  private OnFragmentInteractionListener mListener;
-  private HistoryResponseBodyPresenter hlp=new HistoryResponseBodyPresenter(getContext());
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -114,12 +123,71 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        hlp.onCreate();
-        hlp.BindPresentView(historyResponsePv);
-        SimpleRequest s=new SimpleRequest();
-        s.setAccountPkId("1");
-        hlp.getHistoryResponseInfo(s);
-        listview=getView().findViewById(R.id.history_list);
+        search=getActivity().findViewById(R.id.search);
+        search.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                ft.replace(R.id.mission_container, QueryFactorHistoryFragment.newInstance());
+                ft.commit();
+                return false;
+            }
+
+//            @Override
+//            public void onClick(View view) {
+//                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//                ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
+//                ft.commit();
+//
+//            }
+
+
+
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+////                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+////                ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
+////             //   ft.addToBackStack("UserTag");
+////                ft.commit();
+//
+//                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//                ft.replace(R.id.mission_container, QueryFactorFragment.newInstance());
+//                   ft.addToBackStack(null);
+//                ft.commit();
+//
+//
+////                                getFragmentManager()
+////                        .beginTransaction()
+////                        .addToBackStack(null)  //将当前fragment加入到返回栈中
+////                        .replace(R.id.container, SearchFragment.newInstance()).commit();
+//            }
+
+        });
+
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.replace(R.id.mission_container, HistoryListViewFragment.newInstance());
+        ft.commit();
+
+
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //当actionId == XX_SEND 或者 XX_DONE时都触发
+                //或者event.getKeyCode == ENTER 且 event.getAction == ACTION_DOWN时也触发
+                //注意，这是一定要判断event != null。因为在某些输入法上会返回null。
+                if (actionId == EditorInfo.IME_ACTION_SEND
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
+                    //处理事件
+                }
+                return false;
+            }
+        });
+
+
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -160,20 +228,4 @@ public class HistoryFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-    private HistoryResponsePv historyResponsePv = new HistoryResponsePv(){
-
-        @Override
-        public void onSuccess(final ResultData<List<TurringList>> resultNet) {
-//            Log.d("99999",resultNet.getData().get(0).get());
-            if (getView().getContext() != null) {
-                adapter = new HistoryItemListViewAdapter(getView().getContext(), resultNet.getData(),true);
-                listview.setAdapter(adapter);
-            }
-        }
-        @Override
-        public void onError(String result) {
-            Log.d("111111",result.toString());
-        }
-
-    };
 }

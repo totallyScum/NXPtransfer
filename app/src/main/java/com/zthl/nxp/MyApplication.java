@@ -10,8 +10,10 @@ import com.xuexiang.xupdate.listener.OnUpdateFailureListener;
 import com.xuexiang.xupdate.utils.UpdateUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zthl.nxp.constant.UrlConstant;
+import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.utils.OKHttpUpdateHttpService;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -29,6 +31,15 @@ public class MyApplication extends android.app.Application {
     public static String TurningState;
     public static String role;
     public static int FragmentID;
+    private static  List<TurringList> historyTurringList;
+
+    public static List<TurringList> getHistoryTurringList() {
+        return historyTurringList;
+    }
+
+    public static void setHistoryTurringList(List<TurringList> historyTurringList) {
+        MyApplication.historyTurringList = historyTurringList;
+    }
 
     public static void setFragmentID(int fragmentID) {
         FragmentID = fragmentID;

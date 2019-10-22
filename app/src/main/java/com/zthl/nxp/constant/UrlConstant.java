@@ -13,7 +13,7 @@ public class UrlConstant {
 
         SharedPreferences sharedPreferences= context.getSharedPreferences("data", Context.MODE_PRIVATE);
         String ip=sharedPreferences.getString("IP",BASE_URL);
-
+        BASE_URL = ip;
         return ip;
     }
 

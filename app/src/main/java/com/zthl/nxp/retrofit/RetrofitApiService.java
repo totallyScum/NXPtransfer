@@ -54,7 +54,7 @@ public interface RetrofitApiService {
 
     @Headers({"Content-Type: application/json","Accept: application/json"})//获取所有转机任务
     @POST("Api/HistoryList")
-    Observable<ResultData<List<TurringList>>> getHistoryResponseInfo(@Body SimpleRequest simpleRequest);
+    Observable<ResultData<List<TurringList>>> getHistoryResponseInfo(@Body PersonalListRequest simpleRequest);
 
     @Headers({"Content-Type: application/json","Accept: application/json"})//新建开票任务
 @POST("api/CreatInvoices")

@@ -64,6 +64,15 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
             convertView.setTag(vh);
         } else {
             vh = (MyViewHolder) convertView.getTag();
+            if (list.get(position).getMessageType() != null)
+                if (list.get(position).getMessageType().equals("INPUT")) {
+
+                    //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+                    //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+
+                }else {
+                    vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_white));
+                }
         }
         vh.tv_test.setText(list.get(position).getTurningStateName());
         vh.missionCurrentName.setText(list.get(position).getTurningStateName());
@@ -81,7 +90,14 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
                 vh.ll_hide.setVisibility(View.VISIBLE);
                 flag = true;
             }
+            if (list.get(position).getMessageType() != null)
+                if (list.get(position).getMessageType().equals("OUTPUT") || list.get(position).getMessageType().equals("")) {
 
+                    //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+                    vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
+                    //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+
+                }
 
         } else {
             //当填充的条目position不是刚才点击所标记的position时，让其隐藏，状态图标为false。
