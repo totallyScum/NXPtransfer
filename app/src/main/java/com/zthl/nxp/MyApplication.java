@@ -32,6 +32,15 @@ public class MyApplication extends android.app.Application {
     public static String role;
     public static int FragmentID;
     private static  List<TurringList> historyTurringList;
+    private static  List<TurringList> turringList;
+
+    public static List<TurringList> getTurringList() {
+        return turringList;
+    }
+
+    public static void setTurringList(List<TurringList> turringList) {
+        MyApplication.turringList = turringList;
+    }
 
     public static List<TurringList> getHistoryTurringList() {
         return historyTurringList;

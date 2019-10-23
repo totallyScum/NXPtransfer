@@ -196,7 +196,14 @@ public class TransferCommitFragment extends Fragment {
                 if(transferSpinner.getText().equals(""))
                     tp.setTurnaroundMan("");
                 else {
-                    tp.setTurnaroundMan(turnaroundManList.get(selectMan).getPkId());
+                    if (transferSpinner.getText().contains(" "))
+                    for (int i=0;i<turnaroundManList.size();i++)
+                    {
+                        if (turnaroundManList.get(i).getRealName().equals(transferSpinner.getText()))
+                        {
+                            tp.setTurnaroundMan(turnaroundManList.get(i).getPkId());
+                        }
+                    }
                 }
 
                 tp.setGrouping(groupID);

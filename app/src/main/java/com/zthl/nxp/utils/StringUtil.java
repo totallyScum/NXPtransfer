@@ -5,7 +5,7 @@ public class StringUtil {
     {
         if (s.indexOf("67A")!=-1){
             s=s.substring(2);
-            s=s.substring(0,s.length()-2);
+            s=s.substring(0,s.length()-1);
         }
         return s;
     }

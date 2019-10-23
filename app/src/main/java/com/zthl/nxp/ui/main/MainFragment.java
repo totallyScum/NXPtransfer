@@ -240,7 +240,6 @@ public class MainFragment extends Fragment {
                             ft.addToBackStack("UserTag");
                             ft.commit();
                             break;
-
                         case 2:
                             ft.replace(R.id.container, MissionListFragment.newInstance());
                             ft.addToBackStack(null);

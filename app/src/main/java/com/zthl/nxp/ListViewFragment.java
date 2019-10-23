@@ -103,13 +103,13 @@ public class ListViewFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if (mViewModel.getmTurringList()!=null)
+        if (MyApplication.getTurringList()!=null)
         {
             Log.d("12333345","不空");
-            adapter =new HistoryItemListViewAdapter(getContext(),mViewModel.getmTurringList(),false);
+            adapter =new HistoryItemListViewAdapter(getContext(),MyApplication.getTurringList(),false);
             mListview.setAdapter(adapter);
         }
-        if (mViewModel.getmTurringList()==null) {
+        if (MyApplication.getTurringList()==null) {
             prb.onCreate();
             prb.BindPresentView(personalListResponsePv);
             PersonalListRequest p=new PersonalListRequest();
@@ -117,7 +117,7 @@ public class ListViewFragment extends Fragment {
             prb.getPersonalListResponseInfo(p);
 
         }
-        mViewModel.setmTurringList(null);
+        MyApplication.setTurringList(null);
     }
 
     @Override

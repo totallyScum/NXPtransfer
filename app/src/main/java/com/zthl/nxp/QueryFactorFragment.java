@@ -456,7 +456,8 @@ public class QueryFactorFragment extends Fragment   {
 
         @Override
         public void onSuccess(ResultData<List<TurringList>> resultData) {
-            mViewModel.setmTurringList(resultData.getData());
+//            mViewModel.setmTurringList(resultData.getData());
+            MyApplication.setTurringList(resultData.getData());
             Log.d("1233334","6666");
             Log.d("12333345",resultData.getData().size()+"");
 
