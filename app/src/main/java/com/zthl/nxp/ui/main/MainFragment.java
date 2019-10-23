@@ -85,15 +85,13 @@ public class MainFragment extends Fragment {
 
 
     private String[] themeLeader = {"提交转机", "历史", "注销"};
-    private String[] themeTransfer = {"转机", "我的列表", "历史","全员列表", "注销"};
+    private String[] themeTransfer = {"转机","提交转机", "我的列表", "历史","全员列表", "注销"};
     private int[] imageViewsLeader = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_history, R.mipmap.main_icon_login_out};
-    private int[] imageViewsTransfer = {R.mipmap.main_icon_transfer_commit, R.mipmap.main_icon_mission_list, R.mipmap.main_icon_history,R.mipmap.mian_icon_overall, R.mipmap.main_icon_login_out};
+    private int[] imageViewsTransfer = {R.mipmap.main_icon_transfer,R.mipmap.main_icon_transfer_commit,R.mipmap.main_icon_mission_list, R.mipmap.main_icon_history,R.mipmap.mian_icon_overall, R.mipmap.main_icon_login_out};
       static  SimpleAdapter simpleAdapter;
-
     public static MainFragment newInstance() {
         return new MainFragment();
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -237,23 +235,28 @@ public class MainFragment extends Fragment {
                             check = false;
                             getActivity().startActivity(intent);
                             break;
-
                         case 1:
+                            ft.replace(R.id.container, TransferCommitFragment.newInstance());
+                            ft.addToBackStack("UserTag");
+                            ft.commit();
+                            break;
+
+                        case 2:
                             ft.replace(R.id.container, MissionListFragment.newInstance());
                             ft.addToBackStack(null);
                             ft.commit();
                             break;
-                        case 2:
+                        case 3:
                             ft.replace(R.id.container, HistoryFragment.newInstance());
                             ft.addToBackStack("UserTag");
                             ft.commit();
                             break;
-                        case 3:
+                        case 4:
                             ft.replace(R.id.container, OverallFragment.newInstance());
                             ft.addToBackStack("UserTag");
                             ft.commit();
                             break;
-                        case 4:
+                        case 5:
                             Intent intent2 = new Intent(getContext(), LoginActivity.class);
                             startActivity(intent2);
                             getActivity().finish();
