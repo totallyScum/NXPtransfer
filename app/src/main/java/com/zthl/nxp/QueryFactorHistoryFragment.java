@@ -209,7 +209,18 @@ public class QueryFactorHistoryFragment extends Fragment {
                 {
                     p.setFounder("");
                 }else if (!transferSpinner.getText().toString().equals("")) {
-                    p.setFounder(turnaroundManID.get(selectMan));
+//                    p.setFounder(turnaroundManID.get(selectMan));
+
+                    for (int i=0;i<turnaroundManRealName.size();i++)
+                    {
+                        if (turnaroundManRealName.get(i).equals(transferSpinner.getText()))
+                        {
+                            p.setFounder(turnaroundManID.get(i));
+                        }
+                    }
+
+
+
                 }
                 p.setSeek(search.getText().toString());
 

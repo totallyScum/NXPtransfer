@@ -189,7 +189,7 @@ public class ListViewFragment extends Fragment {
 //            ft.commit();
 //            Log.d("1233334","6666777");
 
-            adapter  =new HistoryItemListViewAdapter(getContext(),resultData.getData(),true);
+            adapter  =new HistoryItemListViewAdapter(getContext(),resultData.getData(),false);
             mListview.setAdapter(adapter);
 
 

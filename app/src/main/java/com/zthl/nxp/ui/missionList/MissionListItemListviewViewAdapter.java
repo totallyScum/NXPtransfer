@@ -79,6 +79,34 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
      //   vh.tv_test.setText("2333333");
         //判断用户是不是点击了同一个item
 
+//        if (list.get(position).getMessageType() != null)
+//            if (list.get(position).getMessageType().equals("OUTPUT") || list.get(position).getMessageType().equals("")) {
+//
+//                //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+//                vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
+//                //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+//
+//            }
+
+
+        if (list.get(position).getMessageType() == null) {
+            //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+            vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
+            //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+
+        } else if (list.get(position).getMessageType().equals("OUTPUT"))
+        {
+            vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
+        }
+
+
+
+
+
+
+
+
+
 
         if (clickPosition == position) {
 
@@ -90,15 +118,6 @@ public class MissionListItemListviewViewAdapter extends BaseAdapter implements V
                 vh.ll_hide.setVisibility(View.VISIBLE);
                 flag = true;
             }
-            if (list.get(position).getMessageType() != null)
-                if (list.get(position).getMessageType().equals("OUTPUT") || list.get(position).getMessageType().equals("")) {
-
-                    //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
-                    vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
-                    //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
-
-                }
-
         } else {
             //当填充的条目position不是刚才点击所标记的position时，让其隐藏，状态图标为false。
             vh.ll_hide.setVisibility(View.GONE);
