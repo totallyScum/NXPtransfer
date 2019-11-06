@@ -125,7 +125,17 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
 
 
 
-           vh.turingTargeNameMain.setText(list.get(position).getTargetProgram());
+
+            vh.cancelDateTime.setText(list.get(position).getCancelDateTime());
+        vh.errorStartDateTime.setText(list.get(position).getErrorStartDateTime());
+        vh.ErrorEndDateTime.setText(list.get(position).getErrorEndDateTime());
+
+
+
+
+
+
+           vh.cancelDateTime.setText(list.get(position).getTargetProgram());
             //   vh.tv_test.setText("2333333");
             //判断用户是不是点击了同一个item
             if (clickPosition == position) {
@@ -329,6 +339,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
     class MyViewHolder {
         View itemView;
         TextView turningMachineNumber, turringCurrentStatus,turingTargeNameMain,turingQuestionDateTimeMain,operator,turningEndDateTime,turningStartDateTime,questionDateTime,targetProgram,machineGroup,machineNumber,transferMan,transferFinishMan,currentProgramName,founderRealName;
+        TextView cancelDateTime,errorStartDateTime,ErrorEndDateTime;
         Button transferStart,transferEnd,transferError,transferResume,transferCancel;
         LinearLayout ll_hide,backGroundColor;
         RelativeLayout listtiem;
@@ -368,6 +379,13 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
             questionDateTime=ll_hide.findViewById(R.id.question_date_time);
             founderRealName=ll_hide.findViewById(R.id.founder_real_name);
             targetProgram=ll_hide.findViewById(R.id.target_program);
+
+
+
+
+            cancelDateTime=ll_hide.findViewById(R.id.cancel_date_time);
+            errorStartDateTime=ll_hide.findViewById(R.id.error_start_date_time);
+            ErrorEndDateTime=ll_hide.findViewById(R.id.error_end_date_time);
 
         }
     }

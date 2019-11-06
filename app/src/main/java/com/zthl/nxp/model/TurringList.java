@@ -51,6 +51,44 @@ public class TurringList {
     @SerializedName("TurningEndDateTime")
     private String turningEndDateTime;
 
+
+
+
+
+
+
+    @SerializedName("ErrorStartDateTime")
+    private String errorStartDateTime;
+    @SerializedName("ErrorEndDateTime")
+    private String errorEndDateTime;
+    @SerializedName("CancelDateTime")
+    private String cancelDateTime;
+
+
+    public String getErrorStartDateTime() {
+        return errorStartDateTime;
+    }
+
+    public void setErrorStartDateTime(String errorStartDateTime) {
+        this.errorStartDateTime = errorStartDateTime;
+    }
+
+    public String getErrorEndDateTime() {
+        return errorEndDateTime;
+    }
+
+    public void setErrorEndDateTime(String errorEndDateTime) {
+        this.errorEndDateTime = errorEndDateTime;
+    }
+
+    public String getCancelDateTime() {
+        return cancelDateTime;
+    }
+
+    public void setCancelDateTime(String cancelDateTime) {
+        this.cancelDateTime = cancelDateTime;
+    }
+
     public String getFounderRealName() {
         return founderRealName;
     }

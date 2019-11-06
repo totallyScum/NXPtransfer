@@ -184,6 +184,66 @@ android:background="@drawable/shape_corner"
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="转机开始时间:" />
+
+                <TextView
+                    android:id="@+id/turning_start_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="故障开始时间:" />
+
+                <TextView
+                    android:id="@+id/error_start_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="故障结束时间:" />
+
+                <TextView
+                    android:id="@+id/error_end_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="任务取消时间:" />
+
+                <TextView
+                    android:id="@+id/cancel_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="转机人:" />
 
                 <TextView
@@ -198,15 +258,15 @@ android:background="@drawable/shape_corner"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/transfer_start"
-            android:text="开始转机"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             style="@style/button_yellow_style"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:text="开始转机"
             android:textSize="12dp"
-            ></Button>
+            android:visibility="invisible"></Button>
         <Button
             android:id="@+id/transfer_end"
             android:text="结束转机"
@@ -215,6 +275,7 @@ android:background="@drawable/shape_corner"
             android:layout_weight="1"
             style="@style/button_yellow_style"
             android:textSize="12dp"
+            android:layout_marginLeft="-10dp"
             ></Button>
         <Button
             android:id="@+id/transfer_error"
