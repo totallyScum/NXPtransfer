@@ -146,8 +146,8 @@ android:background="@drawable/shape_corner"
                     android:layout_height="wrap_content"></TextView>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -166,13 +166,12 @@ android:background="@drawable/shape_corner"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/hide_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="转机结束时间:" />
+                    android:text="转机开始时间:" />
 
                 <TextView
-                    android:id="@+id/turning_end_dateTime"
+                    android:id="@+id/turning_start_date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></TextView>
             </LinearLayout>
@@ -182,12 +181,13 @@ android:background="@drawable/shape_corner"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/hide_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="转机开始时间:" />
+                    android:text="转机结束时间:" />
 
                 <TextView
-                    android:id="@+id/turning_start_date_time"
+                    android:id="@+id/turning_end_dateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></TextView>
             </LinearLayout>

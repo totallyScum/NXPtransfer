@@ -34,6 +34,15 @@
                     android:text="设备号"
                     android:textColor="#429CB3" />
                 <TextView
+                    android:id="@+id/turing_source_program_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="源程序名"
+                    android:textColor="#429CB3" />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

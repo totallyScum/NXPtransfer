@@ -107,6 +107,8 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
 
 
         vh.turningMachineNumber.setText(list.get(position).getMachineNumber());
+        vh.turingSourceProgramName.setText(list.get(position).getCurrentName());
+
 
 
             vh.operator.setText(list.get(position).getOperator());
@@ -134,9 +136,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
 
 
 
-
-           vh.cancelDateTime.setText(list.get(position).getTargetProgram());
-            //   vh.tv_test.setText("2333333");
+         //   vh.tv_test.setText("2333333");
             //判断用户是不是点击了同一个item
             if (clickPosition == position) {
 
@@ -338,6 +338,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
 
     class MyViewHolder {
         View itemView;
+        TextView turingSourceProgramName;
         TextView turningMachineNumber, turringCurrentStatus,turingTargeNameMain,turingQuestionDateTimeMain,operator,turningEndDateTime,turningStartDateTime,questionDateTime,targetProgram,machineGroup,machineNumber,transferMan,transferFinishMan,currentProgramName,founderRealName;
         TextView cancelDateTime,errorStartDateTime,ErrorEndDateTime;
         Button transferStart,transferEnd,transferError,transferResume,transferCancel;
@@ -366,6 +367,10 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
             turingQuestionDateTimeMain=itemView.findViewById(R.id.turing_question_dateTime_main);
             turingTargeNameMain=itemView.findViewById(R.id.turing_target_name_main);
 
+            turingSourceProgramName=itemView.findViewById(R.id.turing_source_program_name);
+
+
+
 
 
             operator=ll_hide.findViewById(R.id.operator);
@@ -386,6 +391,9 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
             cancelDateTime=ll_hide.findViewById(R.id.cancel_date_time);
             errorStartDateTime=ll_hide.findViewById(R.id.error_start_date_time);
             ErrorEndDateTime=ll_hide.findViewById(R.id.error_end_date_time);
+
+
+
 
         }
     }

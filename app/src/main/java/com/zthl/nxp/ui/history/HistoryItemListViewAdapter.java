@@ -90,8 +90,16 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         vh.founderRealName.setText(list.get(position).getFounderRealName());
         vh.targetProgram.setText(list.get(position).getTargetProgram());
         vh.historySourceName.setText(StringUtil.trimString(list.get(position).getCurrentName()));
-
         vh.historyTransferMan.setText(list.get(position).getFounderRealName());
+
+
+        vh.cancelDateTime.setText(list.get(position).getCancelDateTime());
+        vh.errorStartDateTime.setText(list.get(position).getErrorStartDateTime());
+        vh.ErrorEndDateTime.setText(list.get(position).getErrorEndDateTime());
+        vh.turningEndDateTime.setText(list.get(position).getTurningEndDateTime());
+        vh.turningStartDateTime.setText(list.get(position).getTurningStartDateTime());
+
+
 
 
         if (!history)
@@ -165,6 +173,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         View itemView;
         TextView tv_test;
         TextView historyTransferMan,historySourceName,historyMachineNumber,turringName,historyQuestionDateTimeMain,turringCurrentStatus ,historyQuestionDateTime,operator,turningEndDateTime,turningStartDateTime,questionDateTime,targetProgram,machineGroup,machineNumber,transferMan,transferFinishMan,currentProgramName,founderRealName;
+        TextView cancelDateTime,errorStartDateTime,ErrorEndDateTime;
         ImageView selectorImg;
         LinearLayout ll_hide;
         RelativeLayout listtiem;
@@ -181,7 +190,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
             historySourceName=itemView.findViewById(R.id.history_source_name);
             historyQuestionDateTime=itemView.findViewById(R.id.history_question_date_time);
             operator=ll_hide.findViewById(R.id.history_operator);
-            turningEndDateTime=ll_hide.findViewById(R.id.history_turning_end_dateTime);
+       //     turningEndDateTime=ll_hide.findViewById(R.id.history_turning_end_dateTime);
             machineGroup=ll_hide.findViewById(R.id.history_machine_group);
             machineNumber=ll_hide.findViewById(R.id.history_machine_number);
             transferMan=ll_hide.findViewById(R.id.history_founder_name);
@@ -197,6 +206,17 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
 
 
             historyTransferMan=itemView.findViewById(R.id.history_transfer_man);
+
+
+
+
+
+            cancelDateTime=ll_hide.findViewById(R.id.cancel_date_time);
+            errorStartDateTime=ll_hide.findViewById(R.id.error_start_date_time);
+            ErrorEndDateTime=ll_hide.findViewById(R.id.error_end_date_time);
+
+
+
         }
     }
 
