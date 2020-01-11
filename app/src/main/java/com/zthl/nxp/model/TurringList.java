@@ -63,7 +63,31 @@ public class TurringList {
     private String errorEndDateTime;
     @SerializedName("CancelDateTime")
     private String cancelDateTime;
+    @SerializedName("Warning")
+    private String warning;
 
+    @SerializedName("Remark")
+    private String remark;
+
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getWarning() {
+        if (warning==null)
+            return "";
+        else
+        return warning;
+    }
+
+    public void setWarning(String warning) {
+        this.warning = warning;
+    }
 
     public String getErrorStartDateTime() {
         return errorStartDateTime;
@@ -251,7 +275,10 @@ public class TurringList {
     }
 
     public String getTurningEndDateTime() {
+        if(turningEndDateTime!=null)
         return turningEndDateTime;
+        else
+            return "";
     }
 
     public void setTurningEndDateTime(String turningEndDateTime) {

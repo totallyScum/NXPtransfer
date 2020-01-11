@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/slide_container"
     >
     <LinearLayout
         android:orientation="vertical"
@@ -33,6 +34,9 @@
                     ></TextView>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
+
+
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -63,12 +67,15 @@
 
         </LinearLayout>
         <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <FrameLayout
             android:id="@+id/mission_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             >
-
+        </FrameLayout>
         </FrameLayout>
     </LinearLayout>
 </FrameLayout>

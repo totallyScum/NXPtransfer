@@ -17,6 +17,16 @@ public class PersonalListRequest {
     String billingTimeStart;
     @SerializedName("QuestionDateTimeEnd")
     String billingTimeEnd;
+    @SerializedName("CustomSort")
+    String customSort;
+
+    public String getCustomSort() {
+        return customSort;
+    }
+
+    public void setCustomSort(String customSort) {
+        this.customSort = customSort;
+    }
 
     public String getAccountPkId() {
         return accountPkId;

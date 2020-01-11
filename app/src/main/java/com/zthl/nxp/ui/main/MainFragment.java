@@ -242,7 +242,7 @@ public class MainFragment extends Fragment {
                             break;
                         case 2:
                             ft.replace(R.id.container, MissionListFragment.newInstance());
-                            ft.addToBackStack(null);
+                            ft.addToBackStack("UserTag");
                             ft.commit();
                             break;
                         case 3:

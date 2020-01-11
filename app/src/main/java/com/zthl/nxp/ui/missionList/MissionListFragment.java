@@ -1,5 +1,6 @@
 package com.zthl.nxp.ui.missionList;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +26,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,14 +34,17 @@ import android.widget.Toast;
 
 import com.chen.nxp.R;
 import com.zthl.nxp.ListViewFragment;
+import com.zthl.nxp.MyApplication;
 import com.zthl.nxp.QueryFactorFragment;
 import com.zthl.nxp.SearchFragment;
 import com.zthl.nxp.model.ResultData;
 import com.zthl.nxp.model.ResultNoData;
 import com.zthl.nxp.model.TurringList;
+import com.zthl.nxp.model.request.SimpleRequest;
 import com.zthl.nxp.presenterView.TransferCommitResponsePv;
 import com.zthl.nxp.presenterView.TurringListResponsePv;
 import com.zthl.nxp.ui.AutomaticBarcodeActivity;
+import com.zthl.nxp.ui.SlideDeleteListviewFragment;
 import com.zthl.nxp.ui.check.CheckStartFragment;
 import com.zthl.nxp.ui.main.MainFragment;
 import com.zthl.nxp.ui.main.MainViewModel;
@@ -47,6 +52,9 @@ import com.zthl.nxp.ui.transfer.TransferFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import hlq.com.slidedeletelistview.BtnDeleteListern;
+import hlq.com.slidedeletelistview.SlideDeleteListView;
 
 
 /**
@@ -57,7 +65,7 @@ import java.util.List;
  * Use the {@link MissionListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MissionListFragment extends Fragment {
+public class MissionListFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -74,7 +82,11 @@ public class MissionListFragment extends Fragment {
     private EditText search;
     private OnFragmentInteractionListener mListener;
     private androidx.appcompat.widget.Toolbar toolbar;
-    private ListView mListview;
+    private SlideDeleteListView mListview;
+
+
+
+
     public MissionListFragment() {
         // Required empty public constructor
     }
@@ -128,6 +140,10 @@ public class MissionListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
+
         toolbar=getActivity().findViewById(R.id.mission_list_toolbar);
         toolbar.inflateMenu(R.menu.options_transfer_menu);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -135,9 +151,6 @@ public class MissionListFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId()==R.id.transfer_start)
                 {
-
-
-
                     mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
                     Intent intent = new Intent(getActivity(), AutomaticBarcodeActivity.class);      //跳转到开票界面
                     Bundle b = new Bundle();
@@ -146,7 +159,6 @@ public class MissionListFragment extends Fragment {
                     mViewModel.setFragmentID(0);
                     MainFragment.check = false;
                     getActivity().startActivity(intent);
-
                 }
                 return true;
             }
@@ -160,14 +172,12 @@ public class MissionListFragment extends Fragment {
 
 
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        ft.replace(R.id.mission_container, ListViewFragment.newInstance());
+        ft.replace(R.id.mission_container, SlideDeleteListviewFragment.newInstance());
         ft.commit();
-
-
-
         search=getActivity().findViewById(R.id.search);
-        mListview=getView().findViewById(R.id.mission_list);
+        mListview=getView().findViewById(R.id.slide_mission_list);
         search.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 FragmentTransaction ft = getChildFragmentManager().beginTransaction();
@@ -205,9 +215,9 @@ public class MissionListFragment extends Fragment {
 ////                        .replace(R.id.container, SearchFragment.newInstance()).commit();
 //            }
 
+
+
         });
-
-
 
         search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
@@ -220,11 +230,11 @@ public class MissionListFragment extends Fragment {
                         || actionId == EditorInfo.IME_ACTION_DONE
                         || (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
                     //处理事件
+
                 }
                 return false;
             }
         });
-
 
 //        search.setOnCapturedPointerListener(new View.OnCapturedPointerListener() {
 //            @Override
@@ -235,6 +245,9 @@ public class MissionListFragment extends Fragment {
 //        });
    //     initView();
         initRequest();
+
+
+
     }
 
     @Override
@@ -245,8 +258,6 @@ public class MissionListFragment extends Fragment {
     }
 
     private void initView(){
-
-
         FragmentTransaction ft =   getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mission_container, ListViewFragment.newInstance());
         ft.commit();
@@ -299,41 +310,75 @@ public class MissionListFragment extends Fragment {
     }
 
 
-    private TurringListResponsePv mUserInfoPv = new TurringListResponsePv(){
-        @Override
-        public void onSuccess(ResultData<List<TurringList>> resultNet) {
-
-            adapter=new MissionListItemListviewViewAdapter(getView().getContext(),resultNet.getData());
-            listview.setAdapter(adapter);
-
-        }
-
-        @Override
-        public void onError(String result) {
-            Toast.makeText(getContext(),result, Toast.LENGTH_SHORT).show();
-        }
-
+//    private TurringListResponsePv mUserInfoPv = new TurringListResponsePv(){
 //        @Override
-//        public void onSuccess(ResultNoData resultNet) {
-//            //    JSONObject jsonData = JSONObject.fromObject(school);
-//            //      System.out.println(jsonData);
-//            if (resultNet.getState().equals("1"))
-//            {
-//                Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_LONG).show();
+//        public void onSuccess(ResultData<List<TurringList>> resultNet) {
 //
-//                getFragmentManager()
-//                        .beginTransaction()
-//                        .addToBackStack(null)  //将当前fragment加入到返回栈中
-//                        .replace(R.id.container, MainFragment.newInstance()).commit();
-//            }
-//            if (resultNet.getState().equals("0"))
-//            {
-//                Toast.makeText(getContext(),"用户不存在",Toast.LENGTH_LONG);
+//            adapter=new MissionListItemListviewViewAdapter(getView().getContext(),resultNet.getData());
+//            listview.setAdapter(adapter);
+//
+//        }
+//
+//        @Override
+//        public void onError(String result) {
+//            Toast.makeText(getContext(),result, Toast.LENGTH_SHORT).show();
+//        }
+//
+////        @Override
+////        public void onSuccess(ResultNoData resultNet) {
+////            //    JSONObject jsonData = JSONObject.fromObject(school);
+////            //      System.out.println(jsonData);
+////            if (resultNet.getState().equals("1"))
+////            {
+////                Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_LONG).show();
+////
+////                getFragmentManager()
+////                        .beginTransaction()
+////                        .addToBackStack(null)  //将当前fragment加入到返回栈中
+////                        .replace(R.id.container, MainFragment.newInstance()).commit();
+////            }
+////            if (resultNet.getState().equals("0"))
+////            {
+////                Toast.makeText(getContext(),"用户不存在",Toast.LENGTH_LONG);
+////            }
+////        }
+//
+//
+//    };
+
+
+//    public String  sortList(){
+//        String customSort = new String();
+//        customSort="Machine_Number";
+//        for (int i = 0; i < 3; i++) {
+//            if (select[i] == 1) {
+//                if (customSort == "")
+//                    customSort = selectName.get(i);
+//                else
+//                    customSort = customSort + "," + selectName.get(i);
 //            }
 //        }
+////        SimpleRequest p = new SimpleRequest();
+////        p.setAccountPkId(MyApplication.getPkId());
+////        p.setCustomSort(customSort);
+//        return       customSort;
+//
+////        prb.getOverallListResponseInfo(p);
+//
+//    }
 
 
-    };
+
+
+
+
+
+
+
+
+
+
+
 
 
 

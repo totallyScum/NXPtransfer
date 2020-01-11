@@ -196,11 +196,6 @@
 
 
 
-
-
-
-
-
         <Button
             android:id="@+id/query_submit"
             android:layout_width="100dp"

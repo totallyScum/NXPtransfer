@@ -18,30 +18,22 @@ import android.widget.Toast;
 
 import com.chen.nxp.R;
 import com.zthl.nxp.MyApplication;
-import com.zthl.nxp.model.MachWorkingStatusByMachNameResponseBody;
-import com.zthl.nxp.model.ResultData;
 import com.zthl.nxp.model.ResultNoData;
 import com.zthl.nxp.model.request.AedTransformLogRequest;
-import com.zthl.nxp.presenter.AedInvoicesLogResponseBodyPresenter;
 import com.zthl.nxp.presenter.AedTransformLogResponseBodyPresenter;
-import com.zthl.nxp.presenter.ProgramListResponseBodyPresenter;
 import com.zthl.nxp.presenterView.AedTransformLogResponsePv;
-import com.zthl.nxp.presenterView.MachWorkingStatusByMachNameResponsePv;
 import com.zthl.nxp.ui.main.MainFragment;
 import com.zthl.nxp.utils.TimeUtil;
-
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TransferStartFragment.OnFragmentInteractionListener} interface
+ * {@link SlideTransferCancelFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TransferStartFragment#newInstance} factory method to
+ * Use the {@link SlideTransferCancelFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TransferStartFragment extends Fragment {
+public class SlideTransferCancelFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -51,23 +43,23 @@ public class TransferStartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private AedTransformLogResponseBodyPresenter alr=new AedTransformLogResponseBodyPresenter(getContext());
-    private OnFragmentInteractionListener mListener;
+    private TransferStartFragment.OnFragmentInteractionListener mListener;
     private Button transferStart;
-    private EditText  transferStartRemark;
+    private EditText transferStartRemark;
     private TextView sourceProgram;
     private TextView targetProgram;
     private TextView machineNumber;
     private TextView transferMan;
     private TextView transferTime,title;
-    public TransferStartFragment() {
+    public SlideTransferCancelFragment() {
         // Required empty public constructor
     }
 
-    public static TransferStartFragment newInstance() {
-        
+    public static SlideTransferCancelFragment newInstance() {
+
         Bundle args = new Bundle();
-        
-        TransferStartFragment fragment = new TransferStartFragment();
+
+        SlideTransferCancelFragment fragment = new SlideTransferCancelFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -80,8 +72,8 @@ public class TransferStartFragment extends Fragment {
      * @return A new instance of fragment TransferStartFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TransferStartFragment newInstance(String param1, String param2) {
-        TransferStartFragment fragment = new TransferStartFragment();
+    public static SlideTransferCancelFragment newInstance(String param1, String param2) {
+        SlideTransferCancelFragment fragment = new SlideTransferCancelFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -102,7 +94,7 @@ public class TransferStartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transfer_start, container, false);
+        return inflater.inflate(R.layout.fragment_slide_transfer_cancel, container, false);
     }
 
     @Override
@@ -138,32 +130,8 @@ public class TransferStartFragment extends Fragment {
         transferMan.setText(MyApplication.getAccount());
 //        transferTime.setText(TimeUtil.getCurrentTime());
         TimeUtil.setServerTime(getContext(),transferTime);
-            initTitle();
     }
-    private void initTitle(){
-        switch (MyApplication.getTurningState()){
-            case "3":{
-                title.setText("开始转机");
-                break;
-            }
-            case "4":{
-                title.setText("结束转机");
-                break;
-            }
-            case "5":{
-                title.setText("报修");
-                break;
-            }
-            case "6":{
-                title.setText("故障恢复");
-                break;
-            }
-            case "7":{
-                title.setText("取消");
-                break;
-            }
-        }
-    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -220,10 +188,11 @@ public class TransferStartFragment extends Fragment {
             {
                 Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_LONG).show();
 
-                getFragmentManager()
-                        .beginTransaction()
-//                        .addToBackStack(null)  //将当前fragment加入到返回栈中
-                        .replace(R.id.container, MainFragment.newInstance()).commit();
+//                getFragmentManager()
+//                        .beginTransaction()
+////                        .addToBackStack(null)  //将当前fragment加入到返回栈中
+//                        .replace(R.id.container, MainFragment.newInstance()).commit();
+                getActivity().onBackPressed();//销毁自己
             }
             if (resultNoData.getState().equals("0"))
             {

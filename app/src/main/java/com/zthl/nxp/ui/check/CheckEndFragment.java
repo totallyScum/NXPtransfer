@@ -215,7 +215,7 @@ public class CheckEndFragment extends Fragment {
             }
             if (resultNoData.getState().equals("0"))
             {
-                Toast.makeText(getContext(),"提交失败",Toast.LENGTH_LONG);
+                Toast.makeText(getActivity(),resultNoData.getAlertMessage(),Toast.LENGTH_LONG).show();
             }
         }
 

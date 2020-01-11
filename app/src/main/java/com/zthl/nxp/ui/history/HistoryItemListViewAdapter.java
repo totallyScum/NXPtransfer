@@ -98,7 +98,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         vh.ErrorEndDateTime.setText(list.get(position).getErrorEndDateTime());
         vh.turningEndDateTime.setText(list.get(position).getTurningEndDateTime());
         vh.turningStartDateTime.setText(list.get(position).getTurningStartDateTime());
-
+        vh.remark.setText(list.get(position).getRemark());
 
 
 
@@ -112,6 +112,10 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
                 {
                     vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
                 }
+
+
+                if(list.get(position).getWarning().equals("1"))
+                    vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_red));
 
 
         //   vh.tv_test.setText("2333333");
@@ -173,7 +177,7 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
         View itemView;
         TextView tv_test;
         TextView historyTransferMan,historySourceName,historyMachineNumber,turringName,historyQuestionDateTimeMain,turringCurrentStatus ,historyQuestionDateTime,operator,turningEndDateTime,turningStartDateTime,questionDateTime,targetProgram,machineGroup,machineNumber,transferMan,transferFinishMan,currentProgramName,founderRealName;
-        TextView cancelDateTime,errorStartDateTime,ErrorEndDateTime;
+        TextView cancelDateTime,errorStartDateTime,ErrorEndDateTime,remark;
         ImageView selectorImg;
         LinearLayout ll_hide;
         RelativeLayout listtiem;
@@ -208,13 +212,13 @@ public class HistoryItemListViewAdapter extends BaseAdapter   implements View.On
             historyTransferMan=itemView.findViewById(R.id.history_transfer_man);
 
 
-
+            turningEndDateTime=ll_hide.findViewById(R.id.turning_end_dateTime);
 
 
             cancelDateTime=ll_hide.findViewById(R.id.cancel_date_time);
             errorStartDateTime=ll_hide.findViewById(R.id.error_start_date_time);
             ErrorEndDateTime=ll_hide.findViewById(R.id.error_end_date_time);
-
+            remark=ll_hide.findViewById(R.id.history_remark);
 
 
         }

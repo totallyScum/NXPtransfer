@@ -24,6 +24,7 @@ import com.chen.nxp.R;
 import com.zthl.nxp.dummy.DummyContent.DummyItem;
 import com.zthl.nxp.model.TurringList;
 import com.zthl.nxp.ui.mission.MissionFragment.OnListFragmentInteractionListener;
+import com.zthl.nxp.utils.StringUtil;
 
 import java.util.List;
 
@@ -79,7 +80,6 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
                 vh = (MyViewHolder) convertView.getTag();
                 if (list.get(position).getMessageType() != null)
                     if (list.get(position).getMessageType().equals("INPUT")) {
-
                         //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
                         //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
                         vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_white));
@@ -99,15 +99,18 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
         {
             vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_green));
         }
+
+        if(list.get(position).getWarning().equals("1"))
+            vh.listtiem.setBackground(context.getResources().getDrawable(R.drawable.shape_corner_red));
+
           //  vh.backGroundColor.setBackgroundColor(R.color.title_green);
-
-
+        vh.turingTargeNameMain.setText(StringUtil.trimString(list.get(position).getTargetProgram()));
             vh.turringCurrentStatus.setText(list.get(position).getTurningStateName());
             vh.turingQuestionDateTimeMain.setText(list.get(position).getQuestionDateTime());
 
 
         vh.turningMachineNumber.setText(list.get(position).getMachineNumber());
-        vh.turingSourceProgramName.setText(list.get(position).getCurrentName());
+        vh.turingSourceProgramName.setText(StringUtil.trimString(list.get(position).getCurrentName()));
 
 
 
@@ -132,8 +135,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
         vh.errorStartDateTime.setText(list.get(position).getErrorStartDateTime());
         vh.ErrorEndDateTime.setText(list.get(position).getErrorEndDateTime());
 
-
-
+                vh.remark.setText(list.get(position).getRemark());
 
 
          //   vh.tv_test.setText("2333333");
@@ -148,6 +150,15 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
                     vh.ll_hide.setVisibility(View.VISIBLE);
                     flag = true;
                 }
+//点击不展开
+//                if (list.get(position).getMessageType().equals("INPUT")) {
+//
+//                    //     vh.listtiem.setBackgroundColor(context.getResources().getColor(R.color.title_green));
+//                    //      gdOne.setColor(context.getResources().getColor(R.color.title_green));
+//                    vh.ll_hide.setVisibility(View.GONE);
+//                    flag = false;
+//                }
+
 
 
             } else {
@@ -340,7 +351,7 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
         View itemView;
         TextView turingSourceProgramName;
         TextView turningMachineNumber, turringCurrentStatus,turingTargeNameMain,turingQuestionDateTimeMain,operator,turningEndDateTime,turningStartDateTime,questionDateTime,targetProgram,machineGroup,machineNumber,transferMan,transferFinishMan,currentProgramName,founderRealName;
-        TextView cancelDateTime,errorStartDateTime,ErrorEndDateTime;
+        TextView cancelDateTime,errorStartDateTime,ErrorEndDateTime,remark;
         Button transferStart,transferEnd,transferError,transferResume,transferCancel;
         LinearLayout ll_hide,backGroundColor;
         RelativeLayout listtiem;
@@ -392,6 +403,8 @@ class TurringListviewViewAdapter extends BaseAdapter implements View.OnClickList
             errorStartDateTime=ll_hide.findViewById(R.id.error_start_date_time);
             ErrorEndDateTime=ll_hide.findViewById(R.id.error_end_date_time);
 
+
+            remark=ll_hide.findViewById(R.id.turring_list_remark);
 
 
 

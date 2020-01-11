@@ -41,9 +41,12 @@ import com.zthl.nxp.presenterView.MachineListResponsePv;
 import com.zthl.nxp.presenterView.PersonalListResponsePv;
 import com.zthl.nxp.presenterView.ProgramListResponsePv;
 import com.zthl.nxp.presenterView.TurnaroundManListResponsePv;
+import com.zthl.nxp.ui.SlideDeleteListviewFragment;
 import com.zthl.nxp.ui.datepicker.CustomDatePicker;
 import com.zthl.nxp.ui.datepicker.DateFormatUtils;
 import com.zthl.nxp.ui.main.MainViewModel;
+import com.zthl.nxp.ui.missionList.MissionListFragment;
+import com.zthl.nxp.ui.transfer.SlideTransferCancelFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -194,10 +197,14 @@ public class QueryFactorFragment extends Fragment   {
                 p.setAccountPkId(MyApplication.getPkId());
                 p.setFounder(MyApplication.getPkId());
                 p.setSeek(search.getText().toString());
+                p.setCustomSort(SlideDeleteListviewFragment.customSort);
                 p.setMachineNumber(machineListSpinner.getText().toString());
                 p.setBillingTimeEnd(mEndTime.getText().toString());
                 p.setBillingTimeStart(startTime.getText().toString());
                 prb.getPersonalListResponseInfo(p);
+
+
+
 
 
 

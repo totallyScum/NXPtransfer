@@ -32,7 +32,61 @@
                 ></TextView>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
-    <ListView
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="排序:"></TextView>
+
+            <Button
+                android:id="@+id/machine_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/select_title_text"
+                android:text="机器号"
+                android:textColor="@color/colorButtonWhite"></Button>
+
+            <Button
+                android:id="@+id/current_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/select_title_text"
+                android:text="源程序"
+                android:textColor="@color/colorButtonWhite"></Button>
+
+            <Button
+                android:id="@+id/target_program"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/select_title_text"
+                android:text="目标程序"
+                android:textColor="@color/colorButtonWhite"></Button>
+
+            <Button
+                android:id="@+id/default_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/select_title_text"
+                android:text="默认排序"
+                android:textColor="@color/colorButtonWhite"></Button>
+        </LinearLayout>
+
+        <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/over_all_list"

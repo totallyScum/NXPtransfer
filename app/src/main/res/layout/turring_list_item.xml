@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:text="源程序名"
                     android:textColor="#429CB3" />
                 <TextView
@@ -79,6 +79,5 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <include layout="@layout/item_hide_turring_list_layout"
-        />
+    <include layout="@layout/item_hide_turring_list_layout" />
 </LinearLayout>

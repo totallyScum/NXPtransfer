@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slide_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:popupTheme="@style/ToolbarPopupTheme">
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="排序:"></TextView>
+
+        <Button
+            android:id="@+id/machine_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/select_title_text"
+            android:text="机器号"
+            android:textColor="@color/colorButtonWhite"></Button>
+
+        <Button
+            android:id="@+id/current_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/select_title_text"
+            android:text="源程序"
+            android:textColor="@color/colorButtonWhite"></Button>
+
+        <Button
+            android:id="@+id/target_program"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/select_title_text"
+            android:text="目标程序"
+            android:textColor="@color/colorButtonWhite"></Button>
+
+        <Button
+            android:id="@+id/default_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/select_title_text"
+            android:text="默认排序"
+            android:textColor="@color/colorButtonWhite"></Button>
+    </LinearLayout>
+    <com.zthl.nxp.listview.SlideDeleteListView
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/slide_mission_list"
+        tools:listitem="@layout/history_list_item"
+        android:background="#ffffff"
+        >
+        <!--    <ListView-->
+        <!--        android:name="com.chen.nxp.MissionFragment"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:layout_marginLeft="16dp"-->
+        <!--        android:layout_marginRight="16dp"-->
+        <!--        android:layout_marginTop="10dp"-->
+        <!--        tools:context="com.zthl.nxp.ui.missionList.MissionListFragment"-->
+        <!--        tools:listitem="@layout/mission_list_item" />-->
+    </com.zthl.nxp.listview.SlideDeleteListView>
+</FrameLayout>
